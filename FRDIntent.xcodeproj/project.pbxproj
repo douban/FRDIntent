@@ -11,7 +11,7 @@
 		A354CC301D6EA93D00830990 /* FRDIntent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A354CC251D6EA93D00830990 /* FRDIntent.framework */; };
 		A354CC351D6EA93D00830990 /* FRDIntentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC341D6EA93D00830990 /* FRDIntentTests.swift */; };
 		A354CC411D6EA96F00830990 /* Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC401D6EA96F00830990 /* Intent.swift */; };
-		A354CC431D6EAA8900830990 /* IntentReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC421D6EAA8900830990 /* IntentReceivable.swift */; };
+		A354CC431D6EAA8900830990 /* IntentReceivableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC421D6EAA8900830990 /* IntentReceivableController.swift */; };
 		A354CC451D6EAB7D00830990 /* ControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC441D6EAB7D00830990 /* ControllerManager.swift */; };
 		A354CC471D6ECC3200830990 /* ControllerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC461D6ECC3200830990 /* ControllerDisplay.swift */; };
 		A354CC491D6ECC6800830990 /* PushDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC481D6ECC6800830990 /* PushDisplay.swift */; };
@@ -22,6 +22,8 @@
 		A354CC5D1D6EE2E200830990 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A354CC5B1D6EE2E200830990 /* LaunchScreen.storyboard */; };
 		A354CC631D6EE45300830990 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC621D6EE45300830990 /* FirstViewController.swift */; };
 		A354CC651D6EE76A00830990 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC641D6EE76A00830990 /* SecondViewController.swift */; };
+		A354CC671D73E40E00830990 /* IntentForResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC661D73E40E00830990 /* IntentForResultController.swift */; };
+		A354CC691D73E4EF00830990 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC681D73E4EF00830990 /* ThirdViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +44,7 @@
 		A354CC341D6EA93D00830990 /* FRDIntentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRDIntentTests.swift; sourceTree = "<group>"; };
 		A354CC361D6EA93D00830990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A354CC401D6EA96F00830990 /* Intent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intent.swift; sourceTree = "<group>"; };
-		A354CC421D6EAA8900830990 /* IntentReceivable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntentReceivable.swift; sourceTree = "<group>"; };
+		A354CC421D6EAA8900830990 /* IntentReceivableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntentReceivableController.swift; sourceTree = "<group>"; };
 		A354CC441D6EAB7D00830990 /* ControllerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerManager.swift; sourceTree = "<group>"; };
 		A354CC461D6ECC3200830990 /* ControllerDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerDisplay.swift; sourceTree = "<group>"; };
 		A354CC481D6ECC6800830990 /* PushDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushDisplay.swift; sourceTree = "<group>"; };
@@ -55,6 +57,8 @@
 		A354CC5E1D6EE2E200830990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A354CC621D6EE45300830990 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		A354CC641D6EE76A00830990 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		A354CC661D73E40E00830990 /* IntentForResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntentForResultController.swift; sourceTree = "<group>"; };
+		A354CC681D73E4EF00830990 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				A354CC401D6EA96F00830990 /* Intent.swift */,
-				A354CC421D6EAA8900830990 /* IntentReceivable.swift */,
+				A354CC421D6EAA8900830990 /* IntentReceivableController.swift */,
+				A354CC661D73E40E00830990 /* IntentForResultController.swift */,
 				A354CC441D6EAB7D00830990 /* ControllerManager.swift */,
 				A354CC461D6ECC3200830990 /* ControllerDisplay.swift */,
 				A354CC481D6ECC6800830990 /* PushDisplay.swift */,
@@ -142,6 +147,7 @@
 				A354CC541D6EE2E200830990 /* ViewController.swift */,
 				A354CC621D6EE45300830990 /* FirstViewController.swift */,
 				A354CC641D6EE76A00830990 /* SecondViewController.swift */,
+				A354CC681D73E4EF00830990 /* ThirdViewController.swift */,
 				A354CC591D6EE2E200830990 /* Assets.xcassets */,
 				A354CC5B1D6EE2E200830990 /* LaunchScreen.storyboard */,
 				A354CC5E1D6EE2E200830990 /* Info.plist */,
@@ -291,9 +297,10 @@
 				A354CC491D6ECC6800830990 /* PushDisplay.swift in Sources */,
 				A354CC451D6EAB7D00830990 /* ControllerManager.swift in Sources */,
 				A354CC471D6ECC3200830990 /* ControllerDisplay.swift in Sources */,
+				A354CC671D73E40E00830990 /* IntentForResultController.swift in Sources */,
 				A354CC411D6EA96F00830990 /* Intent.swift in Sources */,
 				A354CC4B1D6ED49600830990 /* PresentationDisplay.swift in Sources */,
-				A354CC431D6EAA8900830990 /* IntentReceivable.swift in Sources */,
+				A354CC431D6EAA8900830990 /* IntentReceivableController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +318,7 @@
 			files = (
 				A354CC651D6EE76A00830990 /* SecondViewController.swift in Sources */,
 				A354CC631D6EE45300830990 /* FirstViewController.swift in Sources */,
+				A354CC691D73E4EF00830990 /* ThirdViewController.swift in Sources */,
 				A354CC551D6EE2E200830990 /* ViewController.swift in Sources */,
 				A354CC531D6EE2E200830990 /* AppDelegate.swift in Sources */,
 			);
@@ -525,6 +533,7 @@
 				A354CC3B1D6EA93E00830990 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A354CC3C1D6EA93E00830990 /* Build configuration list for PBXNativeTarget "FRDIntentTests" */ = {
 			isa = XCConfigurationList;
@@ -533,6 +542,7 @@
 				A354CC3E1D6EA93E00830990 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A354CC5F1D6EE2E200830990 /* Build configuration list for PBXNativeTarget "FRDIntentDemo" */ = {
 			isa = XCConfigurationList;
@@ -541,6 +551,7 @@
 				A354CC611D6EE2E200830990 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

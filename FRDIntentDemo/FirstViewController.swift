@@ -9,16 +9,16 @@
 import UIKit
 import FRDIntent
 
-class FirstViewController: UIViewController, IntentReceivable {
+class FirstViewController: UIViewController, IntentReceivableController {
 
   var number: NSNumber?
 
-  convenience required init(extra: Dictionary<String, AnyObject>?) {
+  convenience required init(extra: Dictionary<String, Any>?) {
     let number = extra?["number"] as? NSNumber
     self.init(number: number)
   }
 
-  init(number: NSNumber?) {
+  required init(number: NSNumber?) {
     self.number = number
     super.init(nibName: nil, bundle: nil)
   }
@@ -34,7 +34,9 @@ class FirstViewController: UIViewController, IntentReceivable {
     let numberLabel = UILabel()
     numberLabel.frame = CGRect(x: 20, y: 100, width: view.bounds.size.width - 40, height: 44)
     numberLabel.textAlignment = .Center
-    numberLabel.text = "\(number)"
+    if let number = number {
+      numberLabel.text = "\(number)"
+    }
     view.addSubview(numberLabel)
   }
 

@@ -56,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     controllerManager.registerController(NSURL(string: "douban://douban.com/frodo/firstViewController")!, clazz: FirstViewController.self)
 
     controllerManager.registerController(NSURL(string: "douban://douban.com/frodo/secondViewController")!, clazz: SecondViewController.self)
+    controllerManager.registerController(NSURL(string: "douban://douban.com/frodo/secondViewController")!, clazz: ThirdViewController.self)
 
   }
 

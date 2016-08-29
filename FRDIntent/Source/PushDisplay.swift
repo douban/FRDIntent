@@ -10,7 +10,7 @@ import UIKit
 
 public class PushDisplay: ControllerDisplay {
 
-  public func displayViewController(source source: UIViewController, destination: UIViewController) {
+  public func displayViewController<T: UIViewController>(source source: T, destination: T) {
     if let navigationController = source.navigationController {
       navigationController.pushViewController(destination, animated: true)
     }

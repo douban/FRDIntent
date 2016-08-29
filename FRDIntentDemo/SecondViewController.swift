@@ -9,11 +9,11 @@
 import UIKit
 import FRDIntent
 
-class SecondViewController: UIViewController, IntentReceivable {
+class SecondViewController: UIViewController, IntentReceivableController {
 
   var number: NSNumber?
 
-  convenience required init(extra: Dictionary<String, AnyObject>?) {
+  convenience required init(extra: Dictionary<String, Any>?) {
     let number = extra?["number"] as? NSNumber
     self.init(number: number)
   }
@@ -32,9 +32,11 @@ class SecondViewController: UIViewController, IntentReceivable {
     title = "SecondViewController"
     view.backgroundColor = UIColor.whiteColor()
     let numberLabel = UILabel()
-    numberLabel.frame = CGRect(x: 20, y: 100, width: view.bounds.size.width, height: 44)
+    numberLabel.frame = CGRect(x: 20, y: 100, width: view.bounds.size.width - 40, height: 44)
     numberLabel.textAlignment = .Center
-    numberLabel.text = "\(number!)"
+    if let number = number {
+      numberLabel.text = "\(number)"
+    }
     view.addSubview(numberLabel)
   }
 }

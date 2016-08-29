@@ -10,8 +10,9 @@ import UIKit
 
 public class PresentationDisplay: ControllerDisplay {
 
-  public func displayViewController(source source: UIViewController, destination: UIViewController) {
-    source.presentViewController(destination, animated: true, completion: nil)
+  public func displayViewController<T: UIViewController>(source source: T, destination: T) {
+    let nav = UINavigationController(rootViewController: destination)
+    source.presentViewController(nav, animated: true, completion: nil)
   }
 
 }

@@ -10,6 +10,6 @@ import UIKit
 
 public protocol ControllerDisplay {
 
-  func displayViewController(source source: UIViewController, destination: UIViewController)
+  func displayViewController<T: UIViewController>(source source: T, destination: T)
 
 }

@@ -11,13 +11,12 @@ import Foundation
 public class Intent {
 
   public var uri: NSURL?
-  public var receiveClass: IntentReceivable.Type?
-
-  private(set) var extra: Dictionary<String, AnyObject>?
-
+  public var receiveClass: IntentReceivableController.Type?
   public var controllerDisplay: ControllerDisplay = PushDisplay()
 
-  public init(clazz: IntentReceivable.Type) {
+  public private(set) var extra = Dictionary<String, Any>()
+
+  public init(clazz: IntentReceivableController.Type) {
     self.receiveClass = clazz
   }
 
@@ -25,8 +24,7 @@ public class Intent {
     self.uri = uri
   }
 
-  public func putExtra(extra: Dictionary<String, AnyObject>) {
-    self.extra = extra
+  public func putExtra(name name: String, data: Any) {
+    self.extra[name] = data
   }
-
 }
