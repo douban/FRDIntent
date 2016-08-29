@@ -8,9 +8,18 @@
 
 import Foundation
 
+public enum ResultCode: Int {
+
+  case Ok
+  case Canceled
+  case FirstUser
+
+}
+
 public protocol IntentForResultSendableController {
 
-  func onControllerResult(requestCode requestCode: Int, resultCode: Int, data: Intent)
+  func onControllerResult(requestCode requestCode: Int, resultCode: ResultCode, data: Intent)
+
 }
 
 

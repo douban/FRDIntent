@@ -48,6 +48,12 @@ class ThirdViewController: UIViewController, IntentForResultReceivableController
 
   func dismiss() {
     dismissViewControllerAnimated(true, completion: nil)
+    if let controller = delegate {
+      let intent = Intent(uri: NSURL(string: "douban://")!)
+      intent.putExtra(name: "text", data: textField.text)
+      controller.onControllerResult(requestCode: self.requestCode!, resultCode: .Canceled, data: intent)
+    }
+
   }
 
   func confirm() {
@@ -55,7 +61,7 @@ class ThirdViewController: UIViewController, IntentForResultReceivableController
       dismissViewControllerAnimated(true, completion: nil)
       let intent = Intent(uri: NSURL(string: "douban://")!)
       intent.putExtra(name: "text", data: textField.text)
-      controller.onControllerResult(requestCode: self.requestCode!, resultCode: 1, data: intent)
+      controller.onControllerResult(requestCode: self.requestCode!, resultCode: .Ok, data: intent)
     }
   }
 

@@ -18,7 +18,7 @@ class FirstViewController: UIViewController, IntentReceivableController {
     self.init(number: number)
   }
 
-  required init(number: NSNumber?) {
+  init(number: NSNumber?) {
     self.number = number
     super.init(nibName: nil, bundle: nil)
   }

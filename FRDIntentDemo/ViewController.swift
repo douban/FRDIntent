@@ -9,6 +9,8 @@
 import UIKit
 import FRDIntent
 
+let RequestText: Int = 1
+
 class ViewController: UIViewController {
 
   override func viewDidLoad() {
@@ -57,16 +59,23 @@ class ViewController: UIViewController {
     let intent = Intent(clazz: ThirdViewController.self)
     intent.putExtra(name: "text", data: "Text From Source")
     let manager = ControllerManager.sharedInstance
-    manager.startForResultController(source: self, intent: intent, requestCode: 1)
+    manager.startForResultController(source: self, intent: intent, requestCode: RequestText)
   }
 
 }
 
 extension ViewController: IntentForResultSendableController {
 
-  func onControllerResult(requestCode requestCode: Int, resultCode: Int, data: Intent) {
-    let text = data.extra["text"]
-    print("get from destination : \(text)")
+  func onControllerResult(requestCode requestCode: Int, resultCode: ResultCode, data: Intent) {
+    if (requestCode == RequestText) {
+      if (resultCode == .Ok) {
+        let text = data.extra["text"]
+        print("Successful confirm get from destination : \(text)")
+      } else if (resultCode == .Canceled) {
+        let text = data.extra["text"]
+        print("Canceled get from destination : \(text)")
+      }
+    }
   }
 
 }

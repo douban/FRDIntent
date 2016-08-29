@@ -27,4 +27,5 @@ public class Intent {
   public func putExtra(name name: String, data: Any) {
     self.extra[name] = data
   }
+
 }

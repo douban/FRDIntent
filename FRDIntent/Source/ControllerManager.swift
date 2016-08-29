@@ -12,8 +12,11 @@ public class ControllerManager {
 
   public static let sharedInstance = ControllerManager()
 
+
   private var map = Dictionary<NSURL, IntentReceivableController.Type>()
+
   private var mapForResult = Dictionary<NSURL, IntentForResultReceivableController.Type>()
+
 
   public func startController(source source: UIViewController, intent: Intent) {
 
@@ -35,25 +38,25 @@ public class ControllerManager {
 
   }
 
-  public func registerController(uri: NSURL, clazz: IntentReceivableController.Type) {
+  public func registerController<C: UIViewController where C: IntentReceivableController>(uri: NSURL, clazz: C.Type) {
     map[uri] = clazz
   }
 
-  public func startForResultController<T: UIViewController where T: IntentForResultSendableController>(source source: T, intent: Intent, requestCode: Int) {
+  public func startForResultController<C: UIViewController where C: IntentForResultSendableController>(source source: C, intent: Intent, requestCode: Int) {
 
-    var controllerClazz: IntentReceivableController.Type?
+    var controllerClazz: IntentForResultReceivableController.Type?
 
-    if let clazz = intent.receiveClass {
+    if let clazz = intent.receiveClass as? IntentForResultReceivableController.Type {
       controllerClazz = clazz
     }
 
     if let uri = intent.uri {
-      controllerClazz = map[uri]!
+      controllerClazz = mapForResult[uri]!
     }
 
     if let controllerClazz = controllerClazz {
       let display = PresentationDisplay()
-      var destination = controllerClazz.init(extra: intent.extra) as! IntentForResultReceivableController
+      var destination = controllerClazz.init(extra: intent.extra)
 
       destination.requestCode = requestCode
       destination.delegate = source
@@ -65,8 +68,8 @@ public class ControllerManager {
 
   }
 
-  public func registerController(uri: NSURL, clazz: IntentForResultReceivableController.Type) {
-    map[uri] = clazz
+  public func registerController<C: UIViewController where C: IntentForResultReceivableController>(uri: NSURL, clazz: C.Type) {
+    mapForResult[uri] = clazz
   }
 
 }
