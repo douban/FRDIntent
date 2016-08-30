@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A354CC291D6EA93D00830990 /* FRDIntent.h in Headers */ = {isa = PBXBuildFile; fileRef = A354CC281D6EA93D00830990 /* FRDIntent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A354CC301D6EA93D00830990 /* FRDIntent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A354CC251D6EA93D00830990 /* FRDIntent.framework */; };
-		A354CC351D6EA93D00830990 /* FRDIntentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC341D6EA93D00830990 /* FRDIntentTests.swift */; };
 		A354CC411D6EA96F00830990 /* Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC401D6EA96F00830990 /* Intent.swift */; };
 		A354CC431D6EAA8900830990 /* IntentReceivableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC421D6EAA8900830990 /* IntentReceivableController.swift */; };
 		A354CC451D6EAB7D00830990 /* ControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC441D6EAB7D00830990 /* ControllerManager.swift */; };
@@ -24,6 +23,10 @@
 		A354CC651D6EE76A00830990 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC641D6EE76A00830990 /* SecondViewController.swift */; };
 		A354CC671D73E40E00830990 /* IntentForResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC661D73E40E00830990 /* IntentForResultController.swift */; };
 		A354CC691D73E4EF00830990 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC681D73E4EF00830990 /* ThirdViewController.swift */; };
+		A354CC6E1D7560EC00830990 /* RouteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC6D1D7560EC00830990 /* RouteManager.swift */; };
+		A354CC701D7589F200830990 /* RouteManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC6F1D7589F200830990 /* RouteManagerTests.swift */; };
+		A354CC721D75A94D00830990 /* ControllerManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC711D75A94D00830990 /* ControllerManagerTests.swift */; };
+		A354CC741D75B43600830990 /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC731D75B43600830990 /* MockViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +44,6 @@
 		A354CC281D6EA93D00830990 /* FRDIntent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRDIntent.h; sourceTree = "<group>"; };
 		A354CC2A1D6EA93D00830990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A354CC2F1D6EA93D00830990 /* FRDIntentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FRDIntentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A354CC341D6EA93D00830990 /* FRDIntentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRDIntentTests.swift; sourceTree = "<group>"; };
 		A354CC361D6EA93D00830990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A354CC401D6EA96F00830990 /* Intent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intent.swift; sourceTree = "<group>"; };
 		A354CC421D6EAA8900830990 /* IntentReceivableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntentReceivableController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,10 @@
 		A354CC641D6EE76A00830990 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		A354CC661D73E40E00830990 /* IntentForResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntentForResultController.swift; sourceTree = "<group>"; };
 		A354CC681D73E4EF00830990 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		A354CC6D1D7560EC00830990 /* RouteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteManager.swift; sourceTree = "<group>"; };
+		A354CC6F1D7589F200830990 /* RouteManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteManagerTests.swift; sourceTree = "<group>"; };
+		A354CC711D75A94D00830990 /* ControllerManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerManagerTests.swift; sourceTree = "<group>"; };
+		A354CC731D75B43600830990 /* MockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +126,9 @@
 		A354CC331D6EA93D00830990 /* FRDIntentTests */ = {
 			isa = PBXGroup;
 			children = (
-				A354CC341D6EA93D00830990 /* FRDIntentTests.swift */,
+				A354CC731D75B43600830990 /* MockViewController.swift */,
+				A354CC6F1D7589F200830990 /* RouteManagerTests.swift */,
+				A354CC711D75A94D00830990 /* ControllerManagerTests.swift */,
 				A354CC361D6EA93D00830990 /* Info.plist */,
 			);
 			path = FRDIntentTests;
@@ -129,6 +137,7 @@
 		A354CC3F1D6EA95700830990 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A354CC6A1D755B5000830990 /* URL */,
 				A354CC401D6EA96F00830990 /* Intent.swift */,
 				A354CC421D6EAA8900830990 /* IntentReceivableController.swift */,
 				A354CC661D73E40E00830990 /* IntentForResultController.swift */,
@@ -153,6 +162,14 @@
 				A354CC5E1D6EE2E200830990 /* Info.plist */,
 			);
 			path = FRDIntentDemo;
+			sourceTree = "<group>";
+		};
+		A354CC6A1D755B5000830990 /* URL */ = {
+			isa = PBXGroup;
+			children = (
+				A354CC6D1D7560EC00830990 /* RouteManager.swift */,
+			);
+			path = URL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +318,7 @@
 				A354CC411D6EA96F00830990 /* Intent.swift in Sources */,
 				A354CC4B1D6ED49600830990 /* PresentationDisplay.swift in Sources */,
 				A354CC431D6EAA8900830990 /* IntentReceivableController.swift in Sources */,
+				A354CC6E1D7560EC00830990 /* RouteManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +326,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A354CC351D6EA93D00830990 /* FRDIntentTests.swift in Sources */,
+				A354CC741D75B43600830990 /* MockViewController.swift in Sources */,
+				A354CC701D7589F200830990 /* RouteManagerTests.swift in Sources */,
+				A354CC721D75A94D00830990 /* ControllerManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

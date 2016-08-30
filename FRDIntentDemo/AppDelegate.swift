@@ -53,10 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func configureIntent() {
 
     let controllerManager = ControllerManager.sharedInstance
-    controllerManager.registerController(NSURL(string: "douban://douban.com/frodo/firstViewController")!, clazz: FirstViewController.self)
-
-    controllerManager.registerController(NSURL(string: "douban://douban.com/frodo/secondViewController")!, clazz: SecondViewController.self)
-    controllerManager.registerController(NSURL(string: "douban://douban.com/frodo/secondViewController")!, clazz: ThirdViewController.self)
+    controllerManager.registerController(NSURL(string: "douban://douban.com/user/:userId")!, clazz: FirstViewController.self)
+    controllerManager.registerController(NSURL(string: "douban://douban.com/story/:storyId")!, clazz: SecondViewController.self)
+    controllerManager.registerController(NSURL(string: "douban://douban.com/user/:userId/story/:storyId")!, clazz: ThirdViewController.self)
 
   }
 

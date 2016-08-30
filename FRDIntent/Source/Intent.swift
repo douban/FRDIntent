@@ -14,7 +14,7 @@ public class Intent {
   public var receiveClass: IntentReceivableController.Type?
   public var controllerDisplay: ControllerDisplay = PushDisplay()
 
-  public private(set) var extra = Dictionary<String, Any>()
+  public private(set) var extra = [String: Any]()
 
   public init(clazz: IntentReceivableController.Type) {
     self.receiveClass = clazz

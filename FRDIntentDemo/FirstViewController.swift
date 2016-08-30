@@ -11,15 +11,14 @@ import FRDIntent
 
 class FirstViewController: UIViewController, IntentReceivableController {
 
-  var number: NSNumber?
+  var data: [String: Any]?
 
-  convenience required init(extra: Dictionary<String, Any>?) {
-    let number = extra?["number"] as? NSNumber
-    self.init(number: number)
+  convenience required init(extra: [String: Any]?) {
+    self.init(data: extra)
   }
 
-  init(number: NSNumber?) {
-    self.number = number
+  init(data: [String: Any]?) {
+    self.data = data
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -32,10 +31,11 @@ class FirstViewController: UIViewController, IntentReceivableController {
     title = "FirstViewController"
     view.backgroundColor = UIColor.whiteColor()
     let numberLabel = UILabel()
-    numberLabel.frame = CGRect(x: 20, y: 100, width: view.bounds.size.width - 40, height: 44)
+    numberLabel.frame = CGRect(x: 20, y: 100, width: view.bounds.size.width - 40, height: 500)
     numberLabel.textAlignment = .Center
-    if let number = number {
-      numberLabel.text = "\(number)"
+    numberLabel.numberOfLines = 0
+    if let data = data {
+      numberLabel.text = "\(data)"
     }
     view.addSubview(numberLabel)
   }
