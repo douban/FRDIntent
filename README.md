@@ -203,4 +203,4 @@ FRDIntentTests 文件夹包含了 FRDIntent 单元测试代码。单元测试不
 
 ## License
 
-AFNetworking is released under the MIT license. See LICENSE for details.
+FRDIntent is released under the MIT license. See LICENSE for details.
