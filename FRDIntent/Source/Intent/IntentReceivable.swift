@@ -8,8 +8,16 @@
 
 import Foundation
 
+/**
+ The protocol to abstract the view controller tha can receive the Intent.
+ */
 public protocol IntentReceivable {
 
-  init(extra: Dictionary<String, Any>?)
+  /**
+   Initialzier with extra data.
+   
+   - parameter extras: The extra data.
+   */
+  init(extras: Dictionary<String, Any>?)
 
 }

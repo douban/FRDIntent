@@ -13,8 +13,8 @@ class FirstViewController: UIViewController, IntentReceivable {
 
   var data: [String: Any]?
 
-  convenience required init(extra: [String: Any]?) {
-    self.init(data: extra)
+  convenience required init(extras: [String: Any]?) {
+    self.init(data: extras)
   }
 
   init(data: [String: Any]?) {

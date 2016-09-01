@@ -8,8 +8,17 @@
 
 import UIKit
 
+/**
+ The protocol for abstract the way of how display the destination view controller.
+ */
 public protocol ControllerDisplay {
 
+  /**
+   How to display the destination view controller.
+   
+   - parameter source: The source view controller.
+   - parameter destination: The destination view controller.
+   */
   func displayViewController<T: UIViewController>(source source: T, destination: T)
 
 }

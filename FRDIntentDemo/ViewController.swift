@@ -69,10 +69,10 @@ extension ViewController: IntentForResultSendable {
   func onControllerResult(requestCode requestCode: Int, resultCode: ResultCode, data: Intent) {
     if (requestCode == RequestText) {
       if (resultCode == .Ok) {
-        let text = data.extra["text"]
+        let text = data.extras["text"]
         print("Successful confirm get from destination : \(text)")
       } else if (resultCode == .Canceled) {
-        let text = data.extra["text"]
+        let text = data.extras["text"]
         print("Canceled get from destination : \(text)")
       }
     }

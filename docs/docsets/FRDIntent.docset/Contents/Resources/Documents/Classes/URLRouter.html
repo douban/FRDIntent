@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>URLRouter Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/URLRouter" class="dashAnchor"></a>
+    <a title="URLRouter Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">FRDIntent Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">FRDIntent Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        URLRouter Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ControllerManager.html">ControllerManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intent.html">Intent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PresentationDisplay.html">PresentationDisplay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PushDisplay.html">PushDisplay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/URLRouter.html">URLRouter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ResultCode.html">ResultCode</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/ControllerDisplay.html">ControllerDisplay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IntentForResultReceivable.html">IntentForResultReceivable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IntentForResultSendable.html">IntentForResultSendable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IntentReceivable.html">IntentReceivable</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>URLRouter</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">URLRouter</span></code></pre>
+
+                </div>
+              </div>
+            <p>URLRouter is a way to manage URL routes and invoke them from a URL.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC9FRDIntent9URLRouter12URLRouterURLSS"></a>
+                    <a name="//apple_ref/swift/Variable/URLRouterURL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC9FRDIntent9URLRouter12URLRouterURLSS">URLRouterURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The key to get the url from parameters of block handler.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">URLRouterURL</span> <span class="o">=</span> <span class="kt">RouteParameters</span><span class="o">.</span><span class="kt">URLRouteURL</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C9FRDIntent9URLRouter16URLRouterHandler"></a>
+                    <a name="//apple_ref/swift/Alias/URLRouterHandler" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C9FRDIntent9URLRouter16URLRouterHandler">URLRouterHandler</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The type of block handler to be registered.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">URLRouterHandler</span> <span class="o">=</span> <span class="p">([</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC9FRDIntent9URLRouter14sharedInstanceS0_"></a>
+                    <a name="//apple_ref/swift/Variable/sharedInstance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC9FRDIntent9URLRouter14sharedInstanceS0_">sharedInstance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Singleton instance of URLRouter.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">sharedInstance</span> <span class="o">=</span> <span class="kt">URLRouter</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9FRDIntent9URLRouter8registerFT3urlCSo5NSURL7handlerFGVs10DictionarySSP__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/register(url:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9FRDIntent9URLRouter8registerFT3urlCSo5NSURL7handlerFGVs10DictionarySSP__T__T_">register(url:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Registers a url for calling handler blocks.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="n">url</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">,</span> <span class="nv">handler</span><span class="p">:</span> <span class="kt"><a href="../Classes/URLRouter.html#/s:C9FRDIntent9URLRouter16URLRouterHandler">URLRouterHandler</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The url to be registered.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>handler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The handler to be registered, and will be called while routed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9FRDIntent9URLRouter5routeFT3urlCSo5NSURL_Sb"></a>
+                    <a name="//apple_ref/swift/Method/route(url:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9FRDIntent9URLRouter5routeFT3urlCSo5NSURL_Sb">route(url:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Routes a URL, calling handler blocks (for patterns that match URL) until one returns YES.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">route</span><span class="p">(</span><span class="n">url</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The url for search.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>True if handler block is found and called, false if handler block is not found.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9FRDIntent9URLRouter8registeruRxCSo16UIViewControllerxS_16IntentReceivablerFT3urlCSo5NSURL5clazzMx_T_"></a>
+                    <a name="//apple_ref/swift/Method/register(url:clazz:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9FRDIntent9URLRouter8registeruRxCSo16UIViewControllerxS_16IntentReceivablerFT3urlCSo5NSURL5clazzMx_T_">register(url:clazz:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Registers a url for calling handler blocks.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">register</span><span class="o">&lt;</span><span class="kt">C</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="k">where</span> <span class="kt">C</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IntentReceivable.html">IntentReceivable</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">url</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">,</span> <span class="nv">clazz</span><span class="p">:</span> <span class="kt">C</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The url to be registered.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clazz</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The UIViewController&rsquo;s class to be registered, and this view controller will be started while routed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="http://github.intra.douban.com/guolin/FRDIntent" target="_blank" rel="external">lincode</a>. All rights reserved. (Last updated: 2016-09-01)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

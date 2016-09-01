@@ -8,16 +8,32 @@
 
 import UIKit
 
+/**
+ ControllerManager is a way to manage view controllers and invoke view controllers from a URL or class name.
+ */
 public class ControllerManager {
 
+  /// Singleton instance of ControllerManager
   public static let sharedInstance = ControllerManager()
 
   private var routeManager = RouteManager.sharedInstance
 
+  /**
+   Registers a url for calling handler blocks.
+
+   - parameter url: The url to be registered.
+   - parameter clazz: The clazz to be registered, and the clazz's view controller object will be launched while routed.
+   */
   public func register<C: UIViewController where C: IntentReceivable>(url url: NSURL, clazz: C.Type) {
     routeManager.register(url: url, clazz: clazz)
   }
 
+  /**
+   Launch a view controller from source view controller with a intent.
+   
+   - parameter source: The source view controller.
+   - parameter intent: The intent for launch a new view controller.
+   */
   public func startController(source source: UIViewController, intent: Intent) {
 
     var parameters = [String: Any]()
@@ -39,13 +55,20 @@ public class ControllerManager {
       for (key, value) in parameters {
         intent.putExtra(name: key, data: value)
       }
-      let destination = controllerClazz.init(extra: intent.extra) as! UIViewController
+      let destination = controllerClazz.init(extras: intent.extras) as! UIViewController
 
       display.displayViewController(source: source, destination: destination)
     }
 
   }
 
+  /**
+    Launch a view controller for which you would like a result when it finished. When this view controller exits, your onControllerResult() method will be called with the given requestCode.
+
+   - parameter source: The source view controller.
+   - parameter intent: The intent for start new view controller.
+   - parameter requestCode : this code will be returned in onControllerResult() when the view controller exits.
+   */
   public func startControllerForResult<C: UIViewController where C: IntentForResultSendable>(source source: C, intent: Intent, requestCode: Int) {
 
     typealias ControllerType = IntentForResultReceivable.Type
@@ -69,7 +92,7 @@ public class ControllerManager {
       for (key, value) in parameters {
         intent.putExtra(name: key, data: value)
       }
-      var destination = controllerClazz.init(extra: intent.extra)
+      var destination = controllerClazz.init(extras: intent.extras)
 
       destination.requestCode = requestCode
       destination.delegate = source

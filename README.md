@@ -51,7 +51,7 @@ FRDIntent/Intent 是一个消息传递对象，用于启动 UIViewController。�
 FRDIntent/Intent 有如下优势：
 
 - 充分解耦。调用者和被调用者完全隔离，调用者只需要依赖协议：`IntentReceivable`。一个 ViewControlller 符合该协议即可被启动。
-- 对于“启动一个页面，并从该页面获取结果”这种较普遍的需求提供了一个通用的解决方案。具体查看方法：startControllerForResult。这是对 Android 中 startActitiyForResult 的模仿和简化。
+- 对于“启动一个页面，并从该页面获取结果”这种较普遍的需求提供了一个通用的解决方案。具体查看方法：startControllerForResult。这是对 Android 中 startActivityForResult 的模仿和简化。
 - 支持自定义转场动画。
 - 可以传递复杂数据对象。
 

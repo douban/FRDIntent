@@ -18,9 +18,9 @@ class ThirdViewController: UIViewController, IntentForResultReceivable {
 
   let textField: UITextField = UITextField()
 
-  required init(extra: [String: Any]?) {
-    data = extra
-    let text = extra?["text"] as? String
+  required init(extras: [String: Any]?) {
+    data = extras
+    let text = extras?["text"] as? String
     textField.text = text
     super.init(nibName: nil, bundle: nil)
   }
