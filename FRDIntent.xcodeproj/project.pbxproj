@@ -7,26 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A354CC291D6EA93D00830990 /* FRDIntent.h in Headers */ = {isa = PBXBuildFile; fileRef = A354CC281D6EA93D00830990 /* FRDIntent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A32C1FC91D76717C00C19142 /* URLRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FC81D76717C00C19142 /* URLRouter.swift */; };
+		A32C1FCB1D767CE500C19142 /* URLRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FCA1D767CE500C19142 /* URLRouterTests.swift */; };
+		A32C1FD11D76F3BD00C19142 /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FD01D76F3BD00C19142 /* MockViewController.swift */; };
 		A354CC301D6EA93D00830990 /* FRDIntent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A354CC251D6EA93D00830990 /* FRDIntent.framework */; };
-		A354CC411D6EA96F00830990 /* Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC401D6EA96F00830990 /* Intent.swift */; };
-		A354CC431D6EAA8900830990 /* IntentReceivableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC421D6EAA8900830990 /* IntentReceivableController.swift */; };
-		A354CC451D6EAB7D00830990 /* ControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC441D6EAB7D00830990 /* ControllerManager.swift */; };
-		A354CC471D6ECC3200830990 /* ControllerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC461D6ECC3200830990 /* ControllerDisplay.swift */; };
-		A354CC491D6ECC6800830990 /* PushDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC481D6ECC6800830990 /* PushDisplay.swift */; };
-		A354CC4B1D6ED49600830990 /* PresentationDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC4A1D6ED49600830990 /* PresentationDisplay.swift */; };
 		A354CC531D6EE2E200830990 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC521D6EE2E200830990 /* AppDelegate.swift */; };
 		A354CC551D6EE2E200830990 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC541D6EE2E200830990 /* ViewController.swift */; };
 		A354CC5A1D6EE2E200830990 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A354CC591D6EE2E200830990 /* Assets.xcassets */; };
 		A354CC5D1D6EE2E200830990 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A354CC5B1D6EE2E200830990 /* LaunchScreen.storyboard */; };
 		A354CC631D6EE45300830990 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC621D6EE45300830990 /* FirstViewController.swift */; };
 		A354CC651D6EE76A00830990 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC641D6EE76A00830990 /* SecondViewController.swift */; };
-		A354CC671D73E40E00830990 /* IntentForResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC661D73E40E00830990 /* IntentForResultController.swift */; };
 		A354CC691D73E4EF00830990 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC681D73E4EF00830990 /* ThirdViewController.swift */; };
 		A354CC6E1D7560EC00830990 /* RouteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC6D1D7560EC00830990 /* RouteManager.swift */; };
 		A354CC701D7589F200830990 /* RouteManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC6F1D7589F200830990 /* RouteManagerTests.swift */; };
 		A354CC721D75A94D00830990 /* ControllerManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC711D75A94D00830990 /* ControllerManagerTests.swift */; };
-		A354CC741D75B43600830990 /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC731D75B43600830990 /* MockViewController.swift */; };
+		A354CC7D1D75B8C200830990 /* ControllerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC761D75B8C200830990 /* ControllerDisplay.swift */; };
+		A354CC7E1D75B8C200830990 /* ControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC771D75B8C200830990 /* ControllerManager.swift */; };
+		A354CC7F1D75B8C200830990 /* Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC781D75B8C200830990 /* Intent.swift */; };
+		A354CC801D75B8C200830990 /* IntentForResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC791D75B8C200830990 /* IntentForResult.swift */; };
+		A354CC811D75B8C200830990 /* IntentReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC7A1D75B8C200830990 /* IntentReceivable.swift */; };
+		A354CC821D75B8C200830990 /* PresentationDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC7B1D75B8C200830990 /* PresentationDisplay.swift */; };
+		A354CC831D75B8C200830990 /* PushDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC7C1D75B8C200830990 /* PushDisplay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,17 +41,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A32C1FC81D76717C00C19142 /* URLRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRouter.swift; sourceTree = "<group>"; };
+		A32C1FCA1D767CE500C19142 /* URLRouterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRouterTests.swift; sourceTree = "<group>"; };
+		A32C1FD01D76F3BD00C19142 /* MockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
 		A354CC251D6EA93D00830990 /* FRDIntent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FRDIntent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A354CC281D6EA93D00830990 /* FRDIntent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRDIntent.h; sourceTree = "<group>"; };
 		A354CC2A1D6EA93D00830990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A354CC2F1D6EA93D00830990 /* FRDIntentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FRDIntentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A354CC361D6EA93D00830990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A354CC401D6EA96F00830990 /* Intent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intent.swift; sourceTree = "<group>"; };
-		A354CC421D6EAA8900830990 /* IntentReceivableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntentReceivableController.swift; sourceTree = "<group>"; };
-		A354CC441D6EAB7D00830990 /* ControllerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerManager.swift; sourceTree = "<group>"; };
-		A354CC461D6ECC3200830990 /* ControllerDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerDisplay.swift; sourceTree = "<group>"; };
-		A354CC481D6ECC6800830990 /* PushDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushDisplay.swift; sourceTree = "<group>"; };
-		A354CC4A1D6ED49600830990 /* PresentationDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationDisplay.swift; sourceTree = "<group>"; };
 		A354CC501D6EE2E200830990 /* FRDIntentDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FRDIntentDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A354CC521D6EE2E200830990 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A354CC541D6EE2E200830990 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,12 +56,17 @@
 		A354CC5E1D6EE2E200830990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A354CC621D6EE45300830990 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		A354CC641D6EE76A00830990 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		A354CC661D73E40E00830990 /* IntentForResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntentForResultController.swift; sourceTree = "<group>"; };
 		A354CC681D73E4EF00830990 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		A354CC6D1D7560EC00830990 /* RouteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteManager.swift; sourceTree = "<group>"; };
 		A354CC6F1D7589F200830990 /* RouteManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteManagerTests.swift; sourceTree = "<group>"; };
 		A354CC711D75A94D00830990 /* ControllerManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerManagerTests.swift; sourceTree = "<group>"; };
-		A354CC731D75B43600830990 /* MockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
+		A354CC761D75B8C200830990 /* ControllerDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerDisplay.swift; sourceTree = "<group>"; };
+		A354CC771D75B8C200830990 /* ControllerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerManager.swift; sourceTree = "<group>"; };
+		A354CC781D75B8C200830990 /* Intent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intent.swift; sourceTree = "<group>"; };
+		A354CC791D75B8C200830990 /* IntentForResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntentForResult.swift; sourceTree = "<group>"; };
+		A354CC7A1D75B8C200830990 /* IntentReceivable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntentReceivable.swift; sourceTree = "<group>"; };
+		A354CC7B1D75B8C200830990 /* PresentationDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationDisplay.swift; sourceTree = "<group>"; };
+		A354CC7C1D75B8C200830990 /* PushDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushDisplay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A32C1FC71D76716600C19142 /* URLRouter */ = {
+			isa = PBXGroup;
+			children = (
+				A32C1FC81D76717C00C19142 /* URLRouter.swift */,
+			);
+			path = URLRouter;
+			sourceTree = "<group>";
+		};
 		A354CC1B1D6EA93D00830990 = {
 			isa = PBXGroup;
 			children = (
@@ -117,7 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				A354CC3F1D6EA95700830990 /* Source */,
-				A354CC281D6EA93D00830990 /* FRDIntent.h */,
 				A354CC2A1D6EA93D00830990 /* Info.plist */,
 			);
 			path = FRDIntent;
@@ -126,9 +135,10 @@
 		A354CC331D6EA93D00830990 /* FRDIntentTests */ = {
 			isa = PBXGroup;
 			children = (
-				A354CC731D75B43600830990 /* MockViewController.swift */,
+				A32C1FD01D76F3BD00C19142 /* MockViewController.swift */,
 				A354CC6F1D7589F200830990 /* RouteManagerTests.swift */,
 				A354CC711D75A94D00830990 /* ControllerManagerTests.swift */,
+				A32C1FCA1D767CE500C19142 /* URLRouterTests.swift */,
 				A354CC361D6EA93D00830990 /* Info.plist */,
 			);
 			path = FRDIntentTests;
@@ -137,14 +147,9 @@
 		A354CC3F1D6EA95700830990 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				A354CC6A1D755B5000830990 /* URL */,
-				A354CC401D6EA96F00830990 /* Intent.swift */,
-				A354CC421D6EAA8900830990 /* IntentReceivableController.swift */,
-				A354CC661D73E40E00830990 /* IntentForResultController.swift */,
-				A354CC441D6EAB7D00830990 /* ControllerManager.swift */,
-				A354CC461D6ECC3200830990 /* ControllerDisplay.swift */,
-				A354CC481D6ECC6800830990 /* PushDisplay.swift */,
-				A354CC4A1D6ED49600830990 /* PresentationDisplay.swift */,
+				A32C1FC71D76716600C19142 /* URLRouter */,
+				A354CC751D75B8C200830990 /* Intent */,
+				A354CC6A1D755B5000830990 /* Core */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -164,12 +169,26 @@
 			path = FRDIntentDemo;
 			sourceTree = "<group>";
 		};
-		A354CC6A1D755B5000830990 /* URL */ = {
+		A354CC6A1D755B5000830990 /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				A354CC6D1D7560EC00830990 /* RouteManager.swift */,
 			);
-			path = URL;
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A354CC751D75B8C200830990 /* Intent */ = {
+			isa = PBXGroup;
+			children = (
+				A354CC771D75B8C200830990 /* ControllerManager.swift */,
+				A354CC781D75B8C200830990 /* Intent.swift */,
+				A354CC791D75B8C200830990 /* IntentForResult.swift */,
+				A354CC7A1D75B8C200830990 /* IntentReceivable.swift */,
+				A354CC761D75B8C200830990 /* ControllerDisplay.swift */,
+				A354CC7B1D75B8C200830990 /* PresentationDisplay.swift */,
+				A354CC7C1D75B8C200830990 /* PushDisplay.swift */,
+			);
+			path = Intent;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,7 +198,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A354CC291D6EA93D00830990 /* FRDIntent.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,13 +329,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A354CC491D6ECC6800830990 /* PushDisplay.swift in Sources */,
-				A354CC451D6EAB7D00830990 /* ControllerManager.swift in Sources */,
-				A354CC471D6ECC3200830990 /* ControllerDisplay.swift in Sources */,
-				A354CC671D73E40E00830990 /* IntentForResultController.swift in Sources */,
-				A354CC411D6EA96F00830990 /* Intent.swift in Sources */,
-				A354CC4B1D6ED49600830990 /* PresentationDisplay.swift in Sources */,
-				A354CC431D6EAA8900830990 /* IntentReceivableController.swift in Sources */,
+				A354CC801D75B8C200830990 /* IntentForResult.swift in Sources */,
+				A354CC7E1D75B8C200830990 /* ControllerManager.swift in Sources */,
+				A354CC831D75B8C200830990 /* PushDisplay.swift in Sources */,
+				A354CC7F1D75B8C200830990 /* Intent.swift in Sources */,
+				A354CC7D1D75B8C200830990 /* ControllerDisplay.swift in Sources */,
+				A354CC811D75B8C200830990 /* IntentReceivable.swift in Sources */,
+				A32C1FC91D76717C00C19142 /* URLRouter.swift in Sources */,
+				A354CC821D75B8C200830990 /* PresentationDisplay.swift in Sources */,
 				A354CC6E1D7560EC00830990 /* RouteManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,7 +345,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A354CC741D75B43600830990 /* MockViewController.swift in Sources */,
+				A32C1FD11D76F3BD00C19142 /* MockViewController.swift in Sources */,
+				A32C1FCB1D767CE500C19142 /* URLRouterTests.swift in Sources */,
 				A354CC701D7589F200830990 /* RouteManagerTests.swift in Sources */,
 				A354CC721D75A94D00830990 /* ControllerManagerTests.swift in Sources */,
 			);

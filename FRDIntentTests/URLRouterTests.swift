@@ -7,29 +7,28 @@
 //
 
 import XCTest
+@testable import FRDIntent
 
 class URLRouterTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+  func testURLRouter() {
+    let router = URLRouter.sharedInstance
+
+    router.register(url: NSURL(string: "douban://www.douban.com/user/:userId")!) { (params: [String: Any]) in
+      XCTAssert(params["userId"] as! String == "12", "userId is 12")
+      XCTAssert(params[URLRouter.URLRouterURL] as? NSURL == NSURL(string:  "douban://www.douban.com/user/12"), "")
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+    router.route(url: NSURL(string: "douban://www.douban.com/user/12")!)
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
+    router.register(url: NSURL(string: "/story/:storyId")!) { (params: [String: Any]) in
+      XCTAssert(params["storyId"] as! String == "21", "userId is 12")
+      XCTAssert(params["key1"] as! String == "value1", "key1 is value1")
+      XCTAssert(params["key2"] as! String == "value2", "key2 is value2")
+      XCTAssert(params["fragment"] as! String == "ref", "fragment is ref")
     }
+    router.route(url: NSURL(string: "douban://www.douban.com/story/21/?key1=value1&key2=value2#ref")!)
+
+  }
 
 }

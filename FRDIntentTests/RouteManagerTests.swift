@@ -11,60 +11,69 @@ import XCTest
 
 class RouteSearch: XCTestCase {
 
+  var routeManager: RouteManager!
+
+  override func setUp() {
+    super.setUp()
+    routeManager = RouteManager()
+  }
+
   func testNormalSearch() {
 
-    let routeManager = RouteManager()
+    routeManager.register(url: NSURL(string: "douban://www.douban.com/user/:userId")!, clazz: MockUserViewController.self)
+    routeManager.register(url: NSURL(string: "douban://www.douban.com/user/:userId/profile")!, clazz: MockProfileViewController.self)
+    routeManager.register(url: NSURL(string: "douban://www.douban.com/user/:userId/story/:storyId")!, clazz: MockStoryViewController.self)
+    routeManager.register(url: NSURL(string: "douban://www.douban.com/story/:storyId")!, clazz: MockStoryViewController.self)
 
-    routeManager.registerRoute(uri: NSURL(string: "douban://www.douban.com/user/:userId")!, clazz: MockUserController.self)
-    routeManager.registerRoute(uri: NSURL(string: "douban://www.douban.com/user/:userId/profile")!, clazz: MockProfileController.self)
-    routeManager.registerRoute(uri: NSURL(string: "douban://www.douban.com/user/:userId/story/:storyId")!, clazz: MockStoryController.self)
-    routeManager.registerRoute(uri: NSURL(string: "douban://www.douban.com/story/:storyId")!, clazz: MockStoryController.self)
+    let (params, clazz) = routeManager.searchController(url: NSURL(string: "douban://www.douban.com/user/12")!)
+    XCTAssert(params["userId"] as! String == "12", "userId is 12")
+    XCTAssert(clazz == MockUserViewController.self, "mock is user")
 
+    let (params2, value2) = routeManager.searchController(url: NSURL(string: "douban://www.douban.com/user/123/profile")!)
+    XCTAssert(params2["userId"] as! String == "123", "userId is 123")
+    XCTAssert(value2 == MockProfileViewController.self, "value is profile")
 
-    let (parameter, clazz) = routeManager.searchRoute(uri: NSURL(string: "douban://www.douban.com/user/12")!)
-    XCTAssert(parameter["userId"] as! String == "12", "userId is 12")
-    XCTAssert(clazz == MockUserController.self, "clazz is Mock")
+    let (params3, value3) = routeManager.searchController(url: NSURL(string: "douban://www.douban.com/user/123/story/1234")!)
+    XCTAssert(params3["userId"] as! String == "123", "userId is 123")
+    XCTAssert(params3["storyId"] as! String == "1234", "storyId is 1234")
+    XCTAssert(value3 == MockStoryViewController.self, "value is story")
 
-    let (parameter2, clazz2) = routeManager.searchRoute(uri: NSURL(string: "douban://www.douban.com/user/123/profile")!)
-    XCTAssert(parameter2["userId"] as! String == "123", "userId is 123")
-    XCTAssert(clazz2 == MockProfileController.self, "clazz is Mock")
-
-    let (parameter3, clazz3) = routeManager.searchRoute(uri: NSURL(string: "douban://www.douban.com/user/123/story/1234")!)
-    XCTAssert(parameter3["userId"] as! String == "123", "userId is 123")
-    XCTAssert(parameter3["storyId"] as! String == "1234", "storyId is 1234")
-    XCTAssert(clazz3 == MockStoryController.self, "clazz is Mock")
-
-    let (parameter4, clazz4) = routeManager.searchRoute(uri: NSURL(string: "douban://www.douban.com/story/1234/")!)
-    XCTAssert(parameter4["storyId"] as! String == "1234", "storyId is 1234")
-    XCTAssert(clazz4 == MockStoryController.self, "clazz is Mock")
+    let (params4, value4) = routeManager.searchController(url: NSURL(string: "douban://www.douban.com/story/1234/")!)
+    XCTAssert(params4["storyId"] as! String == "1234", "storyId is 1234")
+    XCTAssert(value4 == MockStoryViewController.self, "value is story")
 
   }
 
   func testNoMatchSearch() {
-    let routeManager = RouteManager()
-    routeManager.registerRoute(uri: NSURL(string: "douban://www.douban.com/story/:storyId")!, clazz: MockStoryController.self)
-    routeManager.registerRoute(uri: NSURL(string: "douban://www.douban.com/normal/")!, clazz: MockUserController.self)
 
-    let (parameter5, clazz5) = routeManager.searchRoute(uri: NSURL(string: "douban://www.douban.com/story/12345/error")!)
-    XCTAssert(parameter5["storyId"] as! String == "12345", "storyId is 1234")
-    XCTAssert(clazz5 == MockStoryController.self, "clazz is Mock")
 
-    let (parameter6, clazz6) = routeManager.searchRoute(uri: NSURL(string: "douban://www.douban.com/error")!)
-    XCTAssert(parameter6.isEmpty == true, "parameter is empty")
-    XCTAssert(clazz6 == nil, "clazz is nil")
+    let handler1 = {(params: [String: Any]) in
+
+    }
+
+    routeManager.register(url: NSURL(string: "douban://www.douban.com/story/:storyId")!, handler: handler1)
+    routeManager.register(url: NSURL(string: "douban://www.douban.com/normal/")!, handler: handler1)
+
+    let (params5, value5) = routeManager.searchHandler(url: NSURL(string: "douban://www.douban.com/story/12345/error")!)
+    XCTAssert(params5["storyId"] as! String == "12345", "storyId is 1234")
+    XCTAssert(value5 != nil, "value is not nil")
+
+
+    let (params6, value6) = routeManager.searchHandler(url: NSURL(string: "douban://www.douban.com/error")!)
+    XCTAssert(params6[URLRouter.URLRouterURL] as? NSURL == NSURL(string:  "douban://www.douban.com/error"), "")
+    XCTAssert(value6 == nil, "value is nil")
   }
 
   func testQueryFragmentParameter() {
 
-    let routeManager = RouteManager()
-    routeManager.registerRoute(uri: NSURL(string: "douban://www.douban.com/parameters")!, clazz: MockStoryController.self)
 
-    let (parameter7, clazz7) = routeManager.searchRoute(uri: NSURL(string: "douban://www.douban.com/parameters?key1=value1&key2=value2#ref")!)
-    XCTAssert(parameter7["key1"] as! String == "value1", "parameter key1 is value1")
-    XCTAssert(parameter7["key2"] as! String == "value2", "parameter key2 is value2")
-    XCTAssert(parameter7["fragment"] as! String == "ref", "parameter fragment is ref")
-    XCTAssert(clazz7 == MockStoryController.self, "clazz is nil")
+    routeManager.register(url: NSURL(string: "douban://www.douban.com/paramss")!, clazz: MockStoryViewController.self)
+
+    let (params7, value7) = routeManager.searchController(url: NSURL(string: "douban://www.douban.com/paramss?key1=value1&key2=value2#ref")!)
+    XCTAssert(params7["key1"] as! String == "value1", "params key1 is value1")
+    XCTAssert(params7["key2"] as! String == "value2", "params key2 is value2")
+    XCTAssert(params7["fragment"] as! String == "ref", "params fragment is ref")
+    XCTAssert(value7 == MockStoryViewController.self, "value is nil")
   }
 
 }
-

@@ -11,22 +11,15 @@ import XCTest
 
 class ControllerManagerTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
+  func testNormalSearch() {
 
-    func test() {
-      let controllerManager = ControllerManager.sharedInstance
-      controllerManager.registerController(NSURL(string: "douban://douban.com/frodo/firstViewController")!, clazz: MockUserController.self)
+    let controllerManager = ControllerManager.sharedInstance
+    controllerManager.register(url: NSURL(string: "frdintent://frdintent.com/user/:userId")!, clazz: MockUserViewController.self)
+    controllerManager.register(url: NSURL(string: "frdintent://frdintent.com/story/:storyId")!, clazz: MockStoryViewController.self)
+    controllerManager.register(url: NSURL(string: "frdintent://frdintent.com/user/:userId/profile")!, clazz: MockProfileViewController.self)
 
-
-    }
-
+  }
 
 }
+
+
