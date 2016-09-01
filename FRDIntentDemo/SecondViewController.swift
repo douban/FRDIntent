@@ -9,7 +9,7 @@
 import UIKit
 import FRDIntent
 
-class SecondViewController: UIViewController, IntentReceivableController {
+class SecondViewController: UIViewController, IntentReceivable {
 
   var data: [String: Any]?
 
@@ -21,6 +21,7 @@ class SecondViewController: UIViewController, IntentReceivableController {
     self.data = data
     super.init(nibName: nil, bundle: nil)
   }
+
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -30,7 +31,7 @@ class SecondViewController: UIViewController, IntentReceivableController {
     title = "SecondViewController"
     view.backgroundColor = UIColor.whiteColor()
     let numberLabel = UILabel()
-    numberLabel.frame = CGRect(x: 20, y: 100, width: view.bounds.size.width - 40, height: 500)
+    numberLabel.frame = CGRect(x: 20, y: 100, width: view.bounds.size.width - 40, height: 400)
     numberLabel.textAlignment = .Center
     numberLabel.numberOfLines = 0
     if let data = data {

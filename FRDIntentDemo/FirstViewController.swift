@@ -9,7 +9,7 @@
 import UIKit
 import FRDIntent
 
-class FirstViewController: UIViewController, IntentReceivableController {
+class FirstViewController: UIViewController, IntentReceivable {
 
   var data: [String: Any]?
 
@@ -31,7 +31,7 @@ class FirstViewController: UIViewController, IntentReceivableController {
     title = "FirstViewController"
     view.backgroundColor = UIColor.whiteColor()
     let numberLabel = UILabel()
-    numberLabel.frame = CGRect(x: 20, y: 100, width: view.bounds.size.width - 40, height: 500)
+    numberLabel.frame = CGRect(x: 20, y: 100, width: view.bounds.size.width - 40, height: 400)
     numberLabel.textAlignment = .Center
     numberLabel.numberOfLines = 0
     if let data = data {

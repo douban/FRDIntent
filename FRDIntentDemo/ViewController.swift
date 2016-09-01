@@ -42,7 +42,7 @@ class ViewController: UIViewController {
   }
 
   func gotoFirstViewController() {
-    let intent = Intent(uri: NSURL(string: "douban://douban.com/user/3001?loc=beijing&uuid=10001#ref")!)
+    let intent = Intent(url: NSURL(string: "douban://douban.com/user/3001?loc=beijing&uuid=10001#ref")!)
     intent.putExtra(name: "number", data: 1)
     let manager = ControllerManager.sharedInstance
     manager.startController(source: self, intent: intent)
@@ -64,7 +64,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: IntentForResultSendableController {
+extension ViewController: IntentForResultSendable {
 
   func onControllerResult(requestCode requestCode: Int, resultCode: ResultCode, data: Intent) {
     if (requestCode == RequestText) {

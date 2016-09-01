@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
 
-
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
     window?.rootViewController = UINavigationController(rootViewController: ViewController())
     window?.makeKeyAndVisible()
@@ -50,15 +49,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
 
-  func configureIntent() {
-
-    let controllerManager = ControllerManager.sharedInstance
-    controllerManager.registerController(NSURL(string: "douban://douban.com/user/:userId")!, clazz: FirstViewController.self)
-    controllerManager.registerController(NSURL(string: "douban://douban.com/story/:storyId")!, clazz: SecondViewController.self)
-    controllerManager.registerController(NSURL(string: "douban://douban.com/user/:userId/story/:storyId")!, clazz: ThirdViewController.self)
-
+  func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+    return URLRouter.sharedInstance.route(url: url)
   }
 
+  func configureIntent() {
+
+    // Internal call
+    let controllerManager = ControllerManager.sharedInstance
+    controllerManager.register(url: NSURL(string: "frdintent://frdintent.com/user/:userId")!, clazz: FirstViewController.self)
+    controllerManager.register(url: NSURL(string: "frdintent://frdintent.com/story/:storyId")!, clazz: SecondViewController.self)
+    controllerManager.register(url: NSURL(string: "frdintent://frdintent.com/user/:userId/story/:storyId")!, clazz: ThirdViewController.self)
+
+    // External call
+    let router = URLRouter.sharedInstance
+    router.register(url: NSURL(string: "frdintent://frdintent.com/user/:userId")!) { (params: [String: Any]) in
+      let intent = Intent(url: params[URLRouter.URLRouterURL] as! NSURL)
+      if let topViewController = UIApplication.topViewController() {
+        ControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
+      }
+    }
+
+    router.register(url: NSURL(string: "frdintent://frdintent.com/story/:storyId")!, clazz: SecondViewController.self)
+  }
 
 }
+
+extension UIApplication {
+
+  class func topViewController(base: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController) -> UIViewController? {
+
+    if let nav = base as? UINavigationController {
+      return topViewController(nav.visibleViewController)
+    }
+    if let tab = base as? UITabBarController {
+      if let selected = tab.selectedViewController {
+        return topViewController(selected)
+      }
+    }
+    if let presented = base?.presentedViewController {
+      return topViewController(presented)
+    }
+    return base
+
+  }
+  
+}
+
 

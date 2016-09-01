@@ -9,15 +9,17 @@
 import UIKit
 import FRDIntent
 
-class ThirdViewController: UIViewController, IntentForResultReceivableController {
+class ThirdViewController: UIViewController, IntentForResultReceivable {
 
+  var data: [String: Any]?
   var requestCode: Int?
   
-  var delegate: IntentForResultSendableController?
+  var delegate: IntentForResultSendable?
 
   let textField: UITextField = UITextField()
 
   required init(extra: [String: Any]?) {
+    data = extra
     let text = extra?["text"] as? String
     textField.text = text
     super.init(nibName: nil, bundle: nil)
@@ -44,12 +46,22 @@ class ThirdViewController: UIViewController, IntentForResultReceivableController
     textField.returnKeyType = .Done
     textField.delegate = self
     view.addSubview(textField)
+
+    let numberLabel = UILabel()
+    numberLabel.frame = CGRect(x: 20, y: 200, width: view.bounds.size.width - 40, height: 300)
+    numberLabel.textAlignment = .Center
+    numberLabel.numberOfLines = 0
+    if let data = data {
+      numberLabel.text = "\(data)"
+    }
+    view.addSubview(numberLabel)
+
   }
 
   func dismiss() {
     dismissViewControllerAnimated(true, completion: nil)
     if let controller = delegate {
-      let intent = Intent(uri: NSURL(string: "douban://")!)
+      let intent = Intent(url: NSURL(string: "douban://")!)
       intent.putExtra(name: "text", data: textField.text)
       controller.onControllerResult(requestCode: self.requestCode!, resultCode: .Canceled, data: intent)
     }
@@ -59,7 +71,7 @@ class ThirdViewController: UIViewController, IntentForResultReceivableController
   func confirm() {
     if let controller = delegate {
       dismissViewControllerAnimated(true, completion: nil)
-      let intent = Intent(uri: NSURL(string: "douban://")!)
+      let intent = Intent(url: NSURL(string: "douban://")!)
       intent.putExtra(name: "text", data: textField.text)
       controller.onControllerResult(requestCode: self.requestCode!, resultCode: .Ok, data: intent)
     }
