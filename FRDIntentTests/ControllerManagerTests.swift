@@ -14,9 +14,9 @@ class ControllerManagerTests: XCTestCase {
   func testNormalSearch() {
 
     let controllerManager = ControllerManager.sharedInstance
-    controllerManager.register(url: NSURL(string: "frdintent://frdintent.com/user/:userId")!, clazz: MockUserViewController.self)
-    controllerManager.register(url: NSURL(string: "frdintent://frdintent.com/story/:storyId")!, clazz: MockStoryViewController.self)
-    controllerManager.register(url: NSURL(string: "frdintent://frdintent.com/user/:userId/profile")!, clazz: MockProfileViewController.self)
+    controllerManager.register(url: NSURL(string: "/user/:userId")!, clazz: MockUserViewController.self)
+    controllerManager.register(url: NSURL(string: "/story/:storyId")!, clazz: MockStoryViewController.self)
+    controllerManager.register(url: NSURL(string: "/user/:userId/profile")!, clazz: MockProfileViewController.self)
 
   }
 

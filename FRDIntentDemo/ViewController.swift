@@ -42,7 +42,7 @@ class ViewController: UIViewController {
   }
 
   func gotoFirstViewController() {
-    let intent = Intent(url: NSURL(string: "douban://douban.com/user/3001?loc=beijing&uuid=10001#ref")!)
+    let intent = Intent(url: NSURL(string: "/user/3001?loc=beijing&uuid=10001#ref")!)
     intent.putExtra(name: "number", data: 1)
     let manager = ControllerManager.sharedInstance
     manager.startController(source: self, intent: intent)
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
     let intent = Intent(clazz: ThirdViewController.self)
     intent.putExtra(name: "text", data: "Text From Source")
     let manager = ControllerManager.sharedInstance
-    manager.startForResultController(source: self, intent: intent, requestCode: RequestText)
+    manager.startControllerForResult(source: self, intent: intent, requestCode: RequestText)
   }
 
 }

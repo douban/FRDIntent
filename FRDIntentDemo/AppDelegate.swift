@@ -57,20 +57,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // Internal call
     let controllerManager = ControllerManager.sharedInstance
-    controllerManager.register(url: NSURL(string: "frdintent://frdintent.com/user/:userId")!, clazz: FirstViewController.self)
-    controllerManager.register(url: NSURL(string: "frdintent://frdintent.com/story/:storyId")!, clazz: SecondViewController.self)
-    controllerManager.register(url: NSURL(string: "frdintent://frdintent.com/user/:userId/story/:storyId")!, clazz: ThirdViewController.self)
+    controllerManager.register(url: NSURL(string: "/user/:userId")!, clazz: FirstViewController.self)
+    controllerManager.register(url: NSURL(string: "/story/:storyId")!, clazz: SecondViewController.self)
+    controllerManager.register(url: NSURL(string: "/user/:userId/story/:storyId")!, clazz: ThirdViewController.self)
 
     // External call
     let router = URLRouter.sharedInstance
-    router.register(url: NSURL(string: "frdintent://frdintent.com/user/:userId")!) { (params: [String: Any]) in
+    router.register(url: NSURL(string: "/user/:userId")!) { (params: [String: Any]) in
       let intent = Intent(url: params[URLRouter.URLRouterURL] as! NSURL)
       if let topViewController = UIApplication.topViewController() {
         ControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
       }
     }
 
-    router.register(url: NSURL(string: "frdintent://frdintent.com/story/:storyId")!, clazz: SecondViewController.self)
+    router.register(url: NSURL(string: "/story/:storyId")!, clazz: SecondViewController.self)
   }
 
 }

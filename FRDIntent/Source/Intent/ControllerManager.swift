@@ -46,7 +46,7 @@ public class ControllerManager {
 
   }
 
-  public func startForResultController<C: UIViewController where C: IntentForResultSendable>(source source: C, intent: Intent, requestCode: Int) {
+  public func startControllerForResult<C: UIViewController where C: IntentForResultSendable>(source source: C, intent: Intent, requestCode: Int) {
 
     typealias ControllerType = IntentForResultReceivable.Type
 
