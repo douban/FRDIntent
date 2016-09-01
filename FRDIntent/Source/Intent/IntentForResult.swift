@@ -16,17 +16,16 @@ public enum ResultCode: Int {
 
 }
 
-public protocol IntentForResultSendableController {
+public protocol IntentForResultSendable {
 
   func onControllerResult(requestCode requestCode: Int, resultCode: ResultCode, data: Intent)
 
 }
 
-
-public protocol IntentForResultReceivableController: IntentReceivableController {
+public protocol IntentForResultReceivable: IntentReceivable {
 
   var requestCode: Int? { get set }
 
-  var delegate: IntentForResultSendableController? { get set }
+  var delegate: IntentForResultSendable? { get set }
 
 }

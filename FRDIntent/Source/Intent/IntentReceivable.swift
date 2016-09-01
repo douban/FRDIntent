@@ -1,5 +1,5 @@
 //
-//  IntentReceivableController.swift
+//  IntentReceivable.swift
 //  FRDIntent
 //
 //  Created by GUO Lin on 8/25/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol IntentReceivableController {
+public protocol IntentReceivable {
 
   init(extra: Dictionary<String, Any>?)
 

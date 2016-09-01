@@ -12,22 +12,24 @@ public class ControllerManager {
 
   public static let sharedInstance = ControllerManager()
 
-  private var routeManager = RouteManager()
+  private var routeManager = RouteManager.sharedInstance
 
-  // MARK: Start controller without result
+  public func register<C: UIViewController where C: IntentReceivable>(url url: NSURL, clazz: C.Type) {
+    routeManager.register(url: url, clazz: clazz)
+  }
 
   public func startController(source source: UIViewController, intent: Intent) {
 
     var parameters = [String: Any]()
-    var controllerClazz: IntentReceivableController.Type?
+    var controllerClazz: IntentReceivable.Type?
 
-    if let clazz = intent.receiveClass {
+    if let url = intent.url {
+      let (params, clazz) = routeManager.searchController(url: url)
+      parameters = params
       controllerClazz = clazz
     }
 
-    if let uri = intent.uri {
-      let (params, clazz) = routeManager.searchRoute(uri: uri)
-      parameters = params
+    if let clazz = intent.receiveClass {
       controllerClazz = clazz
     }
 
@@ -44,28 +46,21 @@ public class ControllerManager {
 
   }
 
-  public func registerController<C: UIViewController where C: IntentReceivableController>(uri: NSURL, clazz: C.Type) {
-    routeManager.registerRoute(uri: uri, clazz: clazz)
-  }
+  public func startForResultController<C: UIViewController where C: IntentForResultSendable>(source source: C, intent: Intent, requestCode: Int) {
 
-
-  // MARK: Start controller for result
-
-  public func startForResultController<C: UIViewController where C: IntentForResultSendableController>(source source: C, intent: Intent, requestCode: Int) {
-
-    typealias ControllerType = IntentForResultReceivableController.Type
+    typealias ControllerType = IntentForResultReceivable.Type
 
     var parameters = [String: Any]()
     var controllerClazz: ControllerType?
 
-    if let clazz = intent.receiveClass as? ControllerType {
-      controllerClazz = clazz
-    }
-
-    if let uri = intent.uri {
-      let (params, clazz) = routeManager.searchRoute(uri: uri)
+    if let url = intent.url {
+      let (params, clazz) = routeManager.searchController(url: url)
       parameters = params
       controllerClazz = clazz as? ControllerType
+    }
+
+    if let clazz = intent.receiveClass as? ControllerType {
+      controllerClazz = clazz
     }
 
     if let controllerClazz = controllerClazz {
@@ -84,10 +79,6 @@ public class ControllerManager {
       display.displayViewController(source: source, destination: destinationController)
     }
 
-  }
-
-  public func registerController<C: UIViewController where C: IntentForResultReceivableController>(uri: NSURL, clazz: C.Type) {
-    routeManager.registerRoute(uri: uri, clazz: clazz)
   }
 
 }
