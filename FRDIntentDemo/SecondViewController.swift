@@ -13,12 +13,8 @@ class SecondViewController: UIViewController, IntentReceivable {
 
   var data: [String: Any]?
 
-  convenience required init(extras: [String: Any]?) {
-    self.init(data: extras)
-  }
-
-  init(data: [String: Any]?) {
-    self.data = data
+  required init(extras: [String: Any]?) {
+    self.data = extras
     super.init(nibName: nil, bundle: nil)
   }
 

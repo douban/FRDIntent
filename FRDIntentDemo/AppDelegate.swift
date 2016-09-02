@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
 
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
-    window?.rootViewController = UINavigationController(rootViewController: ViewController())
+    let mainNav = UINavigationController(rootViewController: MainViewController())
+    window?.rootViewController = mainNav
     window?.makeKeyAndVisible()
 
     configureIntent()
@@ -61,10 +62,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     controllerManager.register(url: NSURL(string: "/story/:storyId")!, clazz: SecondViewController.self)
     controllerManager.register(url: NSURL(string: "/user/:userId/story/:storyId")!, clazz: ThirdViewController.self)
 
+
     // External call
     let router = URLRouter.sharedInstance
-    router.register(url: NSURL(string: "/user/:userId")!) { (params: [String: Any]) in
+    router.register(url: NSURL(string: "/user/:userId/story/:storyId")!) { (params: [String: Any]) in
       let intent = Intent(url: params[URLRouter.URLRouterURL] as! NSURL)
+      intent.controllerDisplay = PresentationDisplay()
       if let topViewController = UIApplication.topViewController() {
         ControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
       }

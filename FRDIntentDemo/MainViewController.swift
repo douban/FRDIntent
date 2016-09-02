@@ -9,9 +9,9 @@
 import UIKit
 import FRDIntent
 
-let RequestText: Int = 1
+let RequestCode: Int = 1
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -59,15 +59,15 @@ class ViewController: UIViewController {
     let intent = Intent(clazz: ThirdViewController.self)
     intent.putExtra(name: "text", data: "Text From Source")
     let manager = ControllerManager.sharedInstance
-    manager.startControllerForResult(source: self, intent: intent, requestCode: RequestText)
+    manager.startControllerForResult(source: self, intent: intent, requestCode: RequestCode)
   }
 
 }
 
-extension ViewController: IntentForResultSendable {
+extension MainViewController: IntentForResultSendable {
 
   func onControllerResult(requestCode requestCode: Int, resultCode: ResultCode, data: Intent) {
-    if (requestCode == RequestText) {
+    if (requestCode == RequestCode) {
       if (resultCode == .Ok) {
         let text = data.extras["text"]
         print("Successful confirm get from destination : \(text)")

@@ -55,7 +55,6 @@ class ThirdViewController: UIViewController, IntentForResultReceivable {
       numberLabel.text = "\(data)"
     }
     view.addSubview(numberLabel)
-
   }
 
   func dismiss() {
@@ -76,7 +75,6 @@ class ThirdViewController: UIViewController, IntentForResultReceivable {
       controller.onControllerResult(requestCode: self.requestCode!, resultCode: .Ok, data: intent)
     }
   }
-
 }
 
 extension ThirdViewController: UITextFieldDelegate {
@@ -86,3 +84,4 @@ extension ThirdViewController: UITextFieldDelegate {
     return true
   }
 }
+
