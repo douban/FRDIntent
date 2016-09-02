@@ -19,7 +19,7 @@ public class PushDisplay: ControllerDisplay {
    - parameter source: The source view controller.
    - parameter destination: The destination view controller.
    */
-  public func displayViewController<T: UIViewController>(source source: T, destination: T) {
+  public func displayViewController(source source: UIViewController, destination: UIViewController) {
     if let navigationController = source.navigationController {
       navigationController.pushViewController(destination, animated: true)
     }

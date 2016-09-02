@@ -13,13 +13,15 @@ import UIKit
  */
 public class PresentationDisplay: ControllerDisplay {
 
+  public init() {}
+
   /**
    How to display the destination view controller.
 
    - parameter source: The source view controller.
    - parameter destination: The destination view controller.
    */
-  public func displayViewController<T: UIViewController>(source source: T, destination: T) {
+  public func displayViewController(source source: UIViewController, destination: UIViewController) {
     let nav = UINavigationController(rootViewController: destination)
     source.presentViewController(nav, animated: true, completion: nil)
   }

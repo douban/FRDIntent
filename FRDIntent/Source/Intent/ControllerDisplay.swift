@@ -19,6 +19,6 @@ public protocol ControllerDisplay {
    - parameter source: The source view controller.
    - parameter destination: The destination view controller.
    */
-  func displayViewController<T: UIViewController>(source source: T, destination: T)
+  func displayViewController(source source: UIViewController, destination: UIViewController)
 
 }
