@@ -40,7 +40,7 @@ class RouteManager {
 
   static let sharedInstance = RouteManager()
 
-  typealias URLRouterHandler = ([String: Any]) -> ()
+  typealias URLRouterHandler = ([String: AnyObject]) -> ()
 
   typealias RoutePathNodeValueType = (IntentReceivable.Type?, URLRouterHandler?)
 
@@ -78,7 +78,7 @@ class RouteManager {
     return true
   }
 
-  func register(url url: NSURL, handler: ([String: Any]) -> ()) -> Bool {
+  func register(url url: NSURL, handler: ([String: AnyObject]) -> ()) -> Bool {
 
     guard let paths = url.pathComponentsWithoutSlash else {
       return false
@@ -111,7 +111,7 @@ class RouteManager {
    - parameter url: The path for search the storage position.
    - returns: A tuple with parameters and value in the node searched.
    */
-  func searchController(url url: NSURL) -> ([String: Any], IntentReceivable.Type?) {
+  func searchController(url url: NSURL) -> ([String: AnyObject], IntentReceivable.Type?) {
     let (params, value) = search(url: url)
 
     if let (clazz, _) = value {
@@ -122,7 +122,7 @@ class RouteManager {
   }
 
 
-  func searchHandler(url url: NSURL) -> ([String: Any], (([String: Any]) -> ())?) {
+  func searchHandler(url url: NSURL) -> ([String: AnyObject], (([String: AnyObject]) -> ())?) {
     let (params, value) = search(url: url)
 
     if let (_, handler) = value {
@@ -132,10 +132,10 @@ class RouteManager {
     }
   }
 
-  private func search(url url: NSURL) -> ([String: Any], RoutePathNodeValueType?) {
+  private func search(url url: NSURL) -> ([String: AnyObject], RoutePathNodeValueType?) {
 
     guard let paths = url.pathComponentsWithoutSlash else {
-      return ([String: Any](), nil)
+      return ([String: AnyObject](), nil)
     }
 
     var (params, node) = routes.search(paths)
@@ -147,7 +147,7 @@ class RouteManager {
     return (params, node.value)
   }
 
-  private func decorateParams(inout params: [String: Any], url: NSURL) {
+  private func decorateParams(inout params: [String: AnyObject], url: NSURL) {
 
     // Add url to params
     params.updateValue(url, forKey: RouteParameters.URLRouteURL)
@@ -273,9 +273,9 @@ extension RoutePathNode {
 
   }
 
-  func search(paths: [String]) -> ([String: Any], RoutePathNode) {
+  func search(paths: [String]) -> ([String: AnyObject], RoutePathNode) {
 
-    var params = [String: Any]()
+    var params = [String: AnyObject]()
 
     var node = self
     for path in paths {

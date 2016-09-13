@@ -11,13 +11,13 @@ import Foundation
 /**
  The protocol to abstract the view controller tha can receive the Intent.
  */
-public protocol IntentReceivable {
+@objc public protocol IntentReceivable {
 
   /**
    Initialzier with extra data.
    
    - parameter extras: The extra data.
    */
-  init(extras: Dictionary<String, Any>?)
+  init(extras: Dictionary<String, AnyObject>?)
 
 }

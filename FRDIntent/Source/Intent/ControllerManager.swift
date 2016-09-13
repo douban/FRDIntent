@@ -11,7 +11,7 @@ import UIKit
 /**
  ControllerManager is a way to manage view controllers and invoke view controllers from a URL or class name.
  */
-public class ControllerManager {
+public class ControllerManager: NSObject {
 
   /// Singleton instance of ControllerManager
   public static let sharedInstance = ControllerManager()
@@ -24,8 +24,8 @@ public class ControllerManager {
    - parameter url: The url to be registered.
    - parameter clazz: The clazz to be registered, and the clazz's view controller object will be launched while routed.
    */
-  public func register<C: UIViewController where C: IntentReceivable>(url url: NSURL, clazz: C.Type) {
-    routeManager.register(url: url, clazz: clazz)
+  public func register(url url: NSURL, clazz: AnyClass) {
+    routeManager.register(url: url, clazz: clazz as! IntentReceivable.Type)
   }
 
   /**
@@ -36,7 +36,7 @@ public class ControllerManager {
    */
   public func startController(source source: UIViewController, intent: Intent) {
 
-    var parameters = [String: Any]()
+    var parameters = [String: AnyObject]()
     var controllerClazz: IntentReceivable.Type?
 
     if let url = intent.url {
@@ -46,7 +46,7 @@ public class ControllerManager {
     }
 
     if let clazz = intent.receiveClass {
-      controllerClazz = clazz
+      controllerClazz = clazz as? IntentReceivable.Type
     }
 
     if let controllerClazz = controllerClazz {
@@ -69,11 +69,11 @@ public class ControllerManager {
    - parameter intent: The intent for start new view controller.
    - parameter requestCode : this code will be returned in onControllerResult() when the view controller exits.
    */
-  public func startControllerForResult<C: UIViewController where C: IntentForResultSendable>(source source: C, intent: Intent, requestCode: Int) {
+  public func startControllerForResult(source source: UIViewController, intent: Intent, requestCode: Int) {
 
     typealias ControllerType = IntentForResultReceivable.Type
 
-    var parameters = [String: Any]()
+    var parameters = [String: AnyObject]()
     var controllerClazz: ControllerType?
 
     if let url = intent.url {
@@ -92,10 +92,10 @@ public class ControllerManager {
       for (key, value) in parameters {
         intent.putExtra(name: key, data: value)
       }
-      var destination = controllerClazz.init(extras: intent.extras)
+      let destination = controllerClazz.init(extras: intent.extras)
 
-      destination.requestCode = requestCode
-      destination.delegate = source
+      destination.setRequestCode(requestCode)
+      destination.setDelegate(source as? IntentForResultSendable)
 
       let destinationController = destination as! UIViewController
 

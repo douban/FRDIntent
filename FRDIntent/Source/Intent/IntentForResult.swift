@@ -11,7 +11,7 @@ import Foundation
 /**
  The resultCode's possible values:
  */
-public enum ResultCode: Int {
+@objc public enum ResultCode: Int {
 
   /// Ok: For successful result.
   case Ok
@@ -25,7 +25,7 @@ public enum ResultCode: Int {
 /**
  The protocol to abstract the view controller tha can send the Intent for request a result from the destination.
  */
-public protocol IntentForResultSendable {
+@objc public protocol IntentForResultSendable {
 
   /**
    When the result return, this method will be called.
@@ -42,13 +42,16 @@ public protocol IntentForResultSendable {
 /**
  The protocol to abstract the view controller tha can receive the Intent for request a result from the destination.
  */
-public protocol IntentForResultReceivable: IntentReceivable {
+@objc public protocol IntentForResultReceivable: IntentReceivable {
 
+
+//  var requestCode: Int? { get set }
+//
+//  var delegate: IntentForResultSendable? { get set }
 
   /// The integer request code originally supplied to startControllerForResult(), allowing you to identify who this result came from.
-  var requestCode: Int? { get set }
+  func setRequestCode(requestCode: Int)
 
   /// The source view controller
-  var delegate: IntentForResultSendable? { get set }
-
+  func setDelegate(delegate: IntentForResultSendable?)
 }

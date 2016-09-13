@@ -11,7 +11,7 @@ import UIKit
 
 class MockUserViewController: UIViewController, IntentReceivable {
 
-  required init(extras extra: [String: Any]?) {
+  required init(extras extra: [String: AnyObject]?) {
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -23,7 +23,7 @@ class MockUserViewController: UIViewController, IntentReceivable {
 
 class MockStoryViewController: UIViewController, IntentReceivable {
 
-  required init(extras: [String: Any]?) {
+  required init(extras: [String: AnyObject]?) {
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -35,7 +35,7 @@ class MockStoryViewController: UIViewController, IntentReceivable {
 
 class MockProfileViewController: UIViewController, IntentReceivable {
 
-  required init(extras: [String: Any]?) {
+  required init(extras: [String: AnyObject]?) {
     super.init(nibName: nil, bundle: nil)
   }
 

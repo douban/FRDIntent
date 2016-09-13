@@ -11,7 +11,7 @@ import UIKit
 /**
  URLRouter is a way to manage URL routes and invoke them from a URL.
  */
-public class URLRouter {
+public class URLRouter: NSObject {
 
   /// The key to get the url from parameters of block handler.
   public static let URLRouterURL = RouteParameters.URLRouteURL
@@ -20,7 +20,7 @@ public class URLRouter {
   public static let sharedInstance = URLRouter()
 
   /// The type of block handler to be registered.
-  public typealias URLRouterHandler = ([String: Any]) -> ()
+  public typealias URLRouterHandler = ([String: AnyObject]) -> ()
 
   private let routeManager = RouteManager.sharedInstance
 
@@ -60,10 +60,10 @@ public extension URLRouter {
    - parameter url: The url to be registered.
    - parameter clazz: The UIViewController's class to be registered, and this view controller will be started while routed.
    */
-  public func register<C: UIViewController where C: IntentReceivable>(url url: NSURL, clazz: C.Type) {
+  public func register(url url: NSURL, clazz: AnyClass) {
 
     ControllerManager.sharedInstance.register(url: url, clazz: clazz)
-    register(url: url) { (params: [String: Any]) in
+    register(url: url) { (params: [String: AnyObject]) in
       let intent = Intent(url: params[URLRouter.URLRouterURL] as! NSURL)
       if let topViewController = UIApplication.topViewController() {
         ControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
