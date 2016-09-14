@@ -11,9 +11,7 @@ import UIKit
 /**
  The way of display view controllers with present. It calls presentViewController(viewController: UIViewController, animated: Bool)
  */
-public class PresentationDisplay: ControllerDisplay {
-
-  public init() {}
+public class PresentationDisplay: NSObject, ControllerDisplay {
 
   /**
    How to display the destination view controller.

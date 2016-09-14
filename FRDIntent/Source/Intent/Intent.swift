@@ -11,7 +11,7 @@ import Foundation
 /**
  An intent is an abstract description of an operation to be performed. It can be used with startController to launch a view controller.
  */
-@objc public class Intent: NSObject {
+public class Intent: NSObject {
 
   /**
    The url for identify the destination view controller.

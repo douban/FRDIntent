@@ -60,7 +60,7 @@ public extension URLRouter {
    - parameter url: The url to be registered.
    - parameter clazz: The UIViewController's class to be registered, and this view controller will be started while routed.
    */
-  public func register(url url: NSURL, clazz: AnyClass) {
+  public func register(url url: NSURL, clazz: IntentReceivable.Type) {
 
     ControllerManager.sharedInstance.register(url: url, clazz: clazz)
     register(url: url) { (params: [String: AnyObject]) in

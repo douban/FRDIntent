@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "FRDIntent"
-  s.version      = "0.8.0"
+  s.version      = "0.8.1"
   s.summary      = "FRDIntent can handle the call between view controller"
 
   s.description  = "FRDIntent has two components URLRouter and Inteng, using for calling view controllers inner app or outer app."
@@ -18,10 +18,15 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'URLRouter' do |urlrouter|
-    urlrouter.source_files  = 'FRDIntent/Source/URLRouter/*.swift', 'FRDIntent/Source/Core/**/*.swift'
+    urlrouter.source_files  = 'FRDIntent/Source/URLRouter/*.swift'
     urlrouter.dependency 'FRDIntent/Intent'
   end
 
-  s.default_subspec = 'URLRouter'
+  s.subspec 'OCIntent' do |ocintent|
+    ocintent.source_files  = 'FRDIntent/Source/OCIntent/*.{h, m}'
+    ocintent.dependency 'FRDIntent/Intent'
+  end
+
+  s.default_subspec = 'URLRouter', 'OCIntent'
 
 end

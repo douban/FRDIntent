@@ -6,6 +6,8 @@
 //  Copyright © 2016 Douban Inc. All rights reserved.
 //
 
+#import <FRDIntent/FRDControllerManager.h>
+#import <FRDIntent/FRDIntent-Swift.h>
 #import <UIKit/UIKit.h>
 
 #import "AppDelegate.h"
@@ -13,6 +15,41 @@
 #import "FirstViewController.h"
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
+
+
+@interface UIApplication (topViewController)
+
++ (UIViewController *)topViewController;
+
+@end
+
+@implementation UIApplication (topViewController)
+
++ (UIViewController *)topViewController
+{
+  return [self _frd_visibleViewControllerFrom:[UIApplication sharedApplication].keyWindow.rootViewController];
+}
+
+
++ (UIViewController *)_frd_visibleViewControllerFrom:(UIViewController *)vc
+{
+  if ([vc isKindOfClass:[UINavigationController class]]) {
+    return [self _frd_visibleViewControllerFrom:[((UINavigationController *) vc) visibleViewController]];
+  }
+
+  if ([vc isKindOfClass:[UITabBarController class]]) {
+    return [self _frd_visibleViewControllerFrom:[((UITabBarController *) vc) selectedViewController]];
+  }
+
+  if (vc.presentedViewController) {
+    return [self _frd_visibleViewControllerFrom:vc.presentedViewController];
+  }
+
+  return vc;
+
+}
+
+@end
 
 
 @interface AppDelegate ()
@@ -62,27 +99,32 @@
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *, id> *)options {
+  return [[URLRouter sharedInstance] routeWithUrl:url];
+}
+
 
 - (void)configurationRoutes {
 
   // Internal call
-  ControllerManager *controllerManager = [ControllerManager sharedInstance];
-  [controllerManager registerWithUrl: [NSURL URLWithString: @"/user/:userId"] clazz: [FirstViewController class]];
-  [controllerManager registerWithUrl: [NSURL URLWithString: @"/story/:storyId"] clazz: [SecondViewController class]];
-  [controllerManager registerWithUrl: [NSURL URLWithString: @"/user/:userId/story/:storyId"] clazz: [ThirdViewController class]];
+  [[FRDControllerManager sharedInstance] registerWithUrl: [NSURL URLWithString: @"/user/:userId"] clazz: [FirstViewController class]];
+  [[ControllerManager sharedInstance] registerWithUrl: [NSURL URLWithString: @"/story/:storyId"] clazz: [SecondViewController class]];
+  [[ControllerManager sharedInstance] registerWithUrl: [NSURL URLWithString: @"/user/:userId/story/:storyId"] clazz: [ThirdViewController class]];
 
 
   // External call
-//  let router = URLRouter.sharedInstance
-//  router.register(url: NSURL(string: "/user/:userId/story/:storyId")!) { (params: [String: AnyObject]) in
-//    let intent = Intent(url: params[URLRouter.URLRouterURL] as! NSURL)
-//    intent.controllerDisplay = PresentationDisplay()
-//    if let topViewController = UIApplication.topViewController() {
-//      ControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
-//    }
-//  }
+  [[URLRouter sharedInstance] registerWithUrl:[NSURL URLWithString:@"/user/:userId/story/:storyId"] handler:^(NSDictionary<NSString*, id> *params) {
+    NSURL *url = [params objectForKey:URLRouter.URLRouterURL];
+    Intent *intent = [[Intent alloc] initWithUrl:url];
+    intent.controllerDisplay = [[PresentationDisplay alloc] init];
+    UIViewController *topViewController = [UIApplication topViewController];
+    if (topViewController) {
+      [[ControllerManager sharedInstance] startControllerWithSource:topViewController intent:intent];
+    }
+  }];
 
-  //[[URLRouter sharedInstance] registerWithUrl: [NSURL URLWithString: @"/story/:storyId"]  clazz: [SecondViewController self]];
+
+  [[URLRouter sharedInstance] registerWithUrl:[NSURL URLWithString: @"/story/:storyId"]  clazz: [SecondViewController self]];
 }
 
 @end

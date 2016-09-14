@@ -5,7 +5,7 @@
 //  Created by GUO Lin on 9/12/16.
 //  Copyright © 2016 Douban Inc. All rights reserved.
 //
-
+#import <FRDIntent/FRDControllerManager.h>
 #import <FRDIntent/FRDIntent-Swift.h>
 
 #import "MainViewController.h"
@@ -13,8 +13,7 @@
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
 
-@interface MainViewController () <IntentForResultSendable>
-
+@interface MainViewController ()
 @end
 
 @implementation MainViewController

@@ -11,7 +11,7 @@ import UIKit
 /**
  The way of display view controllers with push. It calls pushViewController(viewController: UIViewController, animated: Bool)
  */
-public class PushDisplay: ControllerDisplay {
+public class PushDisplay: NSObject, ControllerDisplay {
 
   /**
    How to display the destination view controller.
