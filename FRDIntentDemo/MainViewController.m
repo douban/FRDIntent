@@ -13,7 +13,7 @@
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
 
-@interface MainViewController ()
+@interface MainViewController () <IntentForResultSendable>
 @end
 
 @implementation MainViewController
@@ -73,6 +73,7 @@
   [[ControllerManager sharedInstance] startControllerForResultWithSource:self intent:intent requestCode:1];
 }
 
+#pragma mark - IntentForResultSendable
 
 - (void)onControllerResultWithRequestCode:(NSInteger)requestCode resultCode:(enum ResultCode)code data:(Intent *)intent
 {

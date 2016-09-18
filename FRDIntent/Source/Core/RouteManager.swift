@@ -44,7 +44,7 @@ class RouteManager {
 
   typealias RoutePathNodeValueType = (IntentReceivable.Type?, URLRouterHandler?)
 
-  private var routes = RoutePathNode<RoutePathNodeValueType>(path: "/")
+  fileprivate var routes = RoutePathNode<RoutePathNodeValueType>(path: "/")
 
   /**
    Regiser url for save the value in the route path search tree.
@@ -52,13 +52,13 @@ class RouteManager {
    - parameter url: The path for search the storage position.
    - parameter value: The value to be saved.
    */
-  func register(url url: NSURL, clazz: IntentReceivable.Type) -> Bool {
+  func register(url: URL, clazz: IntentReceivable.Type) -> Bool {
 
     guard let paths = url.pathComponentsWithoutSlash else {
       return false
     }
 
-    let (_, node) = routes.search(paths)
+    let (_, node) = routes.search(paths: paths)
     if node.path == paths.last {
       // find it, update
       let handler: URLRouterHandler?
@@ -72,19 +72,19 @@ class RouteManager {
 
     } else {
       // not find it, insert
-      routes.insert(paths, value: (clazz, nil))
+      let _ = routes.insert(paths: paths, value: (clazz, nil))
     }
 
     return true
   }
 
-  func register(url url: NSURL, handler: ([String: AnyObject]) -> ()) -> Bool {
+  func register(url: URL, handler: @escaping ([String: AnyObject]) -> ()) -> Bool {
 
     guard let paths = url.pathComponentsWithoutSlash else {
       return false
     }
 
-    let (_, node) = routes.search(paths)
+    let (_, node) = routes.search(paths: paths)
     if node.path == paths.last {
       // find it, update
       let clazz: IntentReceivable.Type?
@@ -95,10 +95,12 @@ class RouteManager {
       }
       node.value = (clazz, handler)
 
-
     } else {
       // not find it, insert
-      routes.insert(paths, value: (nil, handler))
+      let node = routes.insert(paths: paths, value: (nil, handler))
+      guard let _ = node else {
+        return false
+      }
     }
 
     return true
@@ -111,7 +113,7 @@ class RouteManager {
    - parameter url: The path for search the storage position.
    - returns: A tuple with parameters and value in the node searched.
    */
-  func searchController(url url: NSURL) -> ([String: AnyObject], IntentReceivable.Type?) {
+  func searchController(url: URL) -> ([String: AnyObject], IntentReceivable.Type?) {
     let (params, value) = search(url: url)
 
     if let (clazz, _) = value {
@@ -122,7 +124,7 @@ class RouteManager {
   }
 
 
-  func searchHandler(url url: NSURL) -> ([String: AnyObject], (([String: AnyObject]) -> ())?) {
+  func searchHandler(url: URL) -> ([String: AnyObject], (([String: AnyObject]) -> ())?) {
     let (params, value) = search(url: url)
 
     if let (_, handler) = value {
@@ -132,38 +134,38 @@ class RouteManager {
     }
   }
 
-  private func search(url url: NSURL) -> ([String: AnyObject], RoutePathNodeValueType?) {
+  private func search(url: URL) -> ([String: AnyObject], RoutePathNodeValueType?) {
 
     guard let paths = url.pathComponentsWithoutSlash else {
       return ([String: AnyObject](), nil)
     }
 
-    var (params, node) = routes.search(paths)
+    var (params, node) = routes.search(paths: paths)
 
-    decorateParams(&params, url: url)
+    decorate(params: &params, url: url)
 
-    params.updateValue(url, forKey: RouteParameters.URLRouteURL)
+    params.updateValue(url as AnyObject, forKey: RouteParameters.URLRouteURL)
 
     return (params, node.value)
   }
 
-  private func decorateParams(inout params: [String: AnyObject], url: NSURL) {
+  private func decorate(params: inout [String: AnyObject], url: URL) {
 
     // Add url to params
-    params.updateValue(url, forKey: RouteParameters.URLRouteURL)
+    params.updateValue(url as AnyObject, forKey: RouteParameters.URLRouteURL)
 
     // Add queries to params
     if let queryItems = url.queryItems {
       for queryItem in queryItems {
         if let value = queryItem.value {
-          params.updateValue(value, forKey: queryItem.name)
+          params.updateValue(value as AnyObject, forKey: queryItem.name)
         }
       }
     }
 
     // Add fragment to params
     if let fragment = url.fragment {
-      params.updateValue(fragment, forKey: "fragment")
+      params.updateValue(fragment as AnyObject, forKey: "fragment")
     }
   }
 
@@ -204,8 +206,8 @@ private class RoutePathNode<T> {
 
   var placeHolderName: String? {
     if isPlaceHolder {
-      let index = path.startIndex.advancedBy(1)
-      return path.substringFromIndex(index)
+      let index = path.characters.index(path.startIndex, offsetBy: 1)
+      return path.substring(from: index)
     }
     return nil
   }
@@ -225,7 +227,7 @@ private class RoutePathNode<T> {
     return nil
   }
 
-  func addChildPathNode(node: RoutePathNode) {
+  func add(childNode node: RoutePathNode) {
     if let _ = children {
       children?[node.path] = node
     } else {
@@ -234,7 +236,7 @@ private class RoutePathNode<T> {
     }
   }
 
-  func containsChildPathNode(childNodePath: String) -> Bool {
+  func contain(childNodePath: String) -> Bool {
     if let children = children {
       return children[childNodePath] != nil
     }
@@ -257,11 +259,11 @@ extension RoutePathNode {
     for path in paths {
 
       let childNode: RoutePathNode
-      if node.containsChildPathNode(path) {
+      if node.contain(childNodePath: path) {
         childNode = node.children![path]!
       } else {
         childNode = RoutePathNode(path: path, value: value)
-        node.addChildPathNode(childNode)
+        node.add(childNode: childNode)
       }
 
       node = childNode
@@ -280,13 +282,13 @@ extension RoutePathNode {
     var node = self
     for path in paths {
 
-      if node.containsChildPathNode(path) {
+      if node.contain(childNodePath: path) {
         node = node.children![path]!
 
       } else if let placeHolderChild = node.placeHolderChild {
 
         let placeHolderName = placeHolderChild.placeHolderName!
-        params[placeHolderName] = path
+        params[placeHolderName] = path as AnyObject?
         node = placeHolderChild
       }
       
@@ -302,28 +304,25 @@ extension RoutePathNode {
 
 private extension Array where Element: Equatable {
 
-  mutating func removeObject(object: Element) {
-    if let index = self.indexOf(object) {
-      self.removeAtIndex(index)
+  mutating func remove(object: Element) {
+    if let index = self.index(of: object) {
+      self.remove(at: index)
     }
   }
 
 }
 
-private extension NSURL {
+private extension URL {
 
   var pathComponentsWithoutSlash: [String]? {
-    guard let _ = pathComponents else {
-      return nil
-    }
 
-    var array = pathComponents!
-    array.removeObject("/")
+    var array = pathComponents
+    array.remove(object: "/")
     return array
   }
 
-  var queryItems: [NSURLQueryItem]? {
-    return NSURLComponents(URL: self, resolvingAgainstBaseURL: false)?.queryItems
+  var queryItems: [URLQueryItem]? {
+    return URLComponents(url: self, resolvingAgainstBaseURL: false)?.queryItems
   }
 
 }

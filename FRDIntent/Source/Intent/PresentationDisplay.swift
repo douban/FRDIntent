@@ -11,7 +11,7 @@ import UIKit
 /**
  The way of display view controllers with present. It calls presentViewController(viewController: UIViewController, animated: Bool)
  */
-public class PresentationDisplay: NSObject, ControllerDisplay {
+open class PresentationDisplay: NSObject, ControllerDisplay {
 
   /**
    How to display the destination view controller.
@@ -19,9 +19,9 @@ public class PresentationDisplay: NSObject, ControllerDisplay {
    - parameter source: The source view controller.
    - parameter destination: The destination view controller.
    */
-  public func displayViewController(source source: UIViewController, destination: UIViewController) {
+  open func displayViewController(source: UIViewController, destination: UIViewController) {
     let nav = UINavigationController(rootViewController: destination)
-    source.presentViewController(nav, animated: true, completion: nil)
+    source.present(nav, animated: true, completion: nil)
   }
 
 }

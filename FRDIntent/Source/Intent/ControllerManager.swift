@@ -23,9 +23,11 @@ public class ControllerManager: NSObject {
 
    - parameter url: The url to be registered.
    - parameter clazz: The clazz to be registered, and the clazz's view controller object will be launched while routed.
+   
+   - returns: True if register success.
    */
-  public func register(url url: NSURL, clazz: AnyClass) {
-    routeManager.register(url: url, clazz: clazz as! IntentReceivable.Type)
+  public func register(url: URL, clazz: AnyClass) -> Bool {
+    return routeManager.register(url: url, clazz: clazz as! IntentReceivable.Type)
   }
 
   /**
@@ -34,7 +36,7 @@ public class ControllerManager: NSObject {
    - parameter source: The source view controller.
    - parameter intent: The intent for launch a new view controller.
    */
-  public func startController(source source: UIViewController, intent: Intent) {
+  public func startController(source: UIViewController, intent: Intent) {
 
     var parameters = [String: AnyObject]()
     var controllerClazz: IntentReceivable.Type?
@@ -55,9 +57,11 @@ public class ControllerManager: NSObject {
       for (key, value) in parameters {
         intent.putExtra(name: key, data: value)
       }
-      let destination = controllerClazz.init(extras: intent.extras) as! UIViewController
 
-      display.displayViewController(source: source, destination: destination)
+      if let destination = controllerClazz.init(extras: intent.extras) as? UIViewController {
+        display.displayViewController(source: source, destination: destination)
+      }
+
     }
 
   }
@@ -69,7 +73,7 @@ public class ControllerManager: NSObject {
    - parameter intent: The intent for start new view controller.
    - parameter requestCode : this code will be returned in onControllerResult() when the view controller exits.
    */
-  public func startControllerForResult(source source: UIViewController, intent: Intent, requestCode: Int) {
+  public func startControllerForResult(source: UIViewController, intent: Intent, requestCode: Int) {
 
     typealias ControllerType = IntentForResultReceivable.Type
 
@@ -97,9 +101,10 @@ public class ControllerManager: NSObject {
       destination.setRequestCode(requestCode)
       destination.setDelegate(source as? IntentForResultSendable)
 
-      let destinationController = destination as! UIViewController
+      if let destinationController = destination as? UIViewController {
+        display.displayViewController(source: source, destination: destinationController)
+      }
 
-      display.displayViewController(source: source, destination: destinationController)
     }
 
   }

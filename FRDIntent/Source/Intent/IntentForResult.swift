@@ -14,11 +14,11 @@ import Foundation
 @objc public enum ResultCode: Int {
 
   /// Ok: For successful result.
-  case Ok
+  case ok
   /// Canceled: For the canceled operation.
-  case Canceled
+  case canceled
   /// FirstUser: For the custom define operation.
-  case FirstUser
+  case firstUser
 
 }
 
@@ -34,7 +34,7 @@ import Foundation
    - parameter resultCode: The result code returned by the child conroller.
    - parameter intent: An Intent, which can return result data to the caller (various data can be attached to Intent "extras").
   */
-  func onControllerResult(requestCode requestCode: Int, resultCode: ResultCode, data: Intent)
+  func onControllerResult(requestCode: Int, resultCode: ResultCode, data: Intent)
 
 }
 
@@ -47,8 +47,8 @@ import Foundation
 //  var delegate: IntentForResultSendable? { get set }
 
   /// The integer request code originally supplied to startControllerForResult(), allowing you to identify who this result came from.
-  func setRequestCode(requestCode: Int)
+  func setRequestCode(_ requestCode: Int)
 
   /// The source view controller
-  func setDelegate(delegate: IntentForResultSendable?)
+  func setDelegate(_ delegate: IntentForResultSendable?)
 }

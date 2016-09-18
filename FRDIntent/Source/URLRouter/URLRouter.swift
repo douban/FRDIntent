@@ -11,13 +11,13 @@ import UIKit
 /**
  URLRouter is a way to manage URL routes and invoke them from a URL.
  */
-public class URLRouter: NSObject {
+open class URLRouter: NSObject {
 
   /// The key to get the url from parameters of block handler.
-  public static let URLRouterURL = RouteParameters.URLRouteURL
+  open static let URLRouterURL = RouteParameters.URLRouteURL
 
   /// Singleton instance of URLRouter.
-  public static let sharedInstance = URLRouter()
+  open static let sharedInstance = URLRouter()
 
   /// The type of block handler to be registered.
   public typealias URLRouterHandler = ([String: AnyObject]) -> ()
@@ -29,9 +29,11 @@ public class URLRouter: NSObject {
    
    - parameter url: The url to be registered.
    - parameter handler: The handler to be registered, and will be called while routed.
+   
+   - returns: True if it registers successfully.
    */
-  public func register(url url: NSURL, handler: URLRouterHandler) {
-    routeManager.register(url: url, handler: handler)
+  open func register(url: URL, handler: @escaping URLRouterHandler) -> Bool {
+    return routeManager.register(url: url, handler: handler)
   }
 
   /**
@@ -41,7 +43,7 @@ public class URLRouter: NSObject {
 
    - returns: True if handler block is found and called, false if handler block is not found.
    */
-  public func route(url url: NSURL) -> Bool {
+  open func route(url: URL) -> Bool {
     let (params ,handler) = routeManager.searchHandler(url: url)
     if let handler = handler {
       handler(params)
@@ -59,35 +61,38 @@ public extension URLRouter {
 
    - parameter url: The url to be registered.
    - parameter clazz: The UIViewController's class to be registered, and this view controller will be started while routed.
+   
+   - returns: True if it registers successfully.
    */
-  public func register(url url: NSURL, clazz: IntentReceivable.Type) {
+  public func register(url: URL, clazz: IntentReceivable.Type) -> Bool {
 
-    ControllerManager.sharedInstance.register(url: url, clazz: clazz)
-    register(url: url) { (params: [String: AnyObject]) in
-      let intent = Intent(url: params[URLRouter.URLRouterURL] as! NSURL)
+    let resultForIntent = ControllerManager.sharedInstance.register(url: url, clazz: clazz)
+    let resultForRoute = register(url: url) { (params: [String: AnyObject]) in
+      let intent = Intent(url: params[URLRouter.URLRouterURL] as! URL)
       if let topViewController = UIApplication.topViewController() {
         ControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
       }
     }
 
+    return (resultForRoute && resultForIntent)
   }
 
 }
 
 private extension UIApplication {
 
-  class func topViewController(base: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController) -> UIViewController? {
+  class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
 
     if let nav = base as? UINavigationController {
-      return topViewController(nav.visibleViewController)
+      return topViewController(base: nav.visibleViewController)
     }
     if let tab = base as? UITabBarController {
       if let selected = tab.selectedViewController {
-        return topViewController(selected)
+        return topViewController(base: selected)
       }
     }
     if let presented = base?.presentedViewController {
-      return topViewController(presented)
+      return topViewController(base: presented)
     }
     return base
 

@@ -11,7 +11,7 @@ import UIKit
 /**
  The way of display view controllers with push. It calls pushViewController(viewController: UIViewController, animated: Bool)
  */
-public class PushDisplay: NSObject, ControllerDisplay {
+open class PushDisplay: NSObject, ControllerDisplay {
 
   /**
    How to display the destination view controller.
@@ -19,7 +19,7 @@ public class PushDisplay: NSObject, ControllerDisplay {
    - parameter source: The source view controller.
    - parameter destination: The destination view controller.
    */
-  public func displayViewController(source source: UIViewController, destination: UIViewController) {
+  open func displayViewController(source: UIViewController, destination: UIViewController) {
     if let navigationController = source.navigationController {
       navigationController.pushViewController(destination, animated: true)
     }
