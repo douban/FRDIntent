@@ -52,6 +52,15 @@ open class Intent: NSObject {
   }
 
   /**
+   Initializer with the url for identify the destination view controller.
+
+   - parameter pathIdentifier: The path identifier for identify the destination view controller. The format is url path. 
+   */
+  public convenience init(pathIdentifier: String) {
+    self.init(url: URL(string: pathIdentifier)!)
+  }
+
+  /**
    Put the extra data into the intent.
   */
   open func putExtra(name: String, data: AnyObject) {

@@ -54,23 +54,24 @@
 
 - (void)gotoFirstViewController
 {
-  Intent *intent = [[Intent alloc] initWithUrl:[NSURL URLWithString:@"/user/3001?loc=beijing&uuid=10001#ref"]];
+  //Intent *intent = [[Intent alloc] initWithUrl:[NSURL URLWithString:@"/user/3001?loc=beijing&uuid=10001#ref"]];
+  Intent *intent = [[Intent alloc] initWithPathIdentifier:@"/user/3001?loc=beijing&uuid=10001#ref"];
   [intent putExtraWithName:@"number" data: [NSNumber numberWithInteger:1]];
-  [[ControllerManager sharedInstance] startControllerWithSource:self intent: intent];
+  [self startControllerWithIntent: intent];
 }
 
 - (void)gotoSecondViewController
 {
   Intent *intent = [[Intent alloc] initWithClazz:[SecondViewController  class]];
   [intent putExtraWithName:@"number" data: [NSNumber numberWithInteger:2]];
-  [[ControllerManager sharedInstance] startControllerWithSource:self intent:intent];
+  [self startControllerWithIntent:intent];
 }
 
 - (void)gotoThirdViewController
 {
   Intent *intent = [[Intent alloc] initWithClazz:[ThirdViewController  class]];
   [intent putExtraWithName:@"number" data: [NSNumber numberWithInteger:3]];
-  [[ControllerManager sharedInstance] startControllerForResultWithSource:self intent:intent requestCode:1];
+  [self startControllerForResultWithIntent:intent requestCode:1];
 }
 
 #pragma mark - IntentForResultSendable

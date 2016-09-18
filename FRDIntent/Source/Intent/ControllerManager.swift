@@ -110,3 +110,29 @@ public class ControllerManager: NSObject {
   }
 
 }
+
+
+public extension UIViewController {
+
+  /**
+   Launch a view controller from source view controller with a intent.
+   @see ControllerManager#startController(intent: Intent)
+
+   - parameter intent: The intent for launch a new view controller.
+   */
+  func startController(intent: Intent) {
+    ControllerManager.sharedInstance.startController(source: self, intent: intent)
+  }
+
+  /**
+   Launch a view controller for which you would like a result when it finished. When this view controller exits, your onControllerResult() method will be called with the given requestCode.
+   @see ControllerManager#startControllerForResult(source: UIViewController, intent: Intent, requestCode: Int)
+
+   - parameter intent: The intent for start new view controller.
+   - parameter requestCode : this code will be returned in onControllerResult() when the view controller exits.
+   */
+  func startControllerForResult(intent: Intent, requestCode: Int) {
+    ControllerManager.sharedInstance .startControllerForResult(source: self, intent: intent, requestCode: requestCode)
+  }
+
+}
