@@ -5,7 +5,7 @@
 ](https://developer.apple.com/swift/)
 [![iOS](https://img.shields.io/badge/iOS-8.0-green.svg)]()
 
-**FRDIntent** 包括两部分 FRDIntent/Intent 和 FRDIntent/URLRouter。它们分别可以用于处理应用内和应用外的 view controller 调用。
+**FRDIntent** 包括两部分 FRDIntent/Intent 和 FRDIntent/URLRoutes。它们分别可以用于处理应用内和应用外的 view controller 调用。
 
 ## 安装
 
@@ -27,7 +27,7 @@ target 'TargetName' do
 end
 ```
 
-使用 FRDIntent/Intent 和 FRDIntent/URLRouter：
+使用 FRDIntent/Intent 和 FRDIntent/URLRoutes：
 
 ```ruby
 target 'TargetName' do
@@ -35,7 +35,7 @@ target 'TargetName' do
 end
 ```
 
-注意：`pod FRDInent` 和 `pod FRDIntent/URLRouter` 将引入相同的代码。这是因为 FRDIntent/URLRouter 依赖于 FRDIntent/Intent。
+注意：`pod FRDInent` 和 `pod FRDIntent/URLRoutes` 将引入相同的代码。这是因为 FRDIntent/URLRoutes 依赖于 FRDIntent/Intent。
 
 然后，命令行运行：
 
@@ -132,13 +132,13 @@ FRDIntent/Intent 有如下优势：
 如果不指定转场动画，通过 `startController` 启动页面使用的是 `PushDisplay`；通过 `startControllerForResult` 启动页面使用的是 `PresentationDisplay`。
 
 
-## URLRouter
+## URLRoutes
 
-FRDIntent/URLRouter 是一个 URL Router。通过 FRDIntent/URLRouter 可以用 URL 调起一个注册过的 block。
+FRDIntent/URLRoutes 是一个 URL Router。通过 FRDIntent/URLRoutes 可以用 URL 调起一个注册过的 block。
 
 iOS 系统为各个应用间的相互调用提供了一种基于 URL 的处理方案。即应用可以声明自己可以处理某些有特定 scheme 和 host 的 URL。其他应用就可以通过调用这些 URL 而跳转到该应用的某些页面。
 
-FRDIntent/URLRouter 是为了使得 iOS 系统中这种基于 URL 的应用间调用的处理更为简单。所以 FRDIntent/URLRouter 和社区已经存在的诸多 URL Routers 的功能和目的差别不大。FRDIntent 实现 URLRouter 是为了使 FRDIntent/URLRouter 可以和 FRDIntent/Intent 配合解决应用内和应用外 view controller 的调用。
+FRDIntent/URLRoutes 是为了使得 iOS 系统中这种基于 URL 的应用间调用的处理更为简单。所以 FRDIntent/URLRoutes 和社区已经存在的诸多 URL Routers 的功能和目的差别不大。FRDIntent 实现 URLRoutes 是为了使 FRDIntent/URLRoutes 可以和 FRDIntent/Intent 配合解决应用内和应用外 view controller 的调用。
 
 ### 使用
 
@@ -156,7 +156,7 @@ FRDIntent/URLRouter 是为了使得 iOS 系统中这种基于 URL 的应用间�
 
 ````Swift
   func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-    return URLRouter.sharedInstance.route(url: url)
+    return URLRoutes.sharedInstance.route(url: url)
   }
 ```
 
@@ -165,7 +165,7 @@ FRDIntent/URLRouter 是为了使得 iOS 系统中这种基于 URL 的应用间�
 注册一个 ViewControler。在第三方应用调起该 URL 时，会该启动该 view controller。该 view controller 的进入动画为 Push 横滑进入方式。
 
 ```Swift
-  let router = URLRouter.sharedInstance
+  let router = URLRoutes.sharedInstance
   router.register(url: NSURL(string: "/story/:storyId")!, clazz: SecondViewController.self)
 ```
 
@@ -174,9 +174,9 @@ FRDIntent/URLRouter 是为了使得 iOS 系统中这种基于 URL 的应用间�
 如果，需要定制 view controller 的转场动画，可以使用该方法注册 URL。
 
 ```Swift
-  let router = URLRouter.sharedInstance
+  let router = URLRoutes.sharedInstance
   router.register(url: NSURL(string: "/user/:userId")!) { (params: [String: Any]) in
-    let intent = Intent(url: params[URLRouter.URLRouterURL] as! NSURL)
+    let intent = Intent(url: params[URLRoutes.URLRoutesURL] as! NSURL)
     if let topViewController = UIApplication.topViewController() {
       ControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
     }
@@ -185,12 +185,12 @@ FRDIntent/URLRouter 是为了使得 iOS 系统中这种基于 URL 的应用间�
 
 ### 获取 URL 参数
 
-FRDIntent/URLRouter 支持简单的 URL 参数模式适配。上例中，注册了 URL `"/story/:storyId"`。如果，有诸如 `frdintent://frdintent.com/story/123` 这样的外部调用。FRDIntent/URLRouter 会将键 `storyId` 和值 `123` 存入 block handler 的参数 params 中。这样在 block handler 中就能使用该 URL 参数。
+FRDIntent/URLRoutes 支持简单的 URL 参数模式适配。上例中，注册了 URL `"/story/:storyId"`。如果，有诸如 `frdintent://frdintent.com/story/123` 这样的外部调用。FRDIntent/URLRoutes 会将键 `storyId` 和值 `123` 存入 block handler 的参数 params 中。这样在 block handler 中就能使用该 URL 参数。
 
 
-## URLRouter 和 Intent
+## URLRoutes 和 Intent
 
-FRDIntent/URLRouter 和 FRDIntent/Intent 可以配合使用的。Intent 处理内部 view controller 跳转；URLRouter 负责外部调用。在 FRDIntent/URLRouter 的实现中，FRDIntent/URLRouter 只是起了暴露外部调用入口，接收外部调用的作用。在应用内，仍然是通过 FRDIntent/Intent 启动 view controller。
+FRDIntent/URLRoutes 和 FRDIntent/Intent 可以配合使用的。Intent 处理内部 view controller 跳转；URLRoutes 负责外部调用。在 FRDIntent/URLRoutes 的实现中，FRDIntent/URLRoutes 只是起了暴露外部调用入口，接收外部调用的作用。在应用内，仍然是通过 FRDIntent/Intent 启动 view controller。
 
 这么做其实是为了隔离了外部调用和内部调用，做这个区分会带来一些好处：
 

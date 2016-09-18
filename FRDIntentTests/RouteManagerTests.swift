@@ -59,7 +59,7 @@ class RouteSearch: XCTestCase {
 
 
     let (params6, value6) = routeManager.searchHandler(url: URL(string: "/error")!)
-    XCTAssert(params6[URLRouter.URLRouterURL] as? URL == URL(string:  "/error"), "")
+    XCTAssert(params6[URLRoutes.URLRoutesURL] as? URL == URL(string:  "/error"), "")
     XCTAssert(value6 == nil, "value is nil")
   }
 

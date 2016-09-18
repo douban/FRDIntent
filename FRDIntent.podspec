@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.version      = "0.8.1"
   s.summary      = "FRDIntent can handle the call between view controller"
 
-  s.description  = "FRDIntent has two components URLRouter and Inteng, using for calling view controllers inner app or outer app."
+  s.description  = "FRDIntent has two components URLRoutes and Intent, using for calling view controllers inner app or outer app."
   s.homepage     = "https://github.com/douban/FRDIntent"
   s.license      = { :type => 'MIT', :text => 'LICENSE.md' }
   s.author       = { "lincode" => "guolin@douban.com" }
@@ -17,9 +17,9 @@ Pod::Spec.new do |s|
     intent.frameworks    = 'UIKit'
   end
 
-  s.subspec 'URLRouter' do |urlrouter|
-    urlrouter.source_files  = 'FRDIntent/Source/URLRouter/*.swift'
-    urlrouter.dependency 'FRDIntent/Intent'
+  s.subspec 'URLRoutes' do |urlroutes|
+    urlroutes.source_files  = 'FRDIntent/Source/URLRoutes/*.swift'
+    urlroutes.dependency 'FRDIntent/Intent'
   end
 
   s.subspec 'OCIntent' do |ocintent|
@@ -27,6 +27,6 @@ Pod::Spec.new do |s|
     ocintent.dependency 'FRDIntent/Intent'
   end
 
-  s.default_subspec = 'URLRouter', 'OCIntent'
+  s.default_subspec = 'URLRoutes', 'OCIntent'
 
 end

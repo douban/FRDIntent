@@ -1,5 +1,5 @@
 //
-//  URLRouterTests.swift
+//  URLRoutesTests.swift
 //  FRDIntent
 //
 //  Created by GUO Lin on 8/31/16.
@@ -9,14 +9,14 @@
 import XCTest
 @testable import FRDIntent
 
-class URLRouterTests: XCTestCase {
+class URLRoutesTests: XCTestCase {
 
-  func testURLRouter() {
-    let router = URLRouter.sharedInstance
+  func testURLRoutes() {
+    let router = URLRoutes.sharedInstance
 
     let _ = router.register(url: URL(string: "/user/:userId")!) { (params: [String: AnyObject]) in
       XCTAssert(params["userId"] as! String == "12", "userId is 12")
-      XCTAssert(params[URLRouter.URLRouterURL] as? NSURL == NSURL(string:  "/user/12"), "")
+      XCTAssert(params[URLRoutes.URLRoutesURL] as? NSURL == NSURL(string:  "/user/12"), "")
     }
 
     let _ = router.route(url: URL(string: "/user/12")!)

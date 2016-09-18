@@ -1,5 +1,5 @@
 //
-//  URLRouter.swift
+//  URLRoutes.swift
 //  FRDIntent
 //
 //  Created by GUO Lin on 8/31/16.
@@ -9,18 +9,18 @@
 import UIKit
 
 /**
- URLRouter is a way to manage URL routes and invoke them from a URL.
+ URLRoutes is a way to manage URL routes and invoke them from a URL.
  */
-open class URLRouter: NSObject {
+open class URLRoutes: NSObject {
 
   /// The key to get the url from parameters of block handler.
-  open static let URLRouterURL = RouteParameters.URLRouteURL
+  open static let URLRoutesURL = RouteParameters.URLRouteURL
 
-  /// Singleton instance of URLRouter.
-  open static let sharedInstance = URLRouter()
+  /// Singleton instance of URLRoutes.
+  open static let sharedInstance = URLRoutes()
 
   /// The type of block handler to be registered.
-  public typealias URLRouterHandler = ([String: AnyObject]) -> ()
+  public typealias URLRoutesHandler = ([String: AnyObject]) -> ()
 
   private let routeManager = RouteManager.sharedInstance
 
@@ -32,7 +32,7 @@ open class URLRouter: NSObject {
    
    - returns: True if it registers successfully.
    */
-  open func register(url: URL, handler: @escaping URLRouterHandler) -> Bool {
+  open func register(url: URL, handler: @escaping URLRoutesHandler) -> Bool {
     return routeManager.register(url: url, handler: handler)
   }
 
@@ -54,7 +54,7 @@ open class URLRouter: NSObject {
 
 }
 
-public extension URLRouter {
+public extension URLRoutes {
 
   /**
    Registers a url for calling handler blocks.
@@ -68,7 +68,7 @@ public extension URLRouter {
 
     let resultForIntent = ControllerManager.sharedInstance.register(url: url, clazz: clazz)
     let resultForRoute = register(url: url) { (params: [String: AnyObject]) in
-      let intent = Intent(url: params[URLRouter.URLRouterURL] as! URL)
+      let intent = Intent(url: params[URLRoutes.URLRoutesURL] as! URL)
       if let topViewController = UIApplication.topViewController() {
         ControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
       }

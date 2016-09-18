@@ -100,7 +100,7 @@
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *, id> *)options {
-  return [[URLRouter sharedInstance] routeWithUrl:url];
+  return [[URLRoutes sharedInstance] routeWithUrl:url];
 }
 
 
@@ -113,8 +113,8 @@
 
 
   // External call
-  [[URLRouter sharedInstance] registerWithUrl:[NSURL URLWithString:@"/user/:userId/story/:storyId"] handler:^(NSDictionary<NSString*, id> *params) {
-    NSURL *url = [params objectForKey:URLRouter.URLRouterURL];
+  [[URLRoutes sharedInstance] registerWithUrl:[NSURL URLWithString:@"/user/:userId/story/:storyId"] handler:^(NSDictionary<NSString*, id> *params) {
+    NSURL *url = [params objectForKey:URLRoutes.URLRoutesURL];
     Intent *intent = [[Intent alloc] initWithUrl:url];
     intent.controllerDisplay = [[PresentationDisplay alloc] init];
     UIViewController *topViewController = [UIApplication topViewController];
@@ -124,7 +124,7 @@
   }];
 
 
-  [[URLRouter sharedInstance] registerWithUrl:[NSURL URLWithString: @"/story/:storyId"]  clazz: [SecondViewController self]];
+  [[URLRoutes sharedInstance] registerWithUrl:[NSURL URLWithString: @"/story/:storyId"]  clazz: [SecondViewController self]];
 }
 
 @end

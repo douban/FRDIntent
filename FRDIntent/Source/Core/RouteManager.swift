@@ -40,9 +40,9 @@ class RouteManager {
 
   static let sharedInstance = RouteManager()
 
-  typealias URLRouterHandler = ([String: AnyObject]) -> ()
+  typealias URLRoutesHandler = ([String: AnyObject]) -> ()
 
-  typealias RoutePathNodeValueType = (IntentReceivable.Type?, URLRouterHandler?)
+  typealias RoutePathNodeValueType = (IntentReceivable.Type?, URLRoutesHandler?)
 
   fileprivate var routes = RoutePathNode<RoutePathNodeValueType>(path: "/")
 
@@ -61,7 +61,7 @@ class RouteManager {
     let (_, node) = routes.search(paths: paths)
     if node.path == paths.last {
       // find it, update
-      let handler: URLRouterHandler?
+      let handler: URLRoutesHandler?
       if let (_, oldHandler) = node.value {
         handler =  oldHandler
       } else {

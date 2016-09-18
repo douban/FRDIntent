@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		A30910AF1D8936F600B2F181 /* FRDControllerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A30910AD1D8936F600B2F181 /* FRDControllerManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A30910B01D8936F600B2F181 /* FRDControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A30910AE1D8936F600B2F181 /* FRDControllerManager.m */; };
-		A32C1FC91D76717C00C19142 /* URLRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FC81D76717C00C19142 /* URLRouter.swift */; };
-		A32C1FCB1D767CE500C19142 /* URLRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FCA1D767CE500C19142 /* URLRouterTests.swift */; };
+		A32C1FC91D76717C00C19142 /* URLRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FC81D76717C00C19142 /* URLRoutes.swift */; };
+		A32C1FCB1D767CE500C19142 /* URLRoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FCA1D767CE500C19142 /* URLRoutesTests.swift */; };
 		A32C1FD11D76F3BD00C19142 /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FD01D76F3BD00C19142 /* MockViewController.swift */; };
 		A354CC301D6EA93D00830990 /* FRDIntent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A354CC251D6EA93D00830990 /* FRDIntent.framework */; };
 		A354CC6E1D7560EC00830990 /* RouteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC6D1D7560EC00830990 /* RouteManager.swift */; };
@@ -69,8 +69,8 @@
 /* Begin PBXFileReference section */
 		A30910AD1D8936F600B2F181 /* FRDControllerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRDControllerManager.h; sourceTree = "<group>"; };
 		A30910AE1D8936F600B2F181 /* FRDControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRDControllerManager.m; sourceTree = "<group>"; };
-		A32C1FC81D76717C00C19142 /* URLRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRouter.swift; sourceTree = "<group>"; };
-		A32C1FCA1D767CE500C19142 /* URLRouterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRouterTests.swift; sourceTree = "<group>"; };
+		A32C1FC81D76717C00C19142 /* URLRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRoutes.swift; sourceTree = "<group>"; };
+		A32C1FCA1D767CE500C19142 /* URLRoutesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRoutesTests.swift; sourceTree = "<group>"; };
 		A32C1FD01D76F3BD00C19142 /* MockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
 		A354CC251D6EA93D00830990 /* FRDIntent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FRDIntent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A354CC2A1D6EA93D00830990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -139,12 +139,12 @@
 			path = OCIntent;
 			sourceTree = "<group>";
 		};
-		A32C1FC71D76716600C19142 /* URLRouter */ = {
+		A32C1FC71D76716600C19142 /* URLRoutes */ = {
 			isa = PBXGroup;
 			children = (
-				A32C1FC81D76717C00C19142 /* URLRouter.swift */,
+				A32C1FC81D76717C00C19142 /* URLRoutes.swift */,
 			);
-			path = URLRouter;
+			path = URLRoutes;
 			sourceTree = "<group>";
 		};
 		A354CC1B1D6EA93D00830990 = {
@@ -182,7 +182,7 @@
 				A32C1FD01D76F3BD00C19142 /* MockViewController.swift */,
 				A354CC6F1D7589F200830990 /* RouteManagerTests.swift */,
 				A354CC711D75A94D00830990 /* ControllerManagerTests.swift */,
-				A32C1FCA1D767CE500C19142 /* URLRouterTests.swift */,
+				A32C1FCA1D767CE500C19142 /* URLRoutesTests.swift */,
 				A354CC361D6EA93D00830990 /* Info.plist */,
 			);
 			path = FRDIntentTests;
@@ -192,7 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				A30910AC1D8936F600B2F181 /* OCIntent */,
-				A32C1FC71D76716600C19142 /* URLRouter */,
+				A32C1FC71D76716600C19142 /* URLRoutes */,
 				A354CC751D75B8C200830990 /* Intent */,
 				A354CC6A1D755B5000830990 /* Core */,
 			);
@@ -401,7 +401,7 @@
 				A30910B01D8936F600B2F181 /* FRDControllerManager.m in Sources */,
 				A354CC7D1D75B8C200830990 /* ControllerDisplay.swift in Sources */,
 				A354CC811D75B8C200830990 /* IntentReceivable.swift in Sources */,
-				A32C1FC91D76717C00C19142 /* URLRouter.swift in Sources */,
+				A32C1FC91D76717C00C19142 /* URLRoutes.swift in Sources */,
 				A354CC821D75B8C200830990 /* PresentationDisplay.swift in Sources */,
 				A354CC6E1D7560EC00830990 /* RouteManager.swift in Sources */,
 			);
@@ -412,7 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A32C1FD11D76F3BD00C19142 /* MockViewController.swift in Sources */,
-				A32C1FCB1D767CE500C19142 /* URLRouterTests.swift in Sources */,
+				A32C1FCB1D767CE500C19142 /* URLRoutesTests.swift in Sources */,
 				A354CC701D7589F200830990 /* RouteManagerTests.swift in Sources */,
 				A354CC721D75A94D00830990 /* ControllerManagerTests.swift in Sources */,
 			);
