@@ -11,27 +11,27 @@ import Foundation
 /**
  An intent is an abstract description of an operation to be performed. It can be used with startController to launch a view controller.
  */
-open class Intent: NSObject {
+public class Intent: NSObject {
 
   /**
    The url for identify the destination view controller.
    */
-  open var url: URL?
+  public var url: URL?
 
   /**
    The destination view controller's class type.
   */
-  open var receiveClass: AnyClass?
+  public var receiveClass: AnyClass?
 
   /**
    The way of how to display the new view controller.
   */
-  open var controllerDisplay: ControllerDisplay = PushDisplay()
+  public var controllerDisplay: ControllerDisplay = PushDisplay()
 
   /**
    The extra data to inform the destination view controller. Read-only.
    */
-  open fileprivate(set) var extras = [String: AnyObject]()
+  public fileprivate(set) var extras = [String: AnyObject]()
 
   /**
    Initializer with the destination view controller's class type.
@@ -63,7 +63,7 @@ open class Intent: NSObject {
   /**
    Put the extra data into the intent.
   */
-  open func putExtra(name: String, data: AnyObject) {
+  public func putExtra(name: String, data: AnyObject) {
     self.extras[name] = data
   }
 

@@ -33,6 +33,7 @@
 		A36FCC1C1D87F96700059523 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FCC1B1D87F96700059523 /* AppDelegate.m */; };
 		A36FCC271D87F96700059523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A36FCC261D87F96700059523 /* Assets.xcassets */; };
 		A36FCC2A1D87F96700059523 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A36FCC281D87F96700059523 /* LaunchScreen.storyboard */; };
+		A382FE421D951C96007099DE /* RouteParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A382FE411D951C96007099DE /* RouteParameters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		A36FCC261D87F96700059523 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A36FCC291D87F96700059523 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A36FCC2B1D87F96700059523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A382FE411D951C96007099DE /* RouteParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteParameters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				A354CC6D1D7560EC00830990 /* RouteManager.swift */,
+				A382FE411D951C96007099DE /* RouteParameters.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -228,8 +231,8 @@
 				A36FCC1B1D87F96700059523 /* AppDelegate.m */,
 				A359194F1D87FFB100EBFD1E /* MainViewController.h */,
 				A35919551D87FFB100EBFD1E /* MainViewController.m */,
-				A35919541D87FFB100EBFD1E /* FirstViewController.m */,
 				A35919561D87FFB100EBFD1E /* FirstViewController.h */,
+				A35919541D87FFB100EBFD1E /* FirstViewController.m */,
 				A35919501D87FFB100EBFD1E /* SecondViewController.h */,
 				A35919511D87FFB100EBFD1E /* SecondViewController.m */,
 				A35919521D87FFB100EBFD1E /* ThirdViewController.h */,
@@ -400,6 +403,7 @@
 				A354CC7F1D75B8C200830990 /* Intent.swift in Sources */,
 				A30910B01D8936F600B2F181 /* FRDControllerManager.m in Sources */,
 				A354CC7D1D75B8C200830990 /* ControllerDisplay.swift in Sources */,
+				A382FE421D951C96007099DE /* RouteParameters.swift in Sources */,
 				A354CC811D75B8C200830990 /* IntentReceivable.swift in Sources */,
 				A32C1FC91D76717C00C19142 /* URLRoutes.swift in Sources */,
 				A354CC821D75B8C200830990 /* PresentationDisplay.swift in Sources */,

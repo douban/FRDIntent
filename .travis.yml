@@ -1,9 +1,4 @@
-osx_image: xcode7.3
+osx_image: xcode80
 language: objective-c
-script:
-    - |
-      xcodebuild test \
-      -project FRDIntent.xcodeproj \
-      -scheme FRDIntentTests \
-      -sdk iphonesimulator \
-      ONLY_ACTIVE_ARCH=NO
+xcode_project: FRDIntent.xcodeproj
+xcode_scheme: FRDIntentTests

@@ -8,12 +8,6 @@
 
 import Foundation
 
-struct RouteParameters {
-
-  static let URLRouteURL = "URLRouteURL"
-
-}
-
 /**
  RouteManager offer the public operation interface of route path search tree.
 
