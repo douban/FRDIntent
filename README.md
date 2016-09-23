@@ -66,7 +66,7 @@ FRDIntent/Intent 有如下优势：
 
 ```Swift
   let controllerManager = ControllerManager.sharedInstance
-  controllerManager.register(NSURL(string: "/frodo/firstview")!, clazz: FirstViewController.self)
+  controllerManager.register(URL(string: "/frodo/firstview")!, clazz: FirstViewController.self)
 ```
 
 #### 通过指定类名启动 view controller
@@ -80,7 +80,7 @@ FRDIntent/Intent 有如下优势：
 #### 通过 URL 启动 view controller
 
 ```Swift
-  let intent = Intent(uri: NSURL(string: "/frodo/firstview")!)
+  let intent = Intent(uri: URL(string: "/frodo/firstview")!)
   let manager = ControllerManager.sharedInstance
   manager.startController(source: self, intent: intent)
 ```
@@ -92,7 +92,7 @@ FRDIntent/Intent 有如下优势：
 ```Swift
   extension ViewController: IntentForResultSendable {
 
-    func onControllerResult(requestCode requestCode: Int, resultCode: ResultCode, data: Intent) {
+    func onControllerResult(_ requestCode: Int, resultCode: ResultCode, data: Intent) {
       if (requestCode == RequestText) {
         if (resultCode == .Ok) {
           let text = data.extra["text"]
@@ -155,7 +155,7 @@ FRDIntent/URLRoutes 是为了使得 iOS 系统中这种基于 URL 的应用间�
 #### 接管应用的 URL 处理
 
 ````Swift
-  func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+  func application(app: UIApplication, openURL url: URL, options: [String : AnyObject]) -> Bool {
     return URLRoutes.sharedInstance.route(url: url)
   }
 ```
@@ -166,7 +166,7 @@ FRDIntent/URLRoutes 是为了使得 iOS 系统中这种基于 URL 的应用间�
 
 ```Swift
   let router = URLRoutes.sharedInstance
-  router.register(url: NSURL(string: "/story/:storyId")!, clazz: SecondViewController.self)
+  router.register(url: URL(string: "/story/:storyId")!, clazz: SecondViewController.self)
 ```
 
 注册一个 block handler。下面例子中的 block handler 中，用注册时的 URL 构造了一个 Intent，并将该 Intent 送出。ControllerManager 会处理这个 Intent。看是否有合适的 view controller 可以被启动。
@@ -175,8 +175,8 @@ FRDIntent/URLRoutes 是为了使得 iOS 系统中这种基于 URL 的应用间�
 
 ```Swift
   let router = URLRoutes.sharedInstance
-  router.register(url: NSURL(string: "/user/:userId")!) { (params: [String: Any]) in
-    let intent = Intent(url: params[URLRoutes.URLRoutesURL] as! NSURL)
+  router.register(url: URL(string: "/user/:userId")!) { (params: [String: Any]) in
+    let intent = Intent(url: params[URLRoutes.URLRoutesURL] as! URL)
     if let topViewController = UIApplication.topViewController() {
       ControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
     }

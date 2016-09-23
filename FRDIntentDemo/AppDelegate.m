@@ -114,7 +114,7 @@
 
   // External call
   [[URLRoutes sharedInstance] registerWithUrl:[NSURL URLWithString:@"/user/:userId/story/:storyId"] handler:^(NSDictionary<NSString*, id> *params) {
-    NSURL *url = [params objectForKey:URLRoutes.URLRoutesURL];
+    NSURL *url = [params objectForKey:RouteParameters.URLRouteURL];
     Intent *intent = [[Intent alloc] initWithUrl:url];
     intent.controllerDisplay = [[PresentationDisplay alloc] init];
     UIViewController *topViewController = [UIApplication topViewController];
