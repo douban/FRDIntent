@@ -1,5 +1,5 @@
 //
-//  RouteParameters.swift
+//  FRDRouteParameters.swift
 //  FRDIntent
 //
 //  Created by GUO Lin on 9/23/16.
@@ -12,7 +12,7 @@ import Foundation
  * Open the parameters to public. 
  * Defined as a class because of the usage of Objective-C.
  */
-public class RouteParameters: NSObject {
+public class FRDRouteParameters: NSObject {
 
   /// The key to get the url from parameters of block handler.
 

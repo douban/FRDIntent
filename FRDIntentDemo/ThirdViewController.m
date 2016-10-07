@@ -14,7 +14,7 @@
 @property (nonatomic, strong) UITextField *textField;
 
 @property (nonatomic, assign) NSInteger requestCode;
-@property (nonatomic, weak) id<IntentForResultSendable> delegate;
+@property (nonatomic, weak) id<FRDIntentForResultSendable> delegate;
 
 
 @end
@@ -68,18 +68,18 @@
   [self dismissViewControllerAnimated:YES completion:NULL];
 
   if (self.delegate) {
-    Intent *intent = [[Intent alloc] initWithUrl:[NSURL URLWithString:@"douban://"]];
+    FRDIntent *intent = [[FRDIntent alloc] initWithUrl:[NSURL URLWithString:@"douban://"]];
     [intent putExtraWithName:@"text" data:self.textField.text];
-    [self.delegate onControllerResultWithRequestCode:self.requestCode resultCode:ResultCodeCanceled data:intent];
+    [self.delegate onControllerResultWithRequestCode:self.requestCode resultCode:FRDResultCodeCanceled data:intent];
   }
 }
 
 - (void)confirm:(id)sender {
   [self dismissViewControllerAnimated:YES completion:NULL];
   if (self.delegate) {
-    Intent *intent = [[Intent alloc] initWithUrl:[NSURL URLWithString:@"douban://"]];
+    FRDIntent *intent = [[FRDIntent alloc] initWithUrl:[NSURL URLWithString:@"douban://"]];
     [intent putExtraWithName:@"text" data:self.textField.text];
-    [self.delegate onControllerResultWithRequestCode:self.requestCode resultCode:ResultCodeOk data:intent];
+    [self.delegate onControllerResultWithRequestCode:self.requestCode resultCode:FRDResultCodeOk data:intent];
   }
 }
 
@@ -90,7 +90,7 @@
   _requestCode = requestCode;
 }
 
-- (void)setDelegate:(__strong id<IntentForResultSendable> )delegate
+- (void)setDelegate:(__strong id<FRDIntentForResultSendable> )delegate
 {
   _delegate = delegate;
 }

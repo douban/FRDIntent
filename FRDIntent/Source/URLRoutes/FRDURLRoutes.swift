@@ -1,5 +1,5 @@
 //
-//  URLRoutes.swift
+//  FRDURLRoutes.swift
 //  FRDIntent
 //
 //  Created by GUO Lin on 8/31/16.
@@ -9,12 +9,12 @@
 import UIKit
 
 /**
- URLRoutes is a way to manage URL routes and invoke them from a URL.
+ FRDURLRoutes is a way to manage URL routes and invoke them from a URL.
  */
-public class URLRoutes: NSObject {
+public class FRDURLRoutes: NSObject {
 
   /// Singleton instance of URLRoutes.
-  public static let sharedInstance = URLRoutes()
+  public static let sharedInstance = FRDURLRoutes()
 
   /// The type of block handler to be registered.
   public typealias URLRoutesHandler = ([String: AnyObject]) -> ()
@@ -51,7 +51,7 @@ public class URLRoutes: NSObject {
 
 }
 
-public extension URLRoutes {
+public extension FRDURLRoutes {
 
   /**
    Registers a url for calling handler blocks.
@@ -61,13 +61,13 @@ public extension URLRoutes {
    
    - returns: True if it registers successfully.
    */
-  public func register(url: URL, clazz: IntentReceivable.Type) -> Bool {
+  public func register(url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
 
-    let resultForIntent = ControllerManager.sharedInstance.register(url: url, clazz: clazz)
+    let resultForIntent = FRDControllerManager.sharedInstance.register(url: url, clazz: clazz)
     let resultForRoute = register(url: url) { (params: [String: AnyObject]) in
-      let intent = Intent(url: params[RouteParameters.URLRouteURL] as! URL)
+      let intent = FRDIntent(url: params[FRDRouteParameters.URLRouteURL] as! URL)
       if let topViewController = UIApplication.topViewController() {
-        ControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
+        FRDControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
       }
     }
 

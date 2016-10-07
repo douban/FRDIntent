@@ -1,5 +1,5 @@
 //
-//  IntentReceivable.swift
+//  FRDIntentReceivable.swift
 //  FRDIntent
 //
 //  Created by GUO Lin on 8/25/16.
@@ -11,7 +11,7 @@ import Foundation
 /**
  The protocol to abstract the view controller tha can receive the Intent.
  */
-@objc public protocol IntentReceivable {
+@objc public protocol FRDIntentReceivable {
 
   /**
    Initialzier with extra data.

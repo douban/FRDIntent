@@ -10,6 +10,6 @@
 
 #import <FRDIntent/FRDIntent-Swift.h>
 
-@interface FirstViewController : UIViewController<IntentReceivable>
+@interface FirstViewController : UIViewController<FRDIntentReceivable>
 
 @end

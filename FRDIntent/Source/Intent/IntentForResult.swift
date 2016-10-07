@@ -1,5 +1,5 @@
 //
-//  IntentForResultController.swift
+//  IntentForResult.swift
 //  FRDIntent
 //
 //  Created by GUO Lin on 8/29/16.
@@ -11,7 +11,7 @@ import Foundation
 /**
  The resultCode's possible values:
  */
-@objc public enum ResultCode: Int {
+@objc public enum FRDResultCode: Int {
 
   /// Ok: For successful result.
   case ok
@@ -25,7 +25,7 @@ import Foundation
 /**
  The protocol to abstract the view controller tha can send the Intent for request a result from the destination.
  */
-@objc public protocol IntentForResultSendable {
+@objc public protocol FRDIntentForResultSendable {
 
   /**
    When the result return, this method will be called.
@@ -34,14 +34,14 @@ import Foundation
    - parameter resultCode: The result code returned by the child conroller.
    - parameter intent: An Intent, which can return result data to the caller (various data can be attached to Intent "extras").
   */
-  func onControllerResult(requestCode: Int, resultCode: ResultCode, data: Intent)
+  func onControllerResult(requestCode: Int, resultCode: FRDResultCode, data: FRDIntent)
 
 }
 
 /**
  The protocol to abstract the view controller tha can receive the Intent for request a result from the destination.
  */
-@objc public protocol IntentForResultReceivable: IntentReceivable {
+@objc public protocol FRDIntentForResultReceivable: FRDIntentReceivable {
 
 //  var requestCode: Int? { get set }
 //  var delegate: IntentForResultSendable? { get set }
@@ -50,5 +50,5 @@ import Foundation
   func setRequestCode(_ requestCode: Int)
 
   /// The source view controller
-  func setDelegate(_ delegate: IntentForResultSendable?)
+  func setDelegate(_ delegate: FRDIntentForResultSendable?)
 }

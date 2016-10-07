@@ -1,5 +1,5 @@
 //
-//  ControllerManager.swift
+//  FRDControllerManager.swift
 //  FRDIntent
 //
 //  Created by GUO Lin on 8/25/16.
@@ -9,12 +9,12 @@
 import UIKit
 
 /**
- ControllerManager is a way to manage view controllers and invoke view controllers from a URL or class name.
+ FRDControllerManager is a way to manage view controllers and invoke view controllers from a URL or class name.
  */
-public class ControllerManager: NSObject {
+public class FRDControllerManager: NSObject {
 
-  /// Singleton instance of ControllerManager
-  public static let sharedInstance = ControllerManager()
+  /// Singleton instance of FRDControllerManager
+  public static let sharedInstance = FRDControllerManager()
 
   private var routeManager = RouteManager.sharedInstance
 
@@ -27,7 +27,7 @@ public class ControllerManager: NSObject {
    - returns: True if register success.
    */
   public func register(url: URL, clazz: AnyClass) -> Bool {
-    return routeManager.register(url: url, clazz: clazz as! IntentReceivable.Type)
+    return routeManager.register(url: url, clazz: clazz as! FRDIntentReceivable.Type)
   }
 
   /**
@@ -36,10 +36,10 @@ public class ControllerManager: NSObject {
    - parameter source: The source view controller.
    - parameter intent: The intent for launch a new view controller.
    */
-  public func startController(source: UIViewController, intent: Intent) {
+  public func startController(source: UIViewController, intent: FRDIntent) {
 
     var parameters = [String: AnyObject]()
-    var controllerClazz: IntentReceivable.Type?
+    var controllerClazz: FRDIntentReceivable.Type?
 
     if let url = intent.url {
       let (params, clazz) = routeManager.searchController(url: url)
@@ -48,7 +48,7 @@ public class ControllerManager: NSObject {
     }
 
     if let clazz = intent.receiveClass {
-      controllerClazz = clazz as? IntentReceivable.Type
+      controllerClazz = clazz as? FRDIntentReceivable.Type
     }
 
     if let controllerClazz = controllerClazz {
@@ -73,9 +73,9 @@ public class ControllerManager: NSObject {
    - parameter intent: The intent for start new view controller.
    - parameter requestCode : this code will be returned in onControllerResult() when the view controller exits.
    */
-  public func startControllerForResult(source: UIViewController, intent: Intent, requestCode: Int) {
+  public func startControllerForResult(source: UIViewController, intent: FRDIntent, requestCode: Int) {
 
-    typealias ControllerType = IntentForResultReceivable.Type
+    typealias ControllerType = FRDIntentForResultReceivable.Type
 
     var parameters = [String: AnyObject]()
     var controllerClazz: ControllerType?
@@ -91,7 +91,7 @@ public class ControllerManager: NSObject {
     }
 
     if let controllerClazz = controllerClazz {
-      let display = PresentationDisplay()
+      let display = FRDPresentationDisplay()
 
       for (key, value) in parameters {
         intent.putExtra(name: key, data: value)
@@ -99,7 +99,7 @@ public class ControllerManager: NSObject {
       let destination = controllerClazz.init(extras: intent.extras)
 
       destination.setRequestCode(requestCode)
-      destination.setDelegate(source as? IntentForResultSendable)
+      destination.setDelegate(source as? FRDIntentForResultSendable)
 
       if let destinationController = destination as? UIViewController {
         display.displayViewController(source: source, destination: destinationController)
@@ -116,23 +116,23 @@ public extension UIViewController {
 
   /**
    Launch a view controller from source view controller with a intent.
-   @see ControllerManager#startController(intent: Intent)
+   @see FRDControllerManager#startController(intent: FRDIntent)
 
    - parameter intent: The intent for launch a new view controller.
    */
-  func startController(intent: Intent) {
-    ControllerManager.sharedInstance.startController(source: self, intent: intent)
+  func startController(intent: FRDIntent) {
+    FRDControllerManager.sharedInstance.startController(source: self, intent: intent)
   }
 
   /**
    Launch a view controller for which you would like a result when it finished. When this view controller exits, your onControllerResult() method will be called with the given requestCode.
-   @see ControllerManager#startControllerForResult(source: UIViewController, intent: Intent, requestCode: Int)
+   @see FRDControllerManager#startControllerForResult(source: UIViewController, intent: FRDIntent, requestCode: Int)
 
    - parameter intent: The intent for start new view controller.
    - parameter requestCode : this code will be returned in onControllerResult() when the view controller exits.
    */
-  func startControllerForResult(intent: Intent, requestCode: Int) {
-    ControllerManager.sharedInstance .startControllerForResult(source: self, intent: intent, requestCode: requestCode)
+  func startControllerForResult(intent: FRDIntent, requestCode: Int) {
+    FRDControllerManager.sharedInstance.startControllerForResult(source: self, intent: intent, requestCode: requestCode)
   }
 
 }

@@ -7,22 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A30910AF1D8936F600B2F181 /* FRDControllerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A30910AD1D8936F600B2F181 /* FRDControllerManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A30910B01D8936F600B2F181 /* FRDControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A30910AE1D8936F600B2F181 /* FRDControllerManager.m */; };
-		A32C1FC91D76717C00C19142 /* URLRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FC81D76717C00C19142 /* URLRoutes.swift */; };
+		A32C1FC91D76717C00C19142 /* FRDURLRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FC81D76717C00C19142 /* FRDURLRoutes.swift */; };
 		A32C1FCB1D767CE500C19142 /* URLRoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FCA1D767CE500C19142 /* URLRoutesTests.swift */; };
 		A32C1FD11D76F3BD00C19142 /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FD01D76F3BD00C19142 /* MockViewController.swift */; };
 		A354CC301D6EA93D00830990 /* FRDIntent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A354CC251D6EA93D00830990 /* FRDIntent.framework */; };
 		A354CC6E1D7560EC00830990 /* RouteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC6D1D7560EC00830990 /* RouteManager.swift */; };
 		A354CC701D7589F200830990 /* RouteManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC6F1D7589F200830990 /* RouteManagerTests.swift */; };
 		A354CC721D75A94D00830990 /* ControllerManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC711D75A94D00830990 /* ControllerManagerTests.swift */; };
-		A354CC7D1D75B8C200830990 /* ControllerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC761D75B8C200830990 /* ControllerDisplay.swift */; };
-		A354CC7E1D75B8C200830990 /* ControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC771D75B8C200830990 /* ControllerManager.swift */; };
-		A354CC7F1D75B8C200830990 /* Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC781D75B8C200830990 /* Intent.swift */; };
+		A354CC7D1D75B8C200830990 /* FRDControllerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC761D75B8C200830990 /* FRDControllerDisplay.swift */; };
+		A354CC7E1D75B8C200830990 /* FRDControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC771D75B8C200830990 /* FRDControllerManager.swift */; };
+		A354CC7F1D75B8C200830990 /* FRDIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC781D75B8C200830990 /* FRDIntent.swift */; };
 		A354CC801D75B8C200830990 /* IntentForResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC791D75B8C200830990 /* IntentForResult.swift */; };
-		A354CC811D75B8C200830990 /* IntentReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC7A1D75B8C200830990 /* IntentReceivable.swift */; };
-		A354CC821D75B8C200830990 /* PresentationDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC7B1D75B8C200830990 /* PresentationDisplay.swift */; };
-		A354CC831D75B8C200830990 /* PushDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC7C1D75B8C200830990 /* PushDisplay.swift */; };
+		A354CC811D75B8C200830990 /* FRDIntentReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC7A1D75B8C200830990 /* FRDIntentReceivable.swift */; };
+		A354CC821D75B8C200830990 /* FRDPresentationDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC7B1D75B8C200830990 /* FRDPresentationDisplay.swift */; };
+		A354CC831D75B8C200830990 /* FRDPushDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CC7C1D75B8C200830990 /* FRDPushDisplay.swift */; };
 		A35919571D87FFB100EBFD1E /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35919511D87FFB100EBFD1E /* SecondViewController.m */; };
 		A35919581D87FFB100EBFD1E /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35919531D87FFB100EBFD1E /* ThirdViewController.m */; };
 		A35919591D87FFB100EBFD1E /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35919541D87FFB100EBFD1E /* FirstViewController.m */; };
@@ -33,7 +31,7 @@
 		A36FCC1C1D87F96700059523 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FCC1B1D87F96700059523 /* AppDelegate.m */; };
 		A36FCC271D87F96700059523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A36FCC261D87F96700059523 /* Assets.xcassets */; };
 		A36FCC2A1D87F96700059523 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A36FCC281D87F96700059523 /* LaunchScreen.storyboard */; };
-		A382FE421D951C96007099DE /* RouteParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A382FE411D951C96007099DE /* RouteParameters.swift */; };
+		A382FE421D951C96007099DE /* FRDRouteParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A382FE411D951C96007099DE /* FRDRouteParameters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,9 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A30910AD1D8936F600B2F181 /* FRDControllerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRDControllerManager.h; sourceTree = "<group>"; };
-		A30910AE1D8936F600B2F181 /* FRDControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRDControllerManager.m; sourceTree = "<group>"; };
-		A32C1FC81D76717C00C19142 /* URLRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRoutes.swift; sourceTree = "<group>"; };
+		A32C1FC81D76717C00C19142 /* FRDURLRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDURLRoutes.swift; sourceTree = "<group>"; };
 		A32C1FCA1D767CE500C19142 /* URLRoutesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRoutesTests.swift; sourceTree = "<group>"; };
 		A32C1FD01D76F3BD00C19142 /* MockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
 		A354CC251D6EA93D00830990 /* FRDIntent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FRDIntent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,13 +76,13 @@
 		A354CC6D1D7560EC00830990 /* RouteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteManager.swift; sourceTree = "<group>"; };
 		A354CC6F1D7589F200830990 /* RouteManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteManagerTests.swift; sourceTree = "<group>"; };
 		A354CC711D75A94D00830990 /* ControllerManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerManagerTests.swift; sourceTree = "<group>"; };
-		A354CC761D75B8C200830990 /* ControllerDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerDisplay.swift; sourceTree = "<group>"; };
-		A354CC771D75B8C200830990 /* ControllerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerManager.swift; sourceTree = "<group>"; };
-		A354CC781D75B8C200830990 /* Intent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intent.swift; sourceTree = "<group>"; };
+		A354CC761D75B8C200830990 /* FRDControllerDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDControllerDisplay.swift; sourceTree = "<group>"; };
+		A354CC771D75B8C200830990 /* FRDControllerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDControllerManager.swift; sourceTree = "<group>"; };
+		A354CC781D75B8C200830990 /* FRDIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDIntent.swift; sourceTree = "<group>"; };
 		A354CC791D75B8C200830990 /* IntentForResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntentForResult.swift; sourceTree = "<group>"; };
-		A354CC7A1D75B8C200830990 /* IntentReceivable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntentReceivable.swift; sourceTree = "<group>"; };
-		A354CC7B1D75B8C200830990 /* PresentationDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationDisplay.swift; sourceTree = "<group>"; };
-		A354CC7C1D75B8C200830990 /* PushDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushDisplay.swift; sourceTree = "<group>"; };
+		A354CC7A1D75B8C200830990 /* FRDIntentReceivable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDIntentReceivable.swift; sourceTree = "<group>"; };
+		A354CC7B1D75B8C200830990 /* FRDPresentationDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDPresentationDisplay.swift; sourceTree = "<group>"; };
+		A354CC7C1D75B8C200830990 /* FRDPushDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDPushDisplay.swift; sourceTree = "<group>"; };
 		A359194F1D87FFB100EBFD1E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		A35919501D87FFB100EBFD1E /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		A35919511D87FFB100EBFD1E /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
@@ -102,7 +98,7 @@
 		A36FCC261D87F96700059523 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A36FCC291D87F96700059523 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A36FCC2B1D87F96700059523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A382FE411D951C96007099DE /* RouteParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteParameters.swift; sourceTree = "<group>"; };
+		A382FE411D951C96007099DE /* FRDRouteParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDRouteParameters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,19 +128,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A30910AC1D8936F600B2F181 /* OCIntent */ = {
-			isa = PBXGroup;
-			children = (
-				A30910AD1D8936F600B2F181 /* FRDControllerManager.h */,
-				A30910AE1D8936F600B2F181 /* FRDControllerManager.m */,
-			);
-			path = OCIntent;
-			sourceTree = "<group>";
-		};
 		A32C1FC71D76716600C19142 /* URLRoutes */ = {
 			isa = PBXGroup;
 			children = (
-				A32C1FC81D76717C00C19142 /* URLRoutes.swift */,
+				A32C1FC81D76717C00C19142 /* FRDURLRoutes.swift */,
 			);
 			path = URLRoutes;
 			sourceTree = "<group>";
@@ -193,7 +180,6 @@
 		A354CC3F1D6EA95700830990 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				A30910AC1D8936F600B2F181 /* OCIntent */,
 				A32C1FC71D76716600C19142 /* URLRoutes */,
 				A354CC751D75B8C200830990 /* Intent */,
 				A354CC6A1D755B5000830990 /* Core */,
@@ -205,7 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				A354CC6D1D7560EC00830990 /* RouteManager.swift */,
-				A382FE411D951C96007099DE /* RouteParameters.swift */,
+				A382FE411D951C96007099DE /* FRDRouteParameters.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -213,13 +199,13 @@
 		A354CC751D75B8C200830990 /* Intent */ = {
 			isa = PBXGroup;
 			children = (
-				A354CC7A1D75B8C200830990 /* IntentReceivable.swift */,
+				A354CC7A1D75B8C200830990 /* FRDIntentReceivable.swift */,
 				A354CC791D75B8C200830990 /* IntentForResult.swift */,
-				A354CC771D75B8C200830990 /* ControllerManager.swift */,
-				A354CC781D75B8C200830990 /* Intent.swift */,
-				A354CC761D75B8C200830990 /* ControllerDisplay.swift */,
-				A354CC7B1D75B8C200830990 /* PresentationDisplay.swift */,
-				A354CC7C1D75B8C200830990 /* PushDisplay.swift */,
+				A354CC771D75B8C200830990 /* FRDControllerManager.swift */,
+				A354CC781D75B8C200830990 /* FRDIntent.swift */,
+				A354CC761D75B8C200830990 /* FRDControllerDisplay.swift */,
+				A354CC7B1D75B8C200830990 /* FRDPresentationDisplay.swift */,
+				A354CC7C1D75B8C200830990 /* FRDPushDisplay.swift */,
 			);
 			path = Intent;
 			sourceTree = "<group>";
@@ -260,7 +246,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A30910AF1D8936F600B2F181 /* FRDControllerManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,15 +383,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A354CC801D75B8C200830990 /* IntentForResult.swift in Sources */,
-				A354CC7E1D75B8C200830990 /* ControllerManager.swift in Sources */,
-				A354CC831D75B8C200830990 /* PushDisplay.swift in Sources */,
-				A354CC7F1D75B8C200830990 /* Intent.swift in Sources */,
-				A30910B01D8936F600B2F181 /* FRDControllerManager.m in Sources */,
-				A354CC7D1D75B8C200830990 /* ControllerDisplay.swift in Sources */,
-				A382FE421D951C96007099DE /* RouteParameters.swift in Sources */,
-				A354CC811D75B8C200830990 /* IntentReceivable.swift in Sources */,
-				A32C1FC91D76717C00C19142 /* URLRoutes.swift in Sources */,
-				A354CC821D75B8C200830990 /* PresentationDisplay.swift in Sources */,
+				A354CC7E1D75B8C200830990 /* FRDControllerManager.swift in Sources */,
+				A354CC831D75B8C200830990 /* FRDPushDisplay.swift in Sources */,
+				A354CC7F1D75B8C200830990 /* FRDIntent.swift in Sources */,
+				A354CC7D1D75B8C200830990 /* FRDControllerDisplay.swift in Sources */,
+				A382FE421D951C96007099DE /* FRDRouteParameters.swift in Sources */,
+				A354CC811D75B8C200830990 /* FRDIntentReceivable.swift in Sources */,
+				A32C1FC91D76717C00C19142 /* FRDURLRoutes.swift in Sources */,
+				A354CC821D75B8C200830990 /* FRDPresentationDisplay.swift in Sources */,
 				A354CC6E1D7560EC00830990 /* RouteManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

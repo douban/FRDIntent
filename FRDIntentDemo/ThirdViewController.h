@@ -10,6 +10,6 @@
 
 #import <FRDIntent/FRDIntent-Swift.h>
 
-@interface ThirdViewController : UIViewController<IntentForResultReceivable>
+@interface ThirdViewController : UIViewController<FRDIntentForResultReceivable>
 
 @end

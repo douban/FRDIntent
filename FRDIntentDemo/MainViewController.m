@@ -1,11 +1,10 @@
 //
 //  MainViewController.m
-//  FRDIntent
+//  FRDFRDIntent
 //
 //  Created by GUO Lin on 9/12/16.
 //  Copyright © 2016 Douban Inc. All rights reserved.
 //
-#import <FRDIntent/FRDControllerManager.h>
 #import <FRDIntent/FRDIntent-Swift.h>
 
 #import "MainViewController.h"
@@ -13,7 +12,7 @@
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
 
-@interface MainViewController () <IntentForResultSendable>
+@interface MainViewController () <FRDIntentForResultSendable>
 @end
 
 @implementation MainViewController
@@ -43,7 +42,7 @@
 
   UIButton *thirdbutton = [UIButton buttonWithType:UIButtonTypeCustom];
   thirdbutton.frame = CGRectMake(20, 300, self.view.bounds.size.width - 40, 44);
-  [thirdbutton setTitle:@"Intent for result" forState:UIControlStateNormal];
+  [thirdbutton setTitle:@"FRDIntent for result" forState:UIControlStateNormal];
   thirdbutton.backgroundColor = [UIColor greenColor];
   [thirdbutton addTarget:self
                   action:@selector(gotoThirdViewController)
@@ -54,35 +53,35 @@
 
 - (void)gotoFirstViewController
 {
-  //Intent *intent = [[Intent alloc] initWithUrl:[NSURL URLWithString:@"/user/3001?loc=beijing&uuid=10001#ref"]];
-  Intent *intent = [[Intent alloc] initWithPathIdentifier:@"/user/3001?loc=beijing&uuid=10001#ref"];
+  //FRDIntent *intent = [[FRDIntent alloc] initWithUrl:[NSURL URLWithString:@"/user/3001?loc=beijing&uuid=10001#ref"]];
+  FRDIntent *intent = [[FRDIntent alloc] initWithPathIdentifier:@"/user/3001?loc=beijing&uuid=10001#ref"];
   [intent putExtraWithName:@"number" data: [NSNumber numberWithInteger:1]];
   [self startControllerWithIntent: intent];
 }
 
 - (void)gotoSecondViewController
 {
-  Intent *intent = [[Intent alloc] initWithClazz:[SecondViewController  class]];
+  FRDIntent *intent = [[FRDIntent alloc] initWithClazz:[SecondViewController  class]];
   [intent putExtraWithName:@"number" data: [NSNumber numberWithInteger:2]];
   [self startControllerWithIntent:intent];
 }
 
 - (void)gotoThirdViewController
 {
-  Intent *intent = [[Intent alloc] initWithClazz:[ThirdViewController  class]];
+  FRDIntent *intent = [[FRDIntent alloc] initWithClazz:[ThirdViewController  class]];
   [intent putExtraWithName:@"number" data: [NSNumber numberWithInteger:3]];
   [self startControllerForResultWithIntent:intent requestCode:1];
 }
 
-#pragma mark - IntentForResultSendable
+#pragma mark - FRDIntentForResultSendable
 
-- (void)onControllerResultWithRequestCode:(NSInteger)requestCode resultCode:(enum ResultCode)code data:(Intent *)intent
+- (void)onControllerResultWithRequestCode:(NSInteger)requestCode resultCode:(enum FRDResultCode)code data:(FRDIntent *)intent
 {
   if (requestCode == 1){
-    if (code == ResultCodeOk) {
+    if (code == FRDResultCodeOk) {
       NSString *text = [intent.extras objectForKey:@"text"];
       NSLog(@"Successful confirm get from destination : %@", text);
-    } else if (code == ResultCodeCanceled) {
+    } else if (code == FRDResultCodeCanceled) {
       NSString *text = intent.extras[@"text"];
       NSLog(@"Canceled confirm get from destination : %@", text);
     }

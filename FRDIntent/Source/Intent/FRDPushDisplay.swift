@@ -1,5 +1,5 @@
 //
-//  PushDisplay.swift
+//  FRDPushDisplay.swift
 //  FRDIntent
 //
 //  Created by GUO Lin on 8/25/16.
@@ -11,7 +11,7 @@ import UIKit
 /**
  The way of display view controllers with push. It calls pushViewController(viewController: UIViewController, animated: Bool)
  */
-open class PushDisplay: NSObject, ControllerDisplay {
+open class FRDPushDisplay: NSObject, FRDControllerDisplay {
 
   /**
    How to display the destination view controller.

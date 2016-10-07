@@ -1,5 +1,5 @@
 //
-//  Presentation.swift
+//  FRDControllerDisplay.swift
 //  FRDIntent
 //
 //  Created by GUO Lin on 8/25/16.
@@ -11,7 +11,7 @@ import UIKit
 /**
  The protocol for abstract the way of how display the destination view controller.
  */
-@objc public protocol ControllerDisplay {
+@objc public protocol FRDControllerDisplay {
 
   /**
    How to display the destination view controller.

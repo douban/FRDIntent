@@ -1,5 +1,5 @@
 //
-//  Intent.swift
+//  FRDIntent.swift
 //  FRDIntent
 //
 //  Created by GUO Lin on 8/25/16.
@@ -11,7 +11,7 @@ import Foundation
 /**
  An intent is an abstract description of an operation to be performed. It can be used with startController to launch a view controller.
  */
-public class Intent: NSObject {
+public class FRDIntent: NSObject {
 
   /**
    The url for identify the destination view controller.
@@ -26,7 +26,7 @@ public class Intent: NSObject {
   /**
    The way of how to display the new view controller.
   */
-  public var controllerDisplay: ControllerDisplay = PushDisplay()
+  public var controllerDisplay: FRDControllerDisplay = FRDPushDisplay()
 
   /**
    The extra data to inform the destination view controller. Read-only.

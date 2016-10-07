@@ -53,35 +53,35 @@ FRDIntent/Intent 是一个消息传递对象，用于启动 UIViewController。�
 
 FRDIntent/Intent 有如下优势：
 
-- 充分解耦。调用者和被调用者完全隔离，调用者只需要依赖协议：`IntentReceivable`。一个 UIViewControlller 符合该协议即可被启动。
+- 充分解耦。调用者和被调用者完全隔离，调用者只需要依赖协议：`FRDIntentReceivable`。一个 UIViewControlller 符合该协议即可被启动。
 - 对于“启动一个页面，并从该页面获取结果”这种较普遍的需求提供了一个通用的解决方案。具体查看方法：startControllerForResult。这是对 Android 中 startActivityForResult 的模仿和简化。
 - 支持自定义转场动画。
 - 支持传递复杂数据对象。
 
 ### 使用
 
-主要通过类 `ControllerManager` 使用 FRDIntent/Intent。它提供了三个方法：`register` 用于注册，`startController` 和 `startControllerForResult` 用于启动页面。
+主要通过类 `FRDControllerManager` 使用 FRDIntent/Intent。它提供了三个方法：`register` 用于注册，`startController` 和 `startControllerForResult` 用于启动页面。
 
 #### 注册
 
 ```Swift
-  let controllerManager = ControllerManager.sharedInstance
+  let controllerManager = FRDControllerManager.sharedInstance
   controllerManager.register(URL(string: "/frodo/firstview")!, clazz: FirstViewController.self)
 ```
 
 #### 通过指定类名启动 view controller
 
 ```Swift
-  let intent = Intent(clazz: SecondViewController.self)
-  let manager = ControllerManager.sharedInstance
+  let intent = FRDIntent(clazz: SecondViewController.self)
+  let manager = FRDControllerManager.sharedInstance
   manager.startController(source: self, intent: intent)
 ```
 
 #### 通过 URL 启动 view controller
 
 ```Swift
-  let intent = Intent(uri: URL(string: "/frodo/firstview")!)
-  let manager = ControllerManager.sharedInstance
+  let intent = FRDIntent(uri: URL(string: "/frodo/firstview")!)
+  let manager = FRDControllerManager.sharedInstance
   manager.startController(source: self, intent: intent)
 ```
 
@@ -90,9 +90,9 @@ FRDIntent/Intent 有如下优势：
 调用页面，该页面同时也是接受返回结果的页面。该 view controller 需要符合协议 `IntentForResultSendable`：
 
 ```Swift
-  extension ViewController: IntentForResultSendable {
+  extension ViewController: FRDIntentForResultSendable {
 
-    func onControllerResult(_ requestCode: Int, resultCode: ResultCode, data: Intent) {
+    func onControllerResult(_ requestCode: Int, resultCode: FRDResultCode, data: Intent) {
       if (requestCode == RequestText) {
         if (resultCode == .Ok) {
           let text = data.extra["text"]
@@ -107,7 +107,7 @@ FRDIntent/Intent 有如下优势：
   }
 ```
 
-被调用的 view controller 则需要符合协议 `IntentForResultReceivable`。该协议是 `IntentReceivable` 的子协议。在 `IntentReceivable` 基础上，多了两个实例变量定义：
+被调用的 view controller 则需要符合协议 `FRDIntentForResultReceivable`。该协议是 `FRDIntentReceivable` 的子协议。在 `FRDIntentReceivable` 基础上，多了两个实例变量定义：
 
 ```Swift
   var data: [String: Any]?
@@ -117,19 +117,19 @@ FRDIntent/Intent 有如下优势：
 通过 `startControllerForResult` 启动页面：
 
 ```Swift
-  let intent = Intent(clazz: ThirdViewController.self)
+  let intent = FRDIntent(clazz: ThirdViewController.self)
   intent.putExtra(name: "text", data: "Text From Source")
-  let manager = ControllerManager.sharedInstance
+  let manager = FRDControllerManager.sharedInstance
   manager.startControllerForResult(source: self, intent: intent, requestCode: RequestText)
 ```
 
 #### 自定义转场动画
 
-在 FRDIntent 中，转场动画被抽象为协议：`ControllerDisplay`，并且已提供了两个转场动画的实现：`PushDisplay` 和 `PresentationDisplay`。自定义转场动画的实现需要符合该协议。
+在 FRDIntent 中，转场动画被抽象为协议：`FRDControllerDisplay`，并且已提供了两个转场动画的实现：`FRDPushDisplay` 和 `FRDPresentationDisplay`。自定义转场动画的实现需要符合该协议。
 
-在启动页面时，将自定义的转场动画对象赋给 `Intent` 的实例变量 `controllerDisplay` 即可。
+在启动页面时，将自定义的转场动画对象赋给 `FRDIntent` 的实例变量 `controllerDisplay` 即可。
 
-如果不指定转场动画，通过 `startController` 启动页面使用的是 `PushDisplay`；通过 `startControllerForResult` 启动页面使用的是 `PresentationDisplay`。
+如果不指定转场动画，通过 `startController` 启动页面使用的是 `FRDPushDisplay`；通过 `startControllerForResult` 启动页面使用的是 `FRDPresentationDisplay`。
 
 
 ## URLRoutes
@@ -156,7 +156,7 @@ FRDIntent/URLRoutes 是为了使得 iOS 系统中这种基于 URL 的应用间�
 
 ````Swift
   func application(app: UIApplication, openURL url: URL, options: [String : AnyObject]) -> Bool {
-    return URLRoutes.sharedInstance.route(url: url)
+    return FRDURLRoutes.sharedInstance.route(url: url)
   }
 ```
 
@@ -165,20 +165,20 @@ FRDIntent/URLRoutes 是为了使得 iOS 系统中这种基于 URL 的应用间�
 注册一个 ViewControler。在第三方应用调起该 URL 时，会该启动该 view controller。该 view controller 的进入动画为 Push 横滑进入方式。
 
 ```Swift
-  let router = URLRoutes.sharedInstance
+  let router = FRDURLRoutes.sharedInstance
   router.register(url: URL(string: "/story/:storyId")!, clazz: SecondViewController.self)
 ```
 
-注册一个 block handler。下面例子中的 block handler 中，用注册时的 URL 构造了一个 Intent，并将该 Intent 送出。ControllerManager 会处理这个 Intent。看是否有合适的 view controller 可以被启动。
+注册一个 block handler。下面例子中的 block handler 中，用注册时的 URL 构造了一个 Intent，并将该 Intent 送出。FRDControllerManager 会处理这个 Intent。看是否有合适的 view controller 可以被启动。
 
 如果，需要定制 view controller 的转场动画，可以使用该方法注册 URL。
 
 ```Swift
-  let router = URLRoutes.sharedInstance
+  let router = FRDURLRoutes.sharedInstance
   router.register(url: URL(string: "/user/:userId")!) { (params: [String: Any]) in
     let intent = Intent(url: params[URLRoutes.URLRoutesURL] as! URL)
     if let topViewController = UIApplication.topViewController() {
-      ControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
+      FRDControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
     }
   }
 ```
@@ -187,6 +187,12 @@ FRDIntent/URLRoutes 是为了使得 iOS 系统中这种基于 URL 的应用间�
 
 FRDIntent/URLRoutes 支持简单的 URL 参数模式适配。上例中，注册了 URL `"/story/:storyId"`。如果，有诸如 `frdintent://frdintent.com/story/123` 这样的外部调用。FRDIntent/URLRoutes 会将键 `storyId` 和值 `123` 存入 block handler 的参数 params 中。这样在 block handler 中就能使用该 URL 参数。
 
+
+## 注意点
+
+`FRD` 前缀：项目中公开的类都添加了`FRD`前缀。Swift 由于有包一级的可见性声明，并无需前缀来避免命名冲突。Swift 代码规范中，应该是无前缀的。但是由于该项目仍然主要供 Objective-C 项目使用，为了避免命名冲突，还是加上了前缀。
+
+参数 source 的类型：FRDControllerManager 方法的`startController(source:intent:)`和`startControllerForResult(source:intent:requestCode:)`没有严格限制`source`参数类型。source 精确的类型应该分别是形如 UIViewController<FRDIntentReceivable> 和 UIViewController<FRDIntentForResultReceivable> 表达的一个类，并且符合一个协议。这在 Swift3 中，仍然需要别扭地使用泛型声明来达到目的。这里使用泛型声明并不精确，同时更麻烦的是泛型方法无法暴露给 Objective-C 使用。因此，FRDIntent 做了折衷，source 类型只是 UIViewController。使用者需要自己保证它也是符合 FRDIntentReceivable 或者 FRDIntentForResultReceivable。
 
 ## URLRoutes 和 Intent
 

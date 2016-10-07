@@ -12,11 +12,11 @@ import XCTest
 class URLRoutesTests: XCTestCase {
 
   func testURLRoutes() {
-    let router = URLRoutes.sharedInstance
+    let router = FRDURLRoutes.sharedInstance
 
     let _ = router.register(url: URL(string: "/user/:userId")!) { (params: [String: AnyObject]) in
       XCTAssert(params["userId"] as! String == "12", "userId is 12")
-      XCTAssert(params[RouteParameters.URLRouteURL] as? NSURL == NSURL(string:  "/user/12"), "")
+      XCTAssert(params[FRDRouteParameters.URLRouteURL] as? NSURL == NSURL(string:  "/user/12"), "")
     }
 
     let _ = router.route(url: URL(string: "/user/12")!)

@@ -9,7 +9,7 @@
 import UIKit
 @testable import FRDIntent
 
-class MockUserViewController: UIViewController, IntentReceivable {
+class MockUserViewController: UIViewController, FRDIntentReceivable {
 
   required init(extras extra: [String: AnyObject]?) {
     super.init(nibName: nil, bundle: nil)
@@ -21,7 +21,7 @@ class MockUserViewController: UIViewController, IntentReceivable {
 
 }
 
-class MockStoryViewController: UIViewController, IntentReceivable {
+class MockStoryViewController: UIViewController, FRDIntentReceivable {
 
   required init(extras: [String: AnyObject]?) {
     super.init(nibName: nil, bundle: nil)
@@ -33,7 +33,7 @@ class MockStoryViewController: UIViewController, IntentReceivable {
 
 }
 
-class MockProfileViewController: UIViewController, IntentReceivable {
+class MockProfileViewController: UIViewController, FRDIntentReceivable {
 
   required init(extras: [String: AnyObject]?) {
     super.init(nibName: nil, bundle: nil)

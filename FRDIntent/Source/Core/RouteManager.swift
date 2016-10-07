@@ -36,7 +36,7 @@ class RouteManager {
 
   typealias URLRoutesHandler = ([String: AnyObject]) -> ()
 
-  typealias RoutePathNodeValueType = (IntentReceivable.Type?, URLRoutesHandler?)
+  typealias RoutePathNodeValueType = (FRDIntentReceivable.Type?, URLRoutesHandler?)
 
   fileprivate var routes = RoutePathNode<RoutePathNodeValueType>(path: "/")
 
@@ -46,7 +46,7 @@ class RouteManager {
    - parameter url: The path for search the storage position.
    - parameter value: The value to be saved.
    */
-  func register(url: URL, clazz: IntentReceivable.Type) -> Bool {
+  func register(url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
 
     guard let paths = url.pathComponentsWithoutSlash else {
       return false
@@ -81,7 +81,7 @@ class RouteManager {
     let (_, node) = routes.search(paths: paths)
     if node.path == paths.last {
       // find it, update
-      let clazz: IntentReceivable.Type?
+      let clazz: FRDIntentReceivable.Type?
       if let (oldClazz, _) = node.value {
         clazz =  oldClazz
       } else {
@@ -107,7 +107,7 @@ class RouteManager {
    - parameter url: The path for search the storage position.
    - returns: A tuple with parameters and value in the node searched.
    */
-  func searchController(url: URL) -> ([String: AnyObject], IntentReceivable.Type?) {
+  func searchController(url: URL) -> ([String: AnyObject], FRDIntentReceivable.Type?) {
     let (params, value) = search(url: url)
 
     if let (clazz, _) = value {
@@ -138,7 +138,7 @@ class RouteManager {
 
     decorate(params: &params, url: url)
 
-    params.updateValue(url as AnyObject, forKey: RouteParameters.URLRouteURL)
+    params.updateValue(url as AnyObject, forKey: FRDRouteParameters.URLRouteURL)
 
     return (params, node.value)
   }
@@ -146,7 +146,7 @@ class RouteManager {
   private func decorate(params: inout [String: AnyObject], url: URL) {
 
     // Add url to params
-    params.updateValue(url as AnyObject, forKey: RouteParameters.URLRouteURL)
+    params.updateValue(url as AnyObject, forKey: FRDRouteParameters.URLRouteURL)
 
     // Add queries to params
     if let queryItems = url.queryItems {

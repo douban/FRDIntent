@@ -6,7 +6,6 @@
 //  Copyright © 2016 Douban Inc. All rights reserved.
 //
 
-#import <FRDIntent/FRDControllerManager.h>
 #import <FRDIntent/FRDIntent-Swift.h>
 #import <UIKit/UIKit.h>
 
@@ -100,7 +99,7 @@
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *, id> *)options {
-  return [[URLRoutes sharedInstance] routeWithUrl:url];
+  return [[FRDURLRoutes sharedInstance] routeWithUrl:url];
 }
 
 
@@ -108,23 +107,23 @@
 
   // Internal call
   [[FRDControllerManager sharedInstance] registerWithUrl: [NSURL URLWithString: @"/user/:userId"] clazz: [FirstViewController class]];
-  [[ControllerManager sharedInstance] registerWithUrl: [NSURL URLWithString: @"/story/:storyId"] clazz: [SecondViewController class]];
-  [[ControllerManager sharedInstance] registerWithUrl: [NSURL URLWithString: @"/user/:userId/story/:storyId"] clazz: [ThirdViewController class]];
+  [[FRDControllerManager sharedInstance] registerWithUrl: [NSURL URLWithString: @"/story/:storyId"] clazz: [SecondViewController class]];
+  [[FRDControllerManager sharedInstance] registerWithUrl: [NSURL URLWithString: @"/user/:userId/story/:storyId"] clazz: [ThirdViewController class]];
 
 
   // External call
-  [[URLRoutes sharedInstance] registerWithUrl:[NSURL URLWithString:@"/user/:userId/story/:storyId"] handler:^(NSDictionary<NSString*, id> *params) {
-    NSURL *url = [params objectForKey:RouteParameters.URLRouteURL];
-    Intent *intent = [[Intent alloc] initWithUrl:url];
-    intent.controllerDisplay = [[PresentationDisplay alloc] init];
+  [[FRDURLRoutes sharedInstance] registerWithUrl:[NSURL URLWithString:@"/user/:userId/story/:storyId"] handler:^(NSDictionary<NSString*, id> *params) {
+    NSURL *url = [params objectForKey:FRDRouteParameters.URLRouteURL];
+    FRDIntent *intent = [[FRDIntent alloc] initWithUrl:url];
+    intent.controllerDisplay = [[FRDPresentationDisplay alloc] init];
     UIViewController *topViewController = [UIApplication topViewController];
     if (topViewController) {
-      [[ControllerManager sharedInstance] startControllerWithSource:topViewController intent:intent];
+      [[FRDControllerManager sharedInstance] startControllerWithSource:topViewController intent:intent];
     }
   }];
 
 
-  [[URLRoutes sharedInstance] registerWithUrl:[NSURL URLWithString: @"/story/:storyId"]  clazz: [SecondViewController self]];
+  [[FRDURLRoutes sharedInstance] registerWithUrl:[NSURL URLWithString: @"/story/:storyId"]  clazz: [SecondViewController self]];
 }
 
 @end

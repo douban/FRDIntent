@@ -1,5 +1,5 @@
 //
-//  PresentationDisplay.swift
+//  FRDPresentationDisplay.swift
 //  FRDIntent
 //
 //  Created by GUO Lin on 8/25/16.
@@ -11,7 +11,7 @@ import UIKit
 /**
  The way of display view controllers with present. It calls presentViewController(viewController: UIViewController, animated: Bool)
  */
-open class PresentationDisplay: NSObject, ControllerDisplay {
+open class FRDPresentationDisplay: NSObject, FRDControllerDisplay {
 
   /**
    How to display the destination view controller.
