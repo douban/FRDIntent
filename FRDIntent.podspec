@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
 
   s.description  = "FRDIntent has two components URLRoutes and Intent, using for calling view controllers inner app or outer app."
   s.homepage     = "https://github.com/douban/FRDIntent"
-  s.license      = { :type => 'MIT', :text => 'LICENSE.md' }
+  s.license      = { :type => 'MIT', :text => 'LICENSE' }
   s.author       = { "lincode" => "guolin@douban.com" }
 
   s.platform     = :ios, "8.0"
