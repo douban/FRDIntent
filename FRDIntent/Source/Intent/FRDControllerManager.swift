@@ -31,6 +31,36 @@ public class FRDControllerManager: NSObject {
   }
 
   /**
+   Registers with a plist file. 
+   
+   - parameter plistFile: The plistFile path.
+   
+   - returns: True if register success.
+   */
+  public func registers(plistFile: String) -> Bool {
+
+    guard let registers: NSDictionary = NSDictionary(contentsOfFile: plistFile) else {
+      return false
+    }
+
+    for (url, className) in registers {
+
+      guard let url = url as? String, let className = className as? String else {
+        return false
+      }
+
+      if let aClass = NSClassFromString(className) as? FRDIntentReceivable.Type {
+        let result = register(url: URL(string: url)!, clazz: aClass)
+        if !result {
+          return false
+        }
+      }
+
+    }
+    return true
+  }
+
+  /**
    Launch a view controller from source view controller with a intent.
    
    - parameter source: The source view controller.

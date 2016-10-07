@@ -106,13 +106,17 @@
 - (void)configurationRoutes {
 
   // Internal call
-  [[FRDControllerManager sharedInstance] registerWithUrl: [NSURL URLWithString: @"/user/:userId"] clazz: [FirstViewController class]];
-  [[FRDControllerManager sharedInstance] registerWithUrl: [NSURL URLWithString: @"/story/:storyId"] clazz: [SecondViewController class]];
-  [[FRDControllerManager sharedInstance] registerWithUrl: [NSURL URLWithString: @"/user/:userId/story/:storyId"] clazz: [ThirdViewController class]];
+  //[[FRDControllerManager sharedInstance] registerWithUrl: [NSURL URLWithString: @"/user/:userId"] clazz: [FirstViewController class]];
+  //[[FRDControllerManager sharedInstance] registerWithUrl: [NSURL URLWithString: @"/story/:storyId"] clazz: [SecondViewController class]];
+  //[[FRDControllerManager sharedInstance] registerWithUrl: [NSURL URLWithString: @"/user/:userId/story/:storyId"] clazz: [ThirdViewController class]];
 
+  NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"FRDIntentRegisters" ofType:@"plist"];
+  [[FRDControllerManager sharedInstance] registersWithPlistFile:plistPath];
 
   // External call
-  [[FRDURLRoutes sharedInstance] registerWithUrl:[NSURL URLWithString:@"/user/:userId/story/:storyId"] handler:^(NSDictionary<NSString*, id> *params) {
+  [[FRDURLRoutes sharedInstance] registerWithUrl:[NSURL URLWithString:@"/user/:userId/story/:storyId"]
+                                         handler:^(NSDictionary<NSString*, id> *params)
+  {
     NSURL *url = [params objectForKey:FRDRouteParameters.URLRouteURL];
     FRDIntent *intent = [[FRDIntent alloc] initWithUrl:url];
     intent.controllerDisplay = [[FRDPresentationDisplay alloc] init];
@@ -122,8 +126,8 @@
     }
   }];
 
-
-  [[FRDURLRoutes sharedInstance] registerWithUrl:[NSURL URLWithString: @"/story/:storyId"]  clazz: [SecondViewController self]];
+  [[FRDURLRoutes sharedInstance] registerWithUrl:[NSURL URLWithString: @"/story/:storyId"]
+                                           clazz:[SecondViewController self]];
 }
 
 @end

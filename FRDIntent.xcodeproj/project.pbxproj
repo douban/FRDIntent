@@ -32,6 +32,7 @@
 		A36FCC271D87F96700059523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A36FCC261D87F96700059523 /* Assets.xcassets */; };
 		A36FCC2A1D87F96700059523 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A36FCC281D87F96700059523 /* LaunchScreen.storyboard */; };
 		A382FE421D951C96007099DE /* FRDRouteParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A382FE411D951C96007099DE /* FRDRouteParameters.swift */; };
+		A384541D1DA807B100835B70 /* FRDIntentRegisters.plist in Resources */ = {isa = PBXBuildFile; fileRef = A384541C1DA807B100835B70 /* FRDIntentRegisters.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		A36FCC291D87F96700059523 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A36FCC2B1D87F96700059523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A382FE411D951C96007099DE /* FRDRouteParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDRouteParameters.swift; sourceTree = "<group>"; };
+		A384541C1DA807B100835B70 /* FRDIntentRegisters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FRDIntentRegisters.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 				A35919511D87FFB100EBFD1E /* SecondViewController.m */,
 				A35919521D87FFB100EBFD1E /* ThirdViewController.h */,
 				A35919531D87FFB100EBFD1E /* ThirdViewController.m */,
+				A384541C1DA807B100835B70 /* FRDIntentRegisters.plist */,
 				A36FCC261D87F96700059523 /* Assets.xcassets */,
 				A36FCC281D87F96700059523 /* LaunchScreen.storyboard */,
 				A36FCC2B1D87F96700059523 /* Info.plist */,
@@ -370,6 +373,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A384541D1DA807B100835B70 /* FRDIntentRegisters.plist in Resources */,
 				A36FCC2A1D87F96700059523 /* LaunchScreen.storyboard in Resources */,
 				A36FCC271D87F96700059523 /* Assets.xcassets in Resources */,
 			);
