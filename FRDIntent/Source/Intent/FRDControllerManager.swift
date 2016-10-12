@@ -49,8 +49,8 @@ public class FRDControllerManager: NSObject {
         return false
       }
 
-      if let aClass = NSClassFromString(className) as? FRDIntentReceivable.Type {
-        let result = register(url: URL(string: url)!, clazz: aClass)
+      if let clazz = NSClassFromString(className) as? FRDIntentReceivable.Type {
+        let result = register(url: URL(string: url)!, clazz: clazz)
         if !result {
           return false
         }
