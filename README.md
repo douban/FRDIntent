@@ -1,5 +1,6 @@
 # FRDIntent
 
+[![Test Status](https://travis-ci.org/douban/FRDIntent.svg?branch=master)](https://travis-ci.org/douban/FRDIntent)
 [![Language](https://img.shields.io/badge/language-Swift%203-orange.svg)
 ](https://developer.apple.com/swift/)
 [![iOS](https://img.shields.io/badge/iOS-8.0-green.svg)]()
