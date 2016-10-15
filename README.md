@@ -1,7 +1,9 @@
 # FRDIntent
 
+[![Test Status](https://travis-ci.org/douban/FRDIntent.svg?branch=master)](https://travis-ci.org/douban/FRDIntent)
 [![Language](https://img.shields.io/badge/language-Swift%203-orange.svg)
 ](https://developer.apple.com/swift/)
+[![IDE](https://img.shields.io/badge/XCode-8-blue.svg)]()
 [![iOS](https://img.shields.io/badge/iOS-8.0-green.svg)]()
 
 **FRDIntent** 包括两部分 FRDIntent/Intent 和 FRDIntent/URLRoutes。它们分别可以用于处理应用内和应用外的 view controller 调用。
