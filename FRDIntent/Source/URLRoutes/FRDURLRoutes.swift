@@ -74,6 +74,36 @@ public extension FRDURLRoutes {
     return (resultForRoute && resultForIntent)
   }
 
+  /**
+   Registers with a plist file.
+
+   - parameter plistFile: The plistFile path.
+
+   - returns: True if it registers successfully.
+   */
+  public func registers(plistFile: String) -> Bool {
+
+    guard let registers: NSDictionary = NSDictionary(contentsOfFile: plistFile) else {
+      return false
+    }
+
+    for (url, className) in registers {
+
+      guard let url = url as? String, let className = className as? String else {
+        return false
+      }
+
+      if let clazz = NSClassFromString(className) as? FRDIntentReceivable.Type {
+        let result = register(url: URL(string: url)!, clazz: clazz)
+        if !result {
+          return false
+        }
+      }
+
+    }
+    return true
+  }
+
 }
 
 private extension UIApplication {

@@ -65,9 +65,19 @@ FRDIntent/Intent 有如下优势：
 
 #### 注册
 
+通过代码注册：
+
 ```Swift
   let controllerManager = FRDControllerManager.sharedInstance
   controllerManager.register(URL(string: "/frodo/firstview")!, clazz: FirstViewController.self)
+```
+
+通过 plist 文件批量注册：
+
+```Swift
+  let plistPath = Bundle.main.path(forResource: "FRDIntentRegisters", ofType: "plist")
+  let controllerManager = FRDControllerManager.sharedInstance
+  controllerManager.register(plistFile: plistPath)
 ```
 
 #### 通过指定类名启动 view controller
@@ -93,12 +103,12 @@ FRDIntent/Intent 有如下优势：
 ```Swift
   extension ViewController: FRDIntentForResultSendable {
 
-    func onControllerResult(_ requestCode: Int, resultCode: FRDResultCode, data: Intent) {
+    func onControllerResult(requestCode: Int, resultCode: FRDResultCode, data: Intent) {
       if (requestCode == RequestText) {
-        if (resultCode == .Ok) {
+        if (resultCode == .ok) {
           let text = data.extra["text"]
           print("Successful confirm get from destination : \(text)")
-        } else if (resultCode == .Canceled) {
+        } else if (resultCode == .canceled) {
           let text = data.extra["text"]
           print("Canceled get from destination : \(text)")
         }
@@ -163,11 +173,19 @@ FRDIntent/URLRoutes 是为了使得 iOS 系统中这种基于 URL 的应用间�
 
 #### 注册
 
-注册一个 ViewControler。在第三方应用调起该 URL 时，会该启动该 view controller。该 view controller 的进入动画为 Push 横滑进入方式。
+通过代码注册一个 view controler。在第三方应用调起该 URL 时，会该启动该 view controller。该 view controller 的进入动画为 Push 横滑进入方式。
 
 ```Swift
-  let router = FRDURLRoutes.sharedInstance
-  router.register(url: URL(string: "/story/:storyId")!, clazz: SecondViewController.self)
+  let routes = FRDURLRoutes.sharedInstance
+  routes.register(url: URL(string: "/story/:storyId")!, clazz: SecondViewController.self)
+```
+
+通过 plist 文件批量注册，效果和上面通过代码注册一样。注册的 view controller 进入动画都为 Push 横滑进入方式。
+
+```Swift
+  let plistPath = Bundle.main.path(forResource: "FRDURLRoutesRegisters", ofType: "plist")
+  let routes = FRDURLRoutes.sharedInstance
+  routes.register(plistFile: plistPath)
 ```
 
 注册一个 block handler。下面例子中的 block handler 中，用注册时的 URL 构造了一个 Intent，并将该 Intent 送出。FRDControllerManager 会处理这个 Intent。看是否有合适的 view controller 可以被启动。
@@ -207,9 +225,9 @@ iOS 系统提供的通过 URL 调用另外一个应用功能本身就是使用�
 
 ## FRDIntentDemo
 
-FRDIntentDemo 对 FRDIntent 各种使用方法都做了演示。
+FRDIntentDemo 对 FRDIntent 各种使用方法都做了演示。FRDIntentDemo 使用 Objective-C 实现，这是为了演示 FRDIntent 虽然使用 Swift 完成，但是对 Objective-C 有良好的兼容。
 
-对于外部调用的演示，可以在模拟器的 Safari 的地址栏中输入 `frdintent://frdintent.com/user/123`。正常情况下，访问该 URL 将会启动 FRDIntentDemo，并进入 Firstview controller。
+对于外部调用的演示，可以在模拟器的 Safari 的地址栏中输入 `frdintent://frdintent.com/user/123`。正常情况下，访问该 URL 将会启动 FRDIntentDemo，并进入 FirstViewController。
 
 ## 单元测试
 

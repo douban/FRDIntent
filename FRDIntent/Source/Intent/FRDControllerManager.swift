@@ -24,7 +24,7 @@ public class FRDControllerManager: NSObject {
    - parameter url: The url to be registered.
    - parameter clazz: The clazz to be registered, and the clazz's view controller object will be launched while routed.
    
-   - returns: True if register success.
+   - returns: True if it registers successfully.
    */
   public func register(url: URL, clazz: AnyClass) -> Bool {
     return routeManager.register(url: url, clazz: clazz as! FRDIntentReceivable.Type)
@@ -35,7 +35,7 @@ public class FRDControllerManager: NSObject {
    
    - parameter plistFile: The plistFile path.
    
-   - returns: True if register success.
+   - returns: True if it registers successfully.
    */
   public func registers(plistFile: String) -> Bool {
 
@@ -134,7 +134,6 @@ public class FRDControllerManager: NSObject {
       if let destinationController = destination as? UIViewController {
         display.displayViewController(source: source, destination: destinationController)
       }
-
     }
 
   }
