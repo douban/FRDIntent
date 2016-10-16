@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "FRDIntent"
-  s.version      = "0.10.0"
+  s.version      = "0.9.1"
   s.summary      = "FRDIntent can handle the call between view controller"
 
   s.description  = "FRDIntent has two components URLRoutes and Intent, using for calling view controllers inner app or outer app."
