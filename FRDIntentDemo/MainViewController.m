@@ -75,7 +75,9 @@
 
 #pragma mark - FRDIntentForResultSendable
 
-- (void)onControllerResultWithRequestCode:(NSInteger)requestCode resultCode:(enum FRDResultCode)code data:(FRDIntent *)intent
+- (void)onControllerResultWithRequestCode:(NSInteger)requestCode
+                               resultCode:(enum FRDResultCode)code
+                                     data:(FRDIntent *)intent
 {
   if (requestCode == 1){
     if (code == FRDResultCodeOk) {
