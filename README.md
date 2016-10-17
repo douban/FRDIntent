@@ -8,6 +8,7 @@
 
 **FRDIntent** 包括两部分 FRDIntent/Intent 和 FRDIntent/URLRoutes。它们分别可以用于处理应用内和应用外的 view controller 调用。
 
+
 ## 安装
 
 ### Install Cocoapods
@@ -47,6 +48,7 @@ $ pod install
 ### 版本
 
 版本选择：[https://github.com/douban/FRDIntent/releases](https://github.com/douban/FRDIntent/releases)。
+
 
 ## Intent
 
@@ -102,7 +104,7 @@ FRDIntent/Intent 有如下优势：
 
 #### 启动一个会返回结果的 view controller
 
-调用页面，该页面同时也是接受返回结果的页面。该 view controller 需要符合协议 `IntentForResultSendable`：
+调用页面，该页面同时也是接受返回结果的页面。该 view controller 需要符合协议 `FRDIntentForResultSendable`：
 
 ```Swift
   extension ViewController: FRDIntentForResultSendable {
@@ -140,9 +142,9 @@ FRDIntent/Intent 有如下优势：
 
 #### 自定义转场动画
 
-在 FRDIntent 中，转场动画被抽象为协议：`FRDControllerDisplay`，并且已提供了两个转场动画的实现：`FRDPushDisplay` 和 `FRDPresentationDisplay`。自定义转场动画的实现需要符合该协议。
+在 FRDIntent 中，转场动画被抽象为协议：`FRDControllerDisplay`，并且已提供了两个转场动画的实现：`FRDPushDisplay` 和 `FRDPresentationDisplay`。
 
-在启动页面时，将自定义的转场动画对象赋给 `FRDIntent` 的实例变量 `controllerDisplay` 即可。
+自定义转场动画的实现需要符合该协议。在启动页面时，将自定义的转场动画对象赋给 `FRDIntent` 的实例变量 `controllerDisplay` 即可。
 
 如果不指定转场动画，通过 `startController` 启动页面使用的是 `FRDPushDisplay`；通过 `startControllerForResult` 启动页面使用的是 `FRDPresentationDisplay`。
 
@@ -208,24 +210,29 @@ FRDIntent/URLRoutes 是为了使得 iOS 系统中这种基于 URL 的应用间�
 
 ### 获取 URL 参数
 
-FRDIntent/URLRoutes 支持简单的 URL 参数模式适配。上例中，注册了 URL `"/story/:storyId"`。如果，有诸如 `frdintent://frdintent.com/story/123` 这样的外部调用。FRDIntent/URLRoutes 会将键 `storyId` 和值 `123` 存入 block handler 的参数 params 中。这样在 block handler 中就能使用该 URL 参数。
+FRDIntent/URLRoutes 支持简单的 URL 参数模式适配。上例中，我们以模式匹配的形式注册了 URL `"/story/:storyId"`。如有诸如 `frdintent://frdintent.com/story/123` 这样的外部调用，FRDIntent/URLRoutes 会将键 `storyId` 和值 `123` 存入 block handler 的参数 params 中。这样在 block handler 中就能通过键 `storyId` 获取值 `123`。
 
 
 ## 注意点
 
-`FRD` 前缀：项目中公开的类都添加了`FRD`前缀。Swift 由于有包一级的可见性声明，并无需前缀来避免命名冲突。Swift 代码规范中，应该是无前缀的。但是由于该项目仍然主要供 Objective-C 项目使用，为了避免命名冲突，还是加上了前缀。
+#### Prefix
 
-参数 source 的类型：FRDControllerManager 方法的`startController(source:intent:)`和`startControllerForResult(source:intent:requestCode:)`没有严格限制`source`参数类型。source 精确的类型应该分别是形如 UIViewController<FRDIntentReceivable> 和 UIViewController<FRDIntentForResultReceivable> 表达的一个类，并且符合一个协议。这在 Swift3 中，仍然需要别扭地使用泛型声明来达到目的。这里使用泛型声明并不精确，同时更麻烦的是泛型方法无法暴露给 Objective-C 使用。因此，FRDIntent 做了折衷，source 类型只是 UIViewController。使用者需要自己保证它也是符合 FRDIntentReceivable 或者 FRDIntentForResultReceivable。
+Swift 由于有可见性声明，并无需前缀来避免命名冲突，所以，前缀在 Swift 项目中并不需要。但我们仍然为公开类都添加了`FRD`前缀。这是由于该库仍然主要供 Objective-C 项目使用，为了避免 Objective-C 代码的命名冲突，还是加上了前缀。
 
-## URLRoutes 和 Intent
+#### 参数 source 的类型
 
-FRDIntent/URLRoutes 和 FRDIntent/Intent 可以配合使用的。Intent 处理内部 view controller 跳转；URLRoutes 负责外部调用。在 FRDIntent/URLRoutes 的实现中，FRDIntent/URLRoutes 只是起了暴露外部调用入口，接收外部调用的作用。在应用内，仍然是通过 FRDIntent/Intent 启动 view controller。
+`FRDControllerManager` 的方法 `startController(source: UIVieController, intent: FRDIntent)` 和 `startControllerForResult(source: UIViewController, intent: FRDIntent, requestCode: Int)` 没有严格限制 `source` 参数类型。source 精确的类型应该分别是形如 `UIViewController<FRDIntentReceivable>` 和 `UIViewController<FRDIntentForResultReceivable>` 所表达的：是一个类，并且符合一个协议。这在 Swift 3 中，仍然需要别扭地使用泛型声明来实现。但这里使用泛型声明并不精确，同时更麻烦的是泛型方法无法暴露给 Objective-C 使用。因此，FRDIntent 做了折衷，source 类型只是 UIViewController。使用者需要自己保证它也是符合 FRDIntentReceivable 或者 FRDIntentForResultReceivable。
+
+
+## Intent 和 URLRoutes
+
+FRDIntent/Intent 和 FRDIntent/URLRoutes 可以配合使用的。Intent 处理内部 view controller 跳转；URLRoutes 负责外部调用。在 FRDIntent/URLRoutes 的实现中，FRDIntent/URLRoutes 只是起了暴露外部调用入口，接收外部调用的作用。在应用内，仍然是通过 FRDIntent/Intent 启动 view controller。
 
 这么做其实是为了隔离了外部调用和内部调用，做这个区分会带来一些好处：
 
-iOS 系统提供的通过 URL 调用另外一个应用功能本身就是使用在应用间的。iOS 系统中应用之间的隔离是清晰而明确的，通过 URL 在应用之间传递信息是合适的。但是，如果在应用内部调用也使用 URL 传递信息，就会带来诸多限制。Intent 更适合内部调用的场景。通过 Intent，可以传递复杂数据对象，可以较容易地定义转场动画。这些在 URL 方案中都很难做到。
+- iOS 系统提供的通过 URL 调用另外一个应用功能本身就是使用在应用间的。iOS 系统中应用之间的隔离是清晰而明确的，通过 URL 在应用之间传递信息是合适的。但是，如果在应用内部调用也使用 URL 传递信息，就会带来诸多限制。Intent 更适合内部调用的场景。通过 Intent，可以传递复杂数据对象，可以较容易地定义转场动画。这些在 URL 方案中都很难做到。
+- 区分了外部调用和内部调用。我们就可以选择是否将一个内部调用暴露给外部使用。这就避免了在 URL 的方案中，无法区分内部调用和外部调用，将本应只给内部使用的调用也暴露给了外部。
 
-区分了外部调用和内部调用。我们就可以选择是否要将一个内部调用给暴露外部使用。这就避免了在 URL 的方案中，无法区分内部调用和外部调用，将本应只给内部使用的调用也暴露给应用外部了这种问题。
 
 ## FRDIntentDemo
 
@@ -233,9 +240,11 @@ FRDIntentDemo 对 FRDIntent 各种使用方法都做了演示。FRDIntentDemo �
 
 对于外部调用的演示，可以在模拟器的 Safari 的地址栏中输入 `frdintent://frdintent.com/user/123`。正常情况下，访问该 URL 将会启动 FRDIntentDemo，并进入 FirstViewController。
 
+
 ## 单元测试
 
 FRDIntentTests 文件夹包含了 FRDIntent 单元测试代码。单元测试不仅是对代码正确性的验证，也是查看如何使用 FRDIntent 的良好示例。
+
 
 ## License
 
