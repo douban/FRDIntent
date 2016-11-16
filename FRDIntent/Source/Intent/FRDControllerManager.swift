@@ -82,13 +82,18 @@ public class FRDControllerManager: NSObject {
     }
 
     if let controllerClazz = controllerClazz {
-      let display = intent.controllerDisplay
-
       for (key, value) in parameters {
         intent.putExtra(name: key, data: value)
       }
 
       if let destination = controllerClazz.init(extras: intent.extras) as? UIViewController {
+        let display: FRDControllerDisplay
+        if let controllerDisplay = intent.controllerDisplay {
+          display = controllerDisplay
+        } else {
+          display = FRDPushDisplay()
+        }
+
         display.displayViewController(source: source, destination: destination)
       }
 
@@ -121,7 +126,6 @@ public class FRDControllerManager: NSObject {
     }
 
     if let controllerClazz = controllerClazz {
-      let display = FRDPresentationDisplay()
 
       for (key, value) in parameters {
         intent.putExtra(name: key, data: value)
@@ -132,6 +136,12 @@ public class FRDControllerManager: NSObject {
       destination.setDelegate(source as? FRDIntentForResultSendable)
 
       if let destinationController = destination as? UIViewController {
+        let display: FRDControllerDisplay
+        if let controllerDisplay = intent.controllerDisplay {
+          display = controllerDisplay
+        } else {
+          display = FRDPresentationDisplay()
+        }
         display.displayViewController(source: source, destination: destinationController)
       }
     }

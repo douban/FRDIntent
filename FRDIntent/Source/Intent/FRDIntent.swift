@@ -26,7 +26,7 @@ public class FRDIntent: NSObject {
   /**
    The way of how to display the new view controller.
   */
-  public var controllerDisplay: FRDControllerDisplay = FRDPushDisplay()
+  public var controllerDisplay: FRDControllerDisplay?
 
   /**
    The extra data to inform the destination view controller. Read-only.
