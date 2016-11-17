@@ -77,14 +77,14 @@
 
 - (void)onControllerResultWithRequestCode:(NSInteger)requestCode
                                resultCode:(enum FRDResultCode)code
-                                     data:(FRDIntent *)intent
+                                     data:(NSDictionary *)data
 {
   if (requestCode == 1){
     if (code == FRDResultCodeOk) {
-      NSString *text = [intent.extras objectForKey:@"text"];
+      NSString *text = [data objectForKey:@"text"];
       NSLog(@"Successful confirm get from destination : %@", text);
     } else if (code == FRDResultCodeCanceled) {
-      NSString *text = intent.extras[@"text"];
+      NSString *text = [data objectForKey:@"text"];
       NSLog(@"Canceled confirm get from destination : %@", text);
     }
   }
