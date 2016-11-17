@@ -73,7 +73,7 @@ $ pod install
 
 FRDIntent/Intent 有如下优势：
 
-- 充分解耦。调用者和被调用者完全隔离，调用者只需要依赖协议：`FRDIntentReceivable`。一个 UIViewControlller 符合该协议即可被启动。
+- 充分解耦。调用者和被调用者完全隔离，被调用者只需要依赖协议：`FRDIntentReceivable`。一个 UIViewControlller 符合该协议即可被启动。
 - 对于“启动一个页面，并从该页面获取结果”这种较普遍的需求提供了一个通用的解决方案。具体查看方法：startControllerForResult。这是对 Android 中 startActivityForResult 的模仿和简化。
 - 支持自定义转场动画。
 - 支持传递复杂数据对象。
@@ -142,7 +142,7 @@ FRDIntent/Intent 有如下优势：
 被调用的 view controller 需要符合协议 `FRDIntentForResultReceivable`。该协议是 `FRDIntentReceivable` 的子协议。在 `FRDIntentReceivable` 基础上，多了两个实例变量定义：
 
 ```Swift
-  var data: [String: Any]?
+  var delegate: FRDIntentForResultSendable?
   var requestCode: Int?
 ```
 
@@ -192,7 +192,7 @@ FRDIntent/URLRoutes 是为了使得 iOS 系统中这种基于 URL 的应用间�
 
 #### 注册
 
-通过代码注册一个 view controler。在第三方应用调起该 URL 时，会该启动该 view controller。该 view controller 的进入动画为 Push 横滑进入方式。
+通过代码注册一个 view controler。在第三方应用调起该 URL 时，会启动该 view controller。该 view controller 的进入动画为 Push 横滑进入方式。
 
 ```Swift
   let routes = FRDURLRoutes.sharedInstance
@@ -234,7 +234,7 @@ Swift 由于有可见性声明，并无需前缀来避免命名冲突。所以�
 
 #### 参数 source 的类型
 
-`FRDControllerManager` 的方法 `startController(source: UIVieController, intent: FRDIntent)` 和 `startControllerForResult(source: UIViewController, intent: FRDIntent, requestCode: Int)` 没有严格限制 `source` 参数类型。source 精确的类型应该分别是形如 `UIViewController<FRDIntentReceivable>` 和 `UIViewController<FRDIntentForResultReceivable>` 所表达的：“这是一个类，并且符合一个协议”。这在 Swift 3 中，仍然需要别扭地使用泛型声明来实现。但这里使用泛型声明并不精确，同时更麻烦的是泛型方法无法暴露给 Objective-C 使用。因此，FRDIntent 做了折衷，source 类型只是 UIViewController。使用者需要自己保证它也是符合 FRDIntentReceivable 或者 FRDIntentForResultReceivable 协议的。
+`FRDControllerManager` 的方法 `startController(source: UIVieController, intent: FRDIntent)` 的 `source` 是简单的调用方，不需要特别限制。但是 `startControllerForResult(source: UIViewController, intent: FRDIntent, requestCode: Int)` 的 `source` 需要符合协议 `FRDIntentForResultSendable`，因为它要接收返回结果，而它对应的被调用者必须符合协议 `FRDIntentForResultReceivable`。
 
 
 ## FRDIntentDemo
