@@ -234,7 +234,7 @@ Swift 由于有可见性声明，并无需前缀来避免命名冲突。所以�
 
 #### 参数 source 的类型
 
-`FRDControllerManager` 的方法 `startController(source: UIVieController, intent: FRDIntent)` 的 `source` 是简单的调用方，不需要特别限制。但是 `startControllerForResult(source: UIViewController, intent: FRDIntent, requestCode: Int)` 的 `source` 需要符合协议 `FRDIntentForResultSendable`，因为它要接收返回结果，而它对应的被调用者必须符合协议 `FRDIntentForResultReceivable`。
+FRDControllerManager 的方法 `startControllerForResult(source: UIViewController, intent: FRDIntent, requestCode: Int)` 没有严格限制 `source` 参数类型。`source` 精确的类型应该分别是形如 `UIViewController<FRDIntentForResultSendable>` 所表达的：“这是一个类，并且符合一个协议”。这在 Swift 3 中，仍然需要别扭地使用泛型声明来实现。但这里使用泛型声明并不精确，同时更麻烦的是泛型方法无法暴露给 Objective-C 使用。因此，FRDIntent 做了折衷，`source` 类型只是 UIViewController。使用者需要自己保证它也是符合 `FRDIntentForResultSendable` 协议的。
 
 
 ## FRDIntentDemo
