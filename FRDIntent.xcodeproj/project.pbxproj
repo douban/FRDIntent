@@ -34,6 +34,7 @@
 		A382FE421D951C96007099DE /* FRDRouteParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A382FE411D951C96007099DE /* FRDRouteParameters.swift */; };
 		A384541D1DA807B100835B70 /* FRDIntentRegisters.plist in Resources */ = {isa = PBXBuildFile; fileRef = A384541C1DA807B100835B70 /* FRDIntentRegisters.plist */; };
 		A3EBF8B31DB35D0100C7ED83 /* FRDURLRoutesRegisters.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3EBF8B21DB35D0100C7ED83 /* FRDURLRoutesRegisters.plist */; };
+		A3FE9EE31DF656B6006038DB /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FE9EE21DF656B6006038DB /* Trie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		A382FE411D951C96007099DE /* FRDRouteParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDRouteParameters.swift; sourceTree = "<group>"; };
 		A384541C1DA807B100835B70 /* FRDIntentRegisters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FRDIntentRegisters.plist; sourceTree = "<group>"; };
 		A3EBF8B21DB35D0100C7ED83 /* FRDURLRoutesRegisters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FRDURLRoutesRegisters.plist; sourceTree = "<group>"; };
+		A3FE9EE21DF656B6006038DB /* Trie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 			children = (
 				A354CC6D1D7560EC00830990 /* RouteManager.swift */,
 				A382FE411D951C96007099DE /* FRDRouteParameters.swift */,
+				A3FE9EE21DF656B6006038DB /* Trie.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3FE9EE31DF656B6006038DB /* Trie.swift in Sources */,
 				A354CC801D75B8C200830990 /* IntentForResult.swift in Sources */,
 				A354CC7E1D75B8C200830990 /* FRDControllerManager.swift in Sources */,
 				A354CC831D75B8C200830990 /* FRDPushDisplay.swift in Sources */,
