@@ -106,7 +106,7 @@ public extension FRDURLRoutes {
 
 }
 
-private extension UIApplication {
+fileprivate extension UIApplication {
 
   class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
 

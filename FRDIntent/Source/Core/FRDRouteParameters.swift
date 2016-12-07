@@ -15,7 +15,6 @@ import Foundation
 public class FRDRouteParameters: NSObject {
 
   /// The key to get the url from parameters of block handler.
-
   public static let URLRouteURL = "URLRouteURL"
 
 }
