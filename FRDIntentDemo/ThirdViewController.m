@@ -102,8 +102,4 @@
   return YES;
 }
 
-- (void)dealloc {
-  printf("dealloc");
-}
-
 @end

@@ -103,7 +103,8 @@ public class FRDControllerManager: NSObject {
   }
 
   /**
-    Launch a view controller for which you would like a result when it finished. When this view controller exits, your onControllerResult() method will be called with the given requestCode.
+   Launch a view controller for which you would like a result when it finished.
+   When this view controller exits, your onControllerResult() method will be called with the given requestCode.
 
    - parameter source: The source view controller.
    - parameter intent: The intent for start new view controller.
@@ -132,11 +133,11 @@ public class FRDControllerManager: NSObject {
         intent.putExtra(name: key, data: value)
       }
 
-      if let destination = InitializerHelper.viewControllerFromwClazz(controllerClazz, extras: intent.extras) {
+      if let destination = InitializerHelper.viewControllerFromwClazz(controllerClazz, extras: intent.extras) as? FRDIntentForResultReceivable {
 
-        if destination is FRDIntentForResultReceivable {
-          (destination as! FRDIntentForResultReceivable).setRequestCode(requestCode)
-          (destination as! FRDIntentForResultReceivable).setDelegate(source as? FRDIntentForResultSendable)
+        destination.setRequestCode(requestCode)
+        if let source = source as? FRDIntentForResultSendable {
+          destination.setDelegate(source)
         }
 
         let display: FRDControllerDisplay
@@ -145,7 +146,10 @@ public class FRDControllerManager: NSObject {
         } else {
           display = FRDPresentationDisplay()
         }
-        display.displayViewController(source: source, destination: destination)
+
+        if let destination = destination as? UIViewController {
+          display.displayViewController(source: source, destination: destination)
+        }
       }
     }
 
@@ -167,7 +171,8 @@ public extension UIViewController {
   }
 
   /**
-   Launch a view controller for which you would like a result when it finished. When this view controller exits, your onControllerResult() method will be called with the given requestCode.
+   Launch a view controller for which you would like a result when it finished. 
+   When this view controller exits, your onControllerResult() method will be called with the given requestCode.
    @see FRDControllerManager#startControllerForResult(source: UIViewController, intent: FRDIntent, requestCode: Int)
 
    - parameter intent: The intent for start new view controller.

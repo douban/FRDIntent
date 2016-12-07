@@ -40,8 +40,4 @@
   [self.view addSubview:numberLabel];
 }
 
-- (void)dealloc {
-  printf("dealloc");
-}
-
 @end
