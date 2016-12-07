@@ -78,7 +78,7 @@ public class FRDControllerManager: NSObject {
     }
 
     if let clazz = intent.receiveClass {
-      controllerClazz = clazz as? FRDIntentReceivable.Type
+      controllerClazz = clazz
     }
 
     if let controllerClazz = controllerClazz {
@@ -86,7 +86,8 @@ public class FRDControllerManager: NSObject {
         intent.putExtra(name: key, data: value)
       }
 
-      if let destination = controllerClazz.init(extras: intent.extras) as? UIViewController {
+      if let destination = InitializerHelper.viewControllerFromwClazz(controllerClazz, extras: intent.extras) {
+
         let display: FRDControllerDisplay
         if let controllerDisplay = intent.controllerDisplay {
           display = controllerDisplay
@@ -102,7 +103,8 @@ public class FRDControllerManager: NSObject {
   }
 
   /**
-    Launch a view controller for which you would like a result when it finished. When this view controller exits, your onControllerResult() method will be called with the given requestCode.
+   Launch a view controller for which you would like a result when it finished.
+   When this view controller exits, your onControllerResult() method will be called with the given requestCode.
 
    - parameter source: The source view controller.
    - parameter intent: The intent for start new view controller.
@@ -130,19 +132,24 @@ public class FRDControllerManager: NSObject {
       for (key, value) in parameters {
         intent.putExtra(name: key, data: value)
       }
-      let destination = controllerClazz.init(extras: intent.extras)
 
-      destination.setRequestCode(requestCode)
-      destination.setDelegate(source as? FRDIntentForResultSendable)
+      if let destination = InitializerHelper.viewControllerFromwClazz(controllerClazz, extras: intent.extras) as? FRDIntentForResultReceivable {
 
-      if let destinationController = destination as? UIViewController {
+        destination.setRequestCode(requestCode)
+        if let source = source as? FRDIntentForResultSendable {
+          destination.setDelegate(source)
+        }
+
         let display: FRDControllerDisplay
         if let controllerDisplay = intent.controllerDisplay {
           display = controllerDisplay
         } else {
           display = FRDPresentationDisplay()
         }
-        display.displayViewController(source: source, destination: destinationController)
+
+        if let destination = destination as? UIViewController {
+          display.displayViewController(source: source, destination: destination)
+        }
       }
     }
 
@@ -164,7 +171,8 @@ public extension UIViewController {
   }
 
   /**
-   Launch a view controller for which you would like a result when it finished. When this view controller exits, your onControllerResult() method will be called with the given requestCode.
+   Launch a view controller for which you would like a result when it finished. 
+   When this view controller exits, your onControllerResult() method will be called with the given requestCode.
    @see FRDControllerManager#startControllerForResult(source: UIViewController, intent: FRDIntent, requestCode: Int)
 
    - parameter intent: The intent for start new view controller.

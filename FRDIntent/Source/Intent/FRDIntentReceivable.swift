@@ -18,6 +18,6 @@ import Foundation
    
    - parameter extras: The extra data.
    */
-  init(extras: Dictionary<String, AnyObject>?)
+  init(extras: [String: AnyObject]?)
 
 }
