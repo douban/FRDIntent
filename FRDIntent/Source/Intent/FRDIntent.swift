@@ -21,7 +21,7 @@ public class FRDIntent: NSObject {
   /**
    The destination view controller's class type.
   */
-  public var receiveClass: AnyClass?
+  public var receiveClass: FRDIntentReceivable.Type?
 
   /**
    The way of how to display the new view controller.
@@ -38,7 +38,7 @@ public class FRDIntent: NSObject {
    
    - parameter clazz: The destination view controller's class type.
    */
-  public init(clazz: AnyClass) {
+  public init(clazz: FRDIntentReceivable.Type) {
     self.receiveClass = clazz 
   }
 
@@ -62,9 +62,23 @@ public class FRDIntent: NSObject {
 
   /**
    Put the extra data into the intent.
+   
+   - parameter name: key
+   - parameter data: value
   */
   public func putExtra(name: String, data: AnyObject) {
     self.extras[name] = data
+  }
+
+  /**
+   Put the extras datas into the intent.
+   
+   - parameter data: the data dictionary.
+   */
+  public func putExtras(datas: [String: AnyObject]) {
+    for (key, value) in datas {
+      self.extras[key] = value
+    }
   }
 
 }

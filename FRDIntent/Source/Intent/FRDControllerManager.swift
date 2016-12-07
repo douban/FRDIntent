@@ -78,7 +78,7 @@ public class FRDControllerManager: NSObject {
     }
 
     if let clazz = intent.receiveClass {
-      controllerClazz = clazz as? FRDIntentReceivable.Type
+      controllerClazz = clazz
     }
 
     if let controllerClazz = controllerClazz {
@@ -86,7 +86,8 @@ public class FRDControllerManager: NSObject {
         intent.putExtra(name: key, data: value)
       }
 
-      if let destination = controllerClazz.init(extras: intent.extras) as? UIViewController {
+      if let destination = InitializerHelper.viewControllerFromwClazz(controllerClazz, extras: intent.extras) {
+
         let display: FRDControllerDisplay
         if let controllerDisplay = intent.controllerDisplay {
           display = controllerDisplay
@@ -130,19 +131,21 @@ public class FRDControllerManager: NSObject {
       for (key, value) in parameters {
         intent.putExtra(name: key, data: value)
       }
-      let destination = controllerClazz.init(extras: intent.extras)
 
-      destination.setRequestCode(requestCode)
-      destination.setDelegate(source as? FRDIntentForResultSendable)
+      if let destination = InitializerHelper.viewControllerFromwClazz(controllerClazz, extras: intent.extras) {
 
-      if let destinationController = destination as? UIViewController {
+        if destination is FRDIntentForResultReceivable {
+          (destination as! FRDIntentForResultReceivable).setRequestCode(requestCode)
+          (destination as! FRDIntentForResultReceivable).setDelegate(source as? FRDIntentForResultSendable)
+        }
+
         let display: FRDControllerDisplay
         if let controllerDisplay = intent.controllerDisplay {
           display = controllerDisplay
         } else {
           display = FRDPresentationDisplay()
         }
-        display.displayViewController(source: source, destination: destinationController)
+        display.displayViewController(source: source, destination: destination)
       }
     }
 
