@@ -16,7 +16,7 @@ public class FRDControllerManager: NSObject {
   /// Singleton instance of FRDControllerManager
   public static let sharedInstance = FRDControllerManager()
 
-  private var routeManager = RouteManager.sharedInstance
+  private let routeManager = RouteManager.sharedInstance
 
   /**
    Registers a url for calling handler blocks.

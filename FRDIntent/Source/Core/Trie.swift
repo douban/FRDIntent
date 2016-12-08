@@ -9,9 +9,11 @@
 import Foundation
 
 /**
- The trie data structure for storing and search with url.
+ The trie data structure to store and search with url.
 
- Insert these three urls in an empty trie:
+ About trie: https://en.wikipedia.org/wiki/Trie
+
+ Insert these three urls into an empty trie:
  
  ```
  /user/:userId/profile
@@ -31,10 +33,10 @@ import Foundation
  "profile"
  ```
 
- This trie supports url pattern match with prefix ":".
+ This trie supports url pattern match with prefix ":" and nearest node match.
 
 */
-class Trie<T> {
+final class Trie<T> {
 
   private var root: TrieNode<T>
 
@@ -56,14 +58,17 @@ class Trie<T> {
   }
 
   private func insert(paths: [String], value: T) {
+    guard !paths.isEmpty else {
+      return
+    }
+
     var currentNode = root
     for path in paths {
       if let child = currentNode.children[path] {
         currentNode = child
       } else {
-        let newChild = TrieNode<T>(key: path)
-        currentNode.children[path] = newChild
-        currentNode = newChild
+        currentNode.addChild(key: path, value: value)
+        currentNode = currentNode.children[path]!
       }
     }
     currentNode.value = value
@@ -84,6 +89,10 @@ class Trie<T> {
   }
 
   private func search(paths: [String]) -> T? {
+    guard !paths.isEmpty else {
+      return nil
+    }
+
     var currentNode = root
     for path in paths {
       if let child = currentNode.children[path] {
@@ -114,18 +123,22 @@ class Trie<T> {
   }
 
   private func searchWithNearestMatch(paths: [String]) -> T? {
+    guard !paths.isEmpty else {
+      return nil
+    }
+
     var currentNode = root
     var nearestUrlParent = root
     for path in paths {
       if let child = currentNode.children[path] {
         currentNode = child
-        if currentNode.isRegisteredUrl {
+        if currentNode.isTerminating {
           nearestUrlParent = currentNode
         }
       } else {
         if let child = currentNode.childOrFirstPlaceholder(key: path) {
           currentNode = child
-          if currentNode.isRegisteredUrl {
+          if currentNode.isTerminating {
             nearestUrlParent = currentNode
           }
         } else {
@@ -147,6 +160,10 @@ class Trie<T> {
    */
   func matchUrlPattern(url: URL) -> [String: AnyObject] {
     guard let paths = url.pathComponentsWithoutSlash else {
+      return [:]
+    }
+
+    guard !paths.isEmpty else {
       return [:]
     }
 
@@ -172,17 +189,38 @@ class Trie<T> {
 }
 
 
-// MARK: - Trie's node data structure: TrieNode
+// MARK: - TrieNode
 
-fileprivate class TrieNode<T> {
+final class TrieNode<T> {
 
   var key: String
   var value: T?
-  var children: [String: TrieNode<T>]
+  var children: [String: TrieNode<T>] = [:]
 
-  var isRegisteredUrl: Bool {
+  var isTerminating: Bool {
     return value != nil
   }
+
+  convenience init(key: String) {
+    self.init(key: key, value: nil)
+  }
+
+  init(key: String, value: T?) {
+    self.key = key
+    self.value = value
+  }
+
+  func addChild(key: String, value: T) {
+    guard children[key] == nil else {
+      return
+    }
+
+    children[key] = TrieNode(key: key, value: value)
+  }
+
+}
+
+extension TrieNode {
 
   var isPlaceholder: Bool {
     return key.hasPrefix(":")
@@ -193,16 +231,6 @@ fileprivate class TrieNode<T> {
       return key.substring(from: key.index(key.startIndex, offsetBy: 1))
     }
     return nil
-  }
-
-  convenience init(key: String) {
-    self.init(key: key, value: nil)
-  }
-
-  init(key: String, value: T?) {
-    self.key = key
-    self.value = value
-    self.children = [:]
   }
 
   func childOrFirstPlaceholder(key: String) -> TrieNode? {
@@ -216,9 +244,6 @@ fileprivate class TrieNode<T> {
     return nil
   }
 
-  var description: String {
-    return "key:\(self.key), value:\(self.value), children:\(self.children)"
-  }
 }
 
 
