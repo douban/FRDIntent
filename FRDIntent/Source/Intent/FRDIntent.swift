@@ -75,7 +75,7 @@ public class FRDIntent: NSObject {
    
    - parameter data: the data dictionary.
    */
-  public func putExtras(datas: [String: AnyObject]) {
+  public func putExtras(datas: URLRoutesHandlerParam) {
     for (key, value) in datas {
       self.extras[key] = value
     }
