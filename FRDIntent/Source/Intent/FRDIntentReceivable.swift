@@ -18,6 +18,6 @@ import Foundation
    
    - parameter extras: The extra data.
    */
-  init(extras: URLRoutesHandlerParam?)
+  init(extras: [String: AnyObject]?)
 
 }

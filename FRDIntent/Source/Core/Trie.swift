@@ -158,7 +158,7 @@ final class Trie<T> {
 
    - returns: dictionary for the pattern match result.
    */
-  func matchUrlPattern(url: URL) -> URLRoutesHandlerParam {
+  func matchUrlPattern(url: URL) -> [String: AnyObject] {
     guard let paths = url.pathComponentsWithoutSlash else {
       return [:]
     }

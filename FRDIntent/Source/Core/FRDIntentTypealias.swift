@@ -8,6 +8,5 @@
 
 import Foundation
 
-public typealias URLRoutesHandlerParam = [String: AnyObject]
-public typealias URLRoutesHandler = (URLRoutesHandlerParam) -> ()
+public typealias URLRoutesHandler = ([String: AnyObject]) -> ()
 typealias RoutePathNodeValueType = (FRDIntentReceivable.Type?, URLRoutesHandler?)

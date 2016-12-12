@@ -61,7 +61,7 @@ public extension FRDURLRoutes {
   public func register(url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
 
     let resultForIntent = FRDControllerManager.sharedInstance.register(url: url, clazz: clazz)
-    let resultForRoute = register(url: url) { (params: URLRoutesHandlerParam) in
+    let resultForRoute = register(url: url) { (params: [String: AnyObject]) in
       let intent = FRDIntent(url: params[FRDRouteParameters.URLRouteURL] as! URL)
       if let topViewController = UIApplication.topViewController() {
         FRDControllerManager.sharedInstance.startController(source: topViewController, intent: intent)

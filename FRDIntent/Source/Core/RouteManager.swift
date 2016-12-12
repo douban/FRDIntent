@@ -63,7 +63,7 @@ class RouteManager {
 
    - returns: A tuple with parameters and clazz.
    */
-  func searchController(url: URL) -> (URLRoutesHandlerParam, FRDIntentReceivable.Type?) {
+  func searchController(url: URL) -> ([String: AnyObject], FRDIntentReceivable.Type?) {
     let params = extractParameters(url: url)
 
     if let (clazz, _) = routes.searchWithNearestMatch(url: url) {
@@ -81,7 +81,7 @@ class RouteManager {
 
    - returns: A tuple with parameters and handler.
    */
-  func searchHandler(url: URL) -> (URLRoutesHandlerParam, URLRoutesHandler?) {
+  func searchHandler(url: URL) -> ([String: AnyObject], URLRoutesHandler?) {
     let params = extractParameters(url: url)
 
     if let (_, handler) = routes.searchWithNearestMatch(url: url) {
@@ -92,7 +92,7 @@ class RouteManager {
   }
 
   // MARK: - Private Methods
-  private func extractParameters(url: URL) -> URLRoutesHandlerParam {
+  private func extractParameters(url: URL) -> [String: AnyObject] {
 
     // Extract placeholder parameters
     var params = routes.matchUrlPattern(url: url)

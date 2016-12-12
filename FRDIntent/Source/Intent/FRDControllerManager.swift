@@ -68,7 +68,7 @@ public class FRDControllerManager: NSObject {
    */
   public func startController(source: UIViewController, intent: FRDIntent) {
 
-    var parameters = URLRoutesHandlerParam()
+    var parameters = [String: AnyObject]()
     var controllerClazz: FRDIntentReceivable.Type?
 
     if let url = intent.url {
@@ -114,7 +114,7 @@ public class FRDControllerManager: NSObject {
 
     typealias ControllerType = FRDIntentForResultReceivable.Type
 
-    var parameters = URLRoutesHandlerParam()
+    var parameters = [String: AnyObject]()
     var controllerClazz: ControllerType?
 
     if let url = intent.url {

@@ -14,14 +14,14 @@ class URLRoutesTests: XCTestCase {
   func testURLRoutes() {
     let router = FRDURLRoutes.sharedInstance
 
-    let _ = router.register(url: URL(string: "/user/:userId")!) { (params: URLRoutesHandlerParam) in
+    let _ = router.register(url: URL(string: "/user/:userId")!) { (params: [String: AnyObject]) in
       XCTAssert(params["userId"] as! String == "12", "userId is 12")
       XCTAssert(params[FRDRouteParameters.URLRouteURL] as? NSURL == NSURL(string:  "/user/12"), "")
     }
 
     let _ = router.route(url: URL(string: "/user/12")!)
 
-    let _ = router.register(url: URL(string: "/story/:storyId")!) { (params: URLRoutesHandlerParam) in
+    let _ = router.register(url: URL(string: "/story/:storyId")!) { (params: [String: AnyObject]) in
       XCTAssert(params["storyId"] as! String == "21", "userId is 12")
       XCTAssert(params["key1"] as! String == "value1", "key1 is value1")
       XCTAssert(params["key2"] as! String == "value2", "key2 is value2")
