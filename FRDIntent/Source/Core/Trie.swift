@@ -145,12 +145,12 @@ class Trie<T> {
 
    - returns: dictionary for the pattern match result.
    */
-  func matchUrlPattern(url: URL) -> [String: AnyObject] {
+  func matchUrlPattern(url: URL) -> URLRoutesHandlerParam {
     guard let paths = url.pathComponentsWithoutSlash else {
       return [:]
     }
 
-    var params: [String: AnyObject] = [:]
+    var params = URLRoutesHandlerParam()
     var currentNode = root
     for path in paths {
       if let child = currentNode.children[path] {

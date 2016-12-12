@@ -46,7 +46,7 @@ class RouteSearch: XCTestCase {
 
   func testNoMatchSearch() {
 
-    let handler1 = {(params: [String: AnyObject]) in
+    let handler1 = {(params: URLRoutesHandlerParam) in
 
     }
 
