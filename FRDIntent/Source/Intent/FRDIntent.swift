@@ -31,7 +31,7 @@ public class FRDIntent: NSObject {
   /**
    The extra data to inform the destination view controller. Read-only.
    */
-  public fileprivate(set) var extras = [String: AnyObject]()
+  public fileprivate(set) var extras = URLRoutesHandlerParam()
 
   /**
    Initializer with the destination view controller's class type.
@@ -75,7 +75,7 @@ public class FRDIntent: NSObject {
    
    - parameter data: the data dictionary.
    */
-  public func putExtras(datas: [String: AnyObject]) {
+  public func putExtras(datas: URLRoutesHandlerParam) {
     for (key, value) in datas {
       self.extras[key] = value
     }

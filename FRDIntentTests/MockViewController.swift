@@ -11,7 +11,7 @@ import UIKit
 
 class MockUserViewController: UIViewController, FRDIntentReceivable {
 
-  required init(extras extra: [String: AnyObject]?) {
+  required init(extras extra: URLRoutesHandlerParam?) {
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -23,7 +23,7 @@ class MockUserViewController: UIViewController, FRDIntentReceivable {
 
 class MockStoryViewController: UIViewController, FRDIntentReceivable {
 
-  required init(extras: [String: AnyObject]?) {
+  required init(extras: URLRoutesHandlerParam?) {
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -35,7 +35,7 @@ class MockStoryViewController: UIViewController, FRDIntentReceivable {
 
 class MockProfileViewController: UIViewController, FRDIntentReceivable {
 
-  required init(extras: [String: AnyObject]?) {
+  required init(extras: URLRoutesHandlerParam?) {
     super.init(nibName: nil, bundle: nil)
   }
 

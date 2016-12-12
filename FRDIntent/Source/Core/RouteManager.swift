@@ -14,11 +14,6 @@ import Foundation
 class RouteManager {
 
   static let sharedInstance = RouteManager()
-
-  typealias URLRoutesHandler = ([String: AnyObject]) -> ()
-
-  typealias RoutePathNodeValueType = (FRDIntentReceivable.Type?, URLRoutesHandler?)
-
   fileprivate var routes = Trie<RoutePathNodeValueType>()
 
   // MARK: - Register
@@ -47,7 +42,7 @@ class RouteManager {
    - parameter url: The path for search the storage position.
    - parameter hanlder: The handler to be saved.
   */
-  func register(url: URL, handler: @escaping ([String: AnyObject]) -> ()) -> Bool {
+  func register(url: URL, handler: @escaping URLRoutesHandler) -> Bool {
 
     if let (clazz, _) = routes.search(url: url) {
       routes.insert(url: url, value: (clazz, handler))
@@ -68,7 +63,7 @@ class RouteManager {
 
    - returns: A tuple with parameters and clazz.
    */
-  func searchController(url: URL) -> ([String: AnyObject], FRDIntentReceivable.Type?) {
+  func searchController(url: URL) -> (URLRoutesHandlerParam, FRDIntentReceivable.Type?) {
     let params = extractParameters(url: url)
 
     if let (clazz, _) = routes.searchWithNearestMatch(url: url) {
@@ -86,7 +81,7 @@ class RouteManager {
 
    - returns: A tuple with parameters and handler.
    */
-  func searchHandler(url: URL) -> ([String: AnyObject], (([String: AnyObject]) -> ())?) {
+  func searchHandler(url: URL) -> (URLRoutesHandlerParam, URLRoutesHandler?) {
     let params = extractParameters(url: url)
 
     if let (_, handler) = routes.searchWithNearestMatch(url: url) {
@@ -97,10 +92,10 @@ class RouteManager {
   }
 
   // MARK: - Private Methods
-  private func extractParameters(url: URL) -> [String: AnyObject] {
+  private func extractParameters(url: URL) -> URLRoutesHandlerParam {
 
     // Extract placeholder parameters
-    var params: [String: AnyObject] = routes.matchUrlPattern(url: url)
+    var params = routes.matchUrlPattern(url: url)
 
     // Add url to params
     params.updateValue(url as AnyObject, forKey: FRDRouteParameters.URLRouteURL)

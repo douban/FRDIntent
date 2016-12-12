@@ -16,9 +16,6 @@ public class FRDURLRoutes: NSObject {
   /// Singleton instance of URLRoutes.
   public static let sharedInstance = FRDURLRoutes()
 
-  /// The type of block handler to be registered.
-  public typealias URLRoutesHandler = ([String: AnyObject]) -> ()
-
   private let routeManager = RouteManager.sharedInstance
 
   /**
@@ -64,7 +61,7 @@ public extension FRDURLRoutes {
   public func register(url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
 
     let resultForIntent = FRDControllerManager.sharedInstance.register(url: url, clazz: clazz)
-    let resultForRoute = register(url: url) { (params: [String: AnyObject]) in
+    let resultForRoute = register(url: url) { (params: URLRoutesHandlerParam) in
       let intent = FRDIntent(url: params[FRDRouteParameters.URLRouteURL] as! URL)
       if let topViewController = UIApplication.topViewController() {
         FRDControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
