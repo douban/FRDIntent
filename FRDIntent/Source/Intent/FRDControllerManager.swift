@@ -26,7 +26,7 @@ public class FRDControllerManager: NSObject {
    
    - returns: True if it registers successfully.
    */
-  public func register(url: URL, clazz: AnyClass) -> Bool {
+  @discardableResult public func register(url: URL, clazz: AnyClass) -> Bool {
     return routeManager.register(url: url, clazz: clazz as! FRDIntentReceivable.Type)
   }
 

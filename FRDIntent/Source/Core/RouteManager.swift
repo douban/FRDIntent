@@ -24,7 +24,7 @@ class RouteManager {
    - parameter url: The path for search the storage position.
    - parameter clazz: The clazz to be saved.
    */
-  func register(url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
+  @discardableResult func register(url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
 
     if let (_, handler) = routes.search(url: url) {
       routes.insert(url: url, value: (clazz, handler))
@@ -42,7 +42,7 @@ class RouteManager {
    - parameter url: The path for search the storage position.
    - parameter hanlder: The handler to be saved.
   */
-  func register(url: URL, handler: @escaping URLRoutesHandler) -> Bool {
+  @discardableResult func register(url: URL, handler: @escaping URLRoutesHandler) -> Bool {
 
     if let (clazz, _) = routes.search(url: url) {
       routes.insert(url: url, value: (clazz, handler))

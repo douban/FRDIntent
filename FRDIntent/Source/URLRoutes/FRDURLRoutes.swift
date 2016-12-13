@@ -26,7 +26,7 @@ public class FRDURLRoutes: NSObject {
    
    - returns: True if it registers successfully.
    */
-  public func register(url: URL, handler: @escaping URLRoutesHandler) -> Bool {
+  @discardableResult public func register(url: URL, handler: @escaping URLRoutesHandler) -> Bool {
     return routeManager.register(url: url, handler: handler)
   }
 
@@ -58,7 +58,7 @@ public extension FRDURLRoutes {
    
    - returns: True if it registers successfully.
    */
-  public func register(url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
+  @discardableResult public func register(url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
 
     let resultForIntent = FRDControllerManager.sharedInstance.register(url: url, clazz: clazz)
     let resultForRoute = register(url: url) { (params: [String: AnyObject]) in
