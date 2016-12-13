@@ -16,9 +16,6 @@ public class FRDURLRoutes: NSObject {
   /// Singleton instance of URLRoutes.
   public static let sharedInstance = FRDURLRoutes()
 
-  /// The type of block handler to be registered.
-  public typealias URLRoutesHandler = ([String: AnyObject]) -> ()
-
   private let routeManager = RouteManager.sharedInstance
 
   /**

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7111E68E1DFE8032007F9EC8 /* FRDIntentTypealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7111E68D1DFE8032007F9EC8 /* FRDIntentTypealias.swift */; };
 		A32C1FC91D76717C00C19142 /* FRDURLRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FC81D76717C00C19142 /* FRDURLRoutes.swift */; };
 		A32C1FCB1D767CE500C19142 /* URLRoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FCA1D767CE500C19142 /* URLRoutesTests.swift */; };
 		A32C1FD11D76F3BD00C19142 /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FD01D76F3BD00C19142 /* MockViewController.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7111E68D1DFE8032007F9EC8 /* FRDIntentTypealias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDIntentTypealias.swift; sourceTree = "<group>"; };
 		A32C1FC81D76717C00C19142 /* FRDURLRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDURLRoutes.swift; sourceTree = "<group>"; };
 		A32C1FCA1D767CE500C19142 /* URLRoutesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRoutesTests.swift; sourceTree = "<group>"; };
 		A32C1FD01D76F3BD00C19142 /* MockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			children = (
 				A354CC6D1D7560EC00830990 /* RouteManager.swift */,
 				A382FE411D951C96007099DE /* FRDRouteParameters.swift */,
+				7111E68D1DFE8032007F9EC8 /* FRDIntentTypealias.swift */,
 				A3FE9EE21DF656B6006038DB /* Trie.swift */,
 			);
 			path = Core;
@@ -408,6 +411,7 @@
 				A354CC801D75B8C200830990 /* IntentForResult.swift in Sources */,
 				A36817311DF7C3F000A6923C /* InitializerHelper.m in Sources */,
 				A354CC7E1D75B8C200830990 /* FRDControllerManager.swift in Sources */,
+				7111E68E1DFE8032007F9EC8 /* FRDIntentTypealias.swift in Sources */,
 				A354CC831D75B8C200830990 /* FRDPushDisplay.swift in Sources */,
 				A354CC7F1D75B8C200830990 /* FRDIntent.swift in Sources */,
 				A354CC7D1D75B8C200830990 /* FRDControllerDisplay.swift in Sources */,
