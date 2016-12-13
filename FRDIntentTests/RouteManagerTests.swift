@@ -20,10 +20,10 @@ class RouteSearch: XCTestCase {
 
   func testNormalSearch() {
 
-    let _ = routeManager.register(url: URL(string: "/user/:userId")!, clazz: MockUserViewController.self)
-    let _ = routeManager.register(url: URL(string: "/user/:userId/profile")!, clazz: MockProfileViewController.self)
-    let _ = routeManager.register(url: URL(string: "/user/:userId/story/:storyId")!, clazz: MockStoryViewController.self)
-    let _ = routeManager.register(url: URL(string: "/story/:storyId")!, clazz: MockStoryViewController.self)
+    routeManager.register(url: URL(string: "/user/:userId")!, clazz: MockUserViewController.self)
+    routeManager.register(url: URL(string: "/user/:userId/profile")!, clazz: MockProfileViewController.self)
+    routeManager.register(url: URL(string: "/user/:userId/story/:storyId")!, clazz: MockStoryViewController.self)
+    routeManager.register(url: URL(string: "/story/:storyId")!, clazz: MockStoryViewController.self)
 
     let (params, clazz) = routeManager.searchController(url: URL(string: "/user/12")!)
     XCTAssert(params["userId"] as! String == "12", "userId is 12")
@@ -50,8 +50,8 @@ class RouteSearch: XCTestCase {
 
     }
 
-    let _ = routeManager.register(url: URL(string: "/story/:storyId")!, handler: handler1)
-    let _ = routeManager.register(url: URL(string: "/normal/")!, handler: handler1)
+    routeManager.register(url: URL(string: "/story/:storyId")!, handler: handler1)
+    routeManager.register(url: URL(string: "/normal/")!, handler: handler1)
 
     let (params5, value5) = routeManager.searchHandler(url: URL(string: "/story/12345/error")!)
     XCTAssert(params5["storyId"] as! String == "12345", "storyId is 1234")
@@ -65,7 +65,7 @@ class RouteSearch: XCTestCase {
 
   func testQueryFragmentParameter() {
 
-    let _ = routeManager.register(url: URL(string: "/paramss")!, clazz: MockStoryViewController.self)
+    routeManager.register(url: URL(string: "/paramss")!, clazz: MockStoryViewController.self)
 
     let (params7, value7) = routeManager.searchController(url: URL(string: "/paramss?key1=value1&key2=value2#ref")!)
     XCTAssert(params7["key1"] as! String == "value1", "params key1 is value1")
