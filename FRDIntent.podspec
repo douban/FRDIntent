@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/douban/FRDIntent.git", :tag => "#{s.version}" }
 
   s.subspec 'Intent' do |intent|
-    intent.source_files  = 'FRDIntent/Source/*.h','FRDIntent/Source/Intent/**/*.{swift,h,m}', 'FRDIntent/Source/Core/**/*.swift'
+    intent.source_files  = 'FRDIntent/Source/Intent/**/*.{swift,h,m}', 'FRDIntent/Source/Core/**/*.swift'
     intent.frameworks    = 'UIKit'
   end
 

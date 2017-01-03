@@ -23,12 +23,12 @@ import Foundation
 }
 
 /**
- The protocol to abstract the view controller tha can send the Intent for request a result from the destination.
+ The protocol to abstract the view controller that can send the Intent asking for the result from the destination.
  */
 @objc public protocol FRDIntentForResultSendable {
 
   /**
-   When the result return, this method will be called.
+   When the result returns, this method will be called.
    
    - parameter requestCode: The integer request code originally supplied to startControllerForResult(), allowing you to identify who this result came from.
    - parameter resultCode: The result code returned by the child conroller.
@@ -39,7 +39,7 @@ import Foundation
 }
 
 /**
- The protocol to abstract the view controller tha can receive the Intent for request a result from the destination.
+ The protocol to abstract the view controller that can receive the Intent asking for the result from the destination.
  */
 @objc public protocol FRDIntentForResultReceivable: FRDIntentReceivable {
 

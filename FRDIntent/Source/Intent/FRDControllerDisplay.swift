@@ -9,7 +9,7 @@
 import UIKit
 
 /**
- The protocol for abstract the way of how display the destination view controller.
+ The protocol to abstract the way of how the destination view controller displays.
  */
 @objc public protocol FRDControllerDisplay {
 

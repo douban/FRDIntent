@@ -33,7 +33,7 @@ import Foundation
  "profile"
  ```
 
- This trie supports url pattern match with prefix ":" and nearest node match.
+ This trie supports url pattern match with prefix ":", and nearest node match.
 
 */
 final class Trie<T> {
@@ -152,9 +152,9 @@ final class Trie<T> {
 
   /**
    This trie support url pattern match. The url with prefix ":" is the url pattern, for example ":userId".
-   This method extract all the patterns in the url.
+   This method extracts all the patterns in the url.
    
-   - parameter url: the url for find the pattern match.
+   - parameter url: the url for finding the pattern match.
 
    - returns: dictionary for the pattern match result.
    */
