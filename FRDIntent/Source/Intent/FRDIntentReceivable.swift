@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- The protocol to abstract the view controller tha can receive the Intent.
+ The protocol to abstract the view controller that can receive the Intent.
  */
 @objc public protocol FRDIntentReceivable {
 

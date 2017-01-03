@@ -9,7 +9,12 @@
 import Foundation
 
 /**
- RouteManager offer the public operation interface of route path search tree.
+ RouteManager offers the public operation interface of route path search tree.
+
+ We maintains two register systems in one trie tree for saving space.
+ Every tree node's value is a tuple (clazz, handler). 
+ The clazz is for FRDIntent's register.
+ The handler is for URLRoute's register.
  */
 class RouteManager {
 
@@ -19,7 +24,7 @@ class RouteManager {
   // MARK: - Register
 
   /**
-   Regiser url for save the clazz in the routes.
+   Register url for save the clazz in the routes.
    
    - parameter url: The path for search the storage position.
    - parameter clazz: The clazz to be saved.
@@ -37,7 +42,7 @@ class RouteManager {
   }
 
   /**
-   Regiser url for save the handler in the routes.
+   Register url for save the handler in the routes.
 
    - parameter url: The path for search the storage position.
    - parameter hanlder: The handler to be saved.
