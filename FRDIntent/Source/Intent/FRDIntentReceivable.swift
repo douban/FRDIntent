@@ -20,5 +20,12 @@ import Foundation
    */
   init(extras: [String: AnyObject]?)
 
+  /**
+   Check the validation of the received intent.
+
+   - parameter intent: The received intent.
+
+   - returns true open this view controller, flase will not this view controller.
+   */
   @objc optional func validate(intent: FRDIntent) -> Bool
 }
