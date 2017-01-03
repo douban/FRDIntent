@@ -14,42 +14,7 @@
 #import "FirstViewController.h"
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
-
-
-@interface UIApplication (topViewController)
-
-+ (UIViewController *)topViewController;
-
-@end
-
-@implementation UIApplication (topViewController)
-
-+ (UIViewController *)topViewController
-{
-  return [self _frd_visibleViewControllerFrom:[UIApplication sharedApplication].keyWindow.rootViewController];
-}
-
-
-+ (UIViewController *)_frd_visibleViewControllerFrom:(UIViewController *)vc
-{
-  if ([vc isKindOfClass:[UINavigationController class]]) {
-    return [self _frd_visibleViewControllerFrom:[((UINavigationController *) vc) visibleViewController]];
-  }
-
-  if ([vc isKindOfClass:[UITabBarController class]]) {
-    return [self _frd_visibleViewControllerFrom:[((UITabBarController *) vc) selectedViewController]];
-  }
-
-  if (vc.presentedViewController) {
-    return [self _frd_visibleViewControllerFrom:vc.presentedViewController];
-  }
-
-  return vc;
-
-}
-
-@end
-
+#import "UIViewController+TopViewController.h"
 
 @interface AppDelegate ()
 
@@ -128,7 +93,7 @@
     NSURL *url = [params objectForKey:FRDRouteParameters.URLRouteURL];
     FRDIntent *intent = [[FRDIntent alloc] initWithUrl:url];
     intent.controllerDisplay = [[FRDPresentationDisplay alloc] init];
-    UIViewController *topViewController = [UIApplication topViewController];
+    UIViewController *topViewController = [UIViewController topViewController];
     if (topViewController) {
       [[FRDControllerManager sharedInstance] startControllerWithSource:topViewController intent:intent];
     }

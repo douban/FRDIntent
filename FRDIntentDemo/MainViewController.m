@@ -8,9 +8,9 @@
 #import <FRDIntent/FRDIntent-Swift.h>
 
 #import "MainViewController.h"
-#import "FirstViewController.h"
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
+#import "FourthViewController.h"
 
 @interface MainViewController () <FRDIntentForResultSendable>
 @end
@@ -49,6 +49,15 @@
         forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:thirdbutton];
 
+  UIButton *fourthbutton = [UIButton buttonWithType:UIButtonTypeCustom];
+  fourthbutton.frame = CGRectMake(20, 400, self.view.bounds.size.width - 40, 44);
+  [fourthbutton setTitle:@"Check intent and dispatch" forState:UIControlStateNormal];
+  fourthbutton.backgroundColor = [UIColor greenColor];
+  [fourthbutton addTarget:self
+                  action:@selector(gotoCheckAndDispatchViewController)
+        forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:fourthbutton];
+
 }
 
 - (void)gotoFirstViewController
@@ -71,6 +80,13 @@
   FRDIntent *intent = [[FRDIntent alloc] initWithClazz:[ThirdViewController  class]];
   [intent putExtraWithName:@"number" data: [NSNumber numberWithInteger:3]];
   [self startControllerForResultWithIntent:intent requestCode:1];
+}
+
+- (void)gotoCheckAndDispatchViewController
+{
+  FRDIntent *intent = [[FRDIntent alloc] initWithClazz:[FourthViewController  class]];
+  [intent putExtraWithName:@"number" data: [NSNumber numberWithInteger:4]];
+  [self startControllerWithIntent:intent];
 }
 
 #pragma mark - FRDIntentForResultSendable

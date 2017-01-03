@@ -20,4 +20,5 @@ import Foundation
    */
   init(extras: [String: AnyObject]?)
 
+  @objc optional func validate(intent: FRDIntent) -> Bool
 }

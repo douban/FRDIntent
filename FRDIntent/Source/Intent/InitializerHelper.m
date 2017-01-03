@@ -11,8 +11,8 @@
 
 @implementation InitializerHelper
 
-+ (UIViewController<FRDIntentReceivable> *)viewControllerFromwClazzName:(NSString *)clazzName
-                                                                 extras:(NSDictionary<NSString *, id> *)extras
++ (UIViewController<FRDIntentReceivable> *)viewControllerFromClazzName:(NSString *)clazzName
+                                                                extras:(NSDictionary<NSString *, id> *)extras
 {
   Class clazz = NSClassFromString(clazzName);
   id<FRDIntentReceivable> initObj = [clazz alloc];
@@ -20,8 +20,8 @@
   return vc;
 }
 
-+ (UIViewController<FRDIntentReceivable> *)viewControllerFromwClazz:(Class)clazz
-                                                             extras:(NSDictionary<NSString *, id> *)extras
++ (UIViewController<FRDIntentReceivable> *)viewControllerFromClazz:(Class)clazz
+                                                            extras:(NSDictionary<NSString *, id> *)extras
 {
   id<FRDIntentReceivable> initObj = [clazz alloc];
   UIViewController<FRDIntentReceivable> *vc = (UIViewController<FRDIntentReceivable> *)[initObj initWithExtras:extras];

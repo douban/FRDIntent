@@ -11,10 +11,10 @@
 @protocol FRDIntentReceivable;
 @interface InitializerHelper : NSObject
 
-+ (nullable UIViewController<FRDIntentReceivable> *)viewControllerFromwClazzName:(nonnull NSString *)clazzName
-                                                                           extras:(nullable NSDictionary<NSString *, id> *)extras;
++ (nullable UIViewController<FRDIntentReceivable> *)viewControllerFromClazzName:(nonnull NSString *)clazzName
+                                                                         extras:(nullable NSDictionary<NSString *, id> *)extras;
 
-+ (nullable UIViewController<FRDIntentReceivable> *)viewControllerFromwClazz:(nonnull Class)clazz
-                                                                      extras:(nullable NSDictionary<NSString *, id> *)extras;
++ (nullable UIViewController<FRDIntentReceivable> *)viewControllerFromClazz:(nonnull Class)clazz
+                                                                     extras:(nullable NSDictionary<NSString *, id> *)extras;
 
 @end
