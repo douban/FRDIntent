@@ -21,13 +21,13 @@
   self = [super init];
   if (self) {
     _data = extras;
+    [self setupWithExtras:extras];
   }
   return self;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.title = @"First View Controller";
   self.view.backgroundColor = [UIColor whiteColor];
 
   UILabel *numberLabel = [[UILabel alloc] init];

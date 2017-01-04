@@ -40,6 +40,7 @@
 		A3D28F7E1E1B5D00008E2E09 /* UIViewController+TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D28F7D1E1B5D00008E2E09 /* UIViewController+TopViewController.m */; };
 		A3D28F811E1B5DD8008E2E09 /* FourthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D28F801E1B5DD8008E2E09 /* FourthViewController.m */; };
 		A3EBF8B31DB35D0100C7ED83 /* FRDURLRoutesRegisters.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3EBF8B21DB35D0100C7ED83 /* FRDURLRoutesRegisters.plist */; };
+		A3F7DF311E1CE28400B558FC /* FRDIntentParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F7DF301E1CE28400B558FC /* FRDIntentParameters.swift */; };
 		A3FE9EE31DF656B6006038DB /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FE9EE21DF656B6006038DB /* Trie.swift */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +119,7 @@
 		A3D28F7F1E1B5DD8008E2E09 /* FourthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthViewController.h; sourceTree = "<group>"; };
 		A3D28F801E1B5DD8008E2E09 /* FourthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthViewController.m; sourceTree = "<group>"; };
 		A3EBF8B21DB35D0100C7ED83 /* FRDURLRoutesRegisters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FRDURLRoutesRegisters.plist; sourceTree = "<group>"; };
+		A3F7DF301E1CE28400B558FC /* FRDIntentParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDIntentParameters.swift; sourceTree = "<group>"; };
 		A3FE9EE21DF656B6006038DB /* Trie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,6 +233,7 @@
 				A354CC761D75B8C200830990 /* FRDControllerDisplay.swift */,
 				A354CC7B1D75B8C200830990 /* FRDPresentationDisplay.swift */,
 				A354CC7C1D75B8C200830990 /* FRDPushDisplay.swift */,
+				A3F7DF301E1CE28400B558FC /* FRDIntentParameters.swift */,
 			);
 			path = Intent;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				A354CC7E1D75B8C200830990 /* FRDControllerManager.swift in Sources */,
 				7111E68E1DFE8032007F9EC8 /* FRDIntentTypealias.swift in Sources */,
 				A354CC831D75B8C200830990 /* FRDPushDisplay.swift in Sources */,
+				A3F7DF311E1CE28400B558FC /* FRDIntentParameters.swift in Sources */,
 				A354CC7F1D75B8C200830990 /* FRDIntent.swift in Sources */,
 				A354CC7D1D75B8C200830990 /* FRDControllerDisplay.swift in Sources */,
 				A382FE421D951C96007099DE /* FRDRouteParameters.swift in Sources */,

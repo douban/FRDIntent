@@ -31,10 +31,9 @@
   NSLog(@"extras: %@", intent.extras);
 
   // Dispatch to another view controller
-  FRDIntent *newIntent = [[FRDIntent alloc] initWithPathIdentifier:@"/user/3001?loc=beijing&uuid=10001#ref"];
-  [newIntent putExtraWithName:@"number" data: [NSNumber numberWithInteger:1]];
+  NSDictionary *datas = @{FRDIntentParameters.title: @"First by dispatch"};
   UIViewController *topViewController = [UIViewController topViewController];
-  [topViewController startControllerWithIntent: newIntent];
+  [topViewController startControllerWithPathIdentifier:@"/user/3001?loc=beijing&uuid=10001#ref" extras:datas];
 
   // must return false to prevent push self view controller.
   return false;

@@ -62,10 +62,8 @@
 
 - (void)gotoFirstViewController
 {
-  //FRDIntent *intent = [[FRDIntent alloc] initWithUrl:[NSURL URLWithString:@"/user/3001?loc=beijing&uuid=10001#ref"]];
-  FRDIntent *intent = [[FRDIntent alloc] initWithPathIdentifier:@"/user/3001?loc=beijing&uuid=10001#ref"];
-  [intent putExtraWithName:@"number" data: [NSNumber numberWithInteger:1]];
-  [self startControllerWithIntent: intent];
+  NSDictionary *datas = @{@"number": @1, FRDIntentParameters.title: @"First" };
+  [self startControllerWithPathIdentifier:@"/user/3001?loc=beijing&uuid=10001#ref" extras:datas];
 }
 
 - (void)gotoSecondViewController
@@ -77,16 +75,16 @@
 
 - (void)gotoThirdViewController
 {
-  FRDIntent *intent = [[FRDIntent alloc] initWithClazz:[ThirdViewController  class]];
-  [intent putExtraWithName:@"number" data: [NSNumber numberWithInteger:3]];
-  [self startControllerForResultWithIntent:intent requestCode:1];
+  NSDictionary *datas = @{@"number": @3, FRDIntentParameters.title: @"Third" };
+  [self startControllerForResultWithPathIdentifier:@"/user/2001/story/1001?loc=beijing&uuid=10001#ref"
+                                            extras:datas
+                                       requestCode:1];
 }
 
 - (void)gotoCheckAndDispatchViewController
 {
-  FRDIntent *intent = [[FRDIntent alloc] initWithClazz:[FourthViewController  class]];
-  [intent putExtraWithName:@"number" data: [NSNumber numberWithInteger:4]];
-  [self startControllerWithIntent:intent];
+  NSDictionary *datas = @{@"number": @4, FRDIntentParameters.title: @"First" };
+  [self startControllerWithPathIdentifier:@"/subject/3001?loc=beijing&uuid=10001#ref" extras:datas];
 }
 
 #pragma mark - FRDIntentForResultSendable
