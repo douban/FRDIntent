@@ -1,1 +1,12 @@
-{"warnings":[],"source_directory":"/Users/guolin/db/FRDIntent"}
+{
+  "warnings": [
+    {
+      "file": "/Users/guolin/db/FRDIntent/FRDIntent/Source/Intent/FRDIntentParameters.swift",
+      "line": 19,
+      "symbol": "FRDIntentParameters.hidesBottomBarWhenPushed",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/guolin/db/FRDIntent"
+}

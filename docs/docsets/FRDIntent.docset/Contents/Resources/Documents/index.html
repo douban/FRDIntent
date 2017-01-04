@@ -13,7 +13,7 @@
     <a title="FRDIntent  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">FRDIntent Docs</a> (100% documented)</p>
+        <p><a href="index.html">FRDIntent Docs</a> (98% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -30,19 +30,25 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/ControllerManager.html">ControllerManager</a>
+                <a href="Classes/FRDControllerManager.html">FRDControllerManager</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/Intent.html">Intent</a>
+                <a href="Classes/FRDIntent.html">FRDIntent</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/PresentationDisplay.html">PresentationDisplay</a>
+                <a href="Classes/FRDIntentParameters.html">FRDIntentParameters</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/PushDisplay.html">PushDisplay</a>
+                <a href="Classes/FRDPresentationDisplay.html">FRDPresentationDisplay</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/URLRouter.html">URLRouter</a>
+                <a href="Classes/FRDPushDisplay.html">FRDPushDisplay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/FRDRouteParameters.html">FRDRouteParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/FRDURLRoutes.html">FRDURLRoutes</a>
               </li>
             </ul>
           </li>
@@ -50,7 +56,15 @@
             <a href="Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Enums/ResultCode.html">ResultCode</a>
+                <a href="Enums/FRDResultCode.html">FRDResultCode</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/UIViewController.html">UIViewController</a>
               </li>
             </ul>
           </li>
@@ -58,16 +72,16 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols/ControllerDisplay.html">ControllerDisplay</a>
+                <a href="Protocols/FRDControllerDisplay.html">FRDControllerDisplay</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/IntentForResultReceivable.html">IntentForResultReceivable</a>
+                <a href="Protocols/FRDIntentForResultReceivable.html">FRDIntentForResultReceivable</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/IntentForResultSendable.html">IntentForResultSendable</a>
+                <a href="Protocols/FRDIntentForResultSendable.html">FRDIntentForResultSendable</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/IntentReceivable.html">IntentReceivable</a>
+                <a href="Protocols/FRDIntentReceivable.html">FRDIntentReceivable</a>
               </li>
             </ul>
           </li>
@@ -79,78 +93,111 @@
             
             <a href='#frdintent' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='frdintent'>FRDIntent</h1>
 
-<p><a href="https://developer.apple.com/swift/"><img src="https://img.shields.io/badge/language-Swift%202-orange.svg" alt="Language">
+<p><a href="https://travis-ci.org/douban/FRDIntent"><img src="https://travis-ci.org/douban/FRDIntent.svg?branch=master" alt="Test Status"></a>
+<a href="https://developer.apple.com/swift/"><img src="https://img.shields.io/badge/language-Swift%203-orange.svg" alt="Language">
 </a>
+<a href=""><img src="https://img.shields.io/badge/XCode-8-blue.svg" alt="IDE"></a>
 <a href=""><img src="https://img.shields.io/badge/iOS-8.0-green.svg" alt="iOS"></a></p>
 
-<p><strong>FRDIntent</strong> 包括两部分 Intent 和 URLRouter。它们分别可以用于处理应用内和应用外的 ViewController 调用。</p>
+<p><strong><a href="./README_EN.md">README in English</a></strong></p>
+
+<p><strong>FRDIntent</strong> 包括两部分 <code>FRDIntent/Intent</code> 和 <code>FRDIntent/URLRoutes</code>。它们分别可以用于处理 iOS 系统中，应用内和应用外的 view controller 调用。</p>
+
+<p><code>FRDIntent/Intent</code> 是一个消息传递对象，用于启动 UIViewController。可以认为它是对 Android 系统中的 <a href="https://developer.android.com/guide/components/intents-filters.html">Intent</a> 的模仿。</p>
+
+<p><code>FRDIntent/URLRoutes</code> 是一个 URL Router。通过 FRDIntent/URLRoutes 可以用 URL 调起一个注册过的 block。</p>
+
+<p>可以看出，FRDIntent/URLRoutes 和社区已经存在的诸多 URL Routers 的功能和目的差别不大。在 FRDIntent 中，实现 URLRoutes 是为了让 FRDIntent/URLRoutes 和 FRDIntent/Intent 一起配合解决应用内和应用外 view controller 的调用。Intent 处理内部 view controller 跳转；URLRoutes 负责外部调用。在 FRDIntent/URLRoutes 的实现中，FRDIntent/URLRoutes 只是起了暴露外部调用入口，接收外部调用的作用。在应用内，仍然是通过 FRDIntent/Intent 启动 view controller。也就是说外部调用实际上是通过内部调用实现的。</p>
+
+<p>这么做其实是为了隔离了外部调用和内部调用，做这个区分会带来一些好处：</p>
+
+<ul>
+<li>iOS 系统提供的通过 URL 调用另外一个应用功能本身就是使用在应用间的。iOS 系统中，应用之间的隔离是清晰而明确的，通过 URL 在应用之间传递信息是合适的。但是，如果在应用内部调用也使用 URL 传递信息，就会带来诸多限制。Intent 更适合内部调用的场景。通过 Intent，可以传递复杂数据对象，可以较容易地定义转场动画。这些在 URL 方案中都很难做到。</li>
+<li>区分了外部调用和内部调用。我们就可以选择是否将一个内部调用暴露给外部使用。这就避免了在 URL 的方案中，无法区分内部调用和外部调用，将本应只给内部使用的调用也暴露给了外部。</li>
+</ul>
 <a href='#' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id=''>安装</h2>
 <a href='#install-cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='install-cocoapods'>Install Cocoapods</h3>
 
-<p><a href="http://cocoapods.org">CocoaPods</a> is a dependency manager for Objective-C and Swift. You can install it with the following command:</p>
+<p><a href="http://cocoapods.org">CocoaPods</a> 是一个 Objective-c 和 Swift 的依赖管理工具。你可以通过以下命令安装 CocoaPods：</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>gem install cocoapods
 </code></pre>
 <a href='#podfile' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='podfile'>Podfile</h3>
 
 <p>只使用 FRDInent/Intent：</p>
 <pre class="highlight ruby"><code><span class="n">target</span> <span class="s1">'TargetName'</span> <span class="k">do</span>
-  <span class="n">pod</span> <span class="s1">'FRDIntent/Intent'</span><span class="p">,</span> <span class="s1">'~&gt; 0.8.0'</span>
+  <span class="n">pod</span> <span class="s1">'FRDIntent/Intent'</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">'https://github.com/douban/FRDIntent.git'</span><span class="p">,</span> <span class="ss">:commit</span> <span class="o">=&gt;</span> <span class="s1">'0.8.0'</span>
 <span class="k">end</span>
 </code></pre>
 
-<p>使用 FRDIntent/Intent 和 FRDIntent/URLRouter：</p>
+<p>使用 FRDIntent/Intent 和 FRDIntent/URLRoutes：</p>
 <pre class="highlight ruby"><code><span class="n">target</span> <span class="s1">'TargetName'</span> <span class="k">do</span>
-  <span class="n">pod</span> <span class="s1">'FRDIntent'</span><span class="p">,</span> <span class="s1">'~&gt; 0.8.0'</span>
+  <span class="n">pod</span> <span class="s1">'FRDIntent'</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">'https://github.com/douban/FRDIntent.git'</span><span class="p">,</span> <span class="ss">:commit</span> <span class="o">=&gt;</span> <span class="s1">'0.8.0'</span>
 <span class="k">end</span>
 </code></pre>
 
-<p>注意：<code>pod FRDInent</code> 和 <code>pod FRDIntent/URLRouter</code> 将引入相同的代码。这是因为 FRDIntent/URLRouter 依赖于 FRDIntent/Intent。</p>
+<p>注意：<code>pod FRDInent</code> 和 <code>pod FRDIntent/URLRoutes</code> 将引入相同的代码。这是因为 FRDIntent/URLRoutes 依赖于 FRDIntent/Intent。</p>
 
 <p>然后，命令行运行：</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>pod install
 </code></pre>
+<a href='#' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id=''>版本</h3>
+
+<p>版本选择：<a href="https://github.com/douban/FRDIntent/releases">https://github.com/douban/FRDIntent/releases</a>。</p>
 <a href='#intent' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='intent'>Intent</h2>
 
-<p>FRDIntent/Intent 是一个消息传递对象，用于启动 UIViewController。可以认为它是对 Android 系统中的 <a href="https://developer.android.com/guide/components/intents-filters.html">Intent</a> 的模仿。当然，FRDIntent/Intent 对 Android Intent 而言，做了极度简化。这是因为 FRDIntent/Intent 的使用场景更为简单：只处理应用内的  ViewController 间跳转。</p>
+<p><code>FRDIntent/Intent</code> 是一个消息传递对象，用于启动 UIViewController。可以认为它是对 Android 系统中的 <a href="https://developer.android.com/guide/components/intents-filters.html">Intent</a> 的模仿。当然，相对于 Android Intent，FRDIntent/Intent 做了极度简化。这是因为 FRDIntent/Intent 的使用场景更为简单：只处理应用内的 view controller 间跳转。</p>
 
-<p>直接使用 iOS 系统方法完成各 ViewController 之间的跳转，各 ViewController 代码会耦合得很紧密。跳转时，一个 ViewController 需要知道下一个 ViewController 是如何创建的各种细节。这造成了 ViewController 之间的依赖。使用 FRDIntent/Intent 传递 ViewController 跳转信息。解除各 ViewController 代码的耦合。如果需要对项目进行模块化，重要的一步就是解除各 ViewController 代码的耦合。在这方面，FRDIntent 是一个可以考虑的方案。</p>
+<p>直接使用 iOS 系统方法完成各 view controller 之间的跳转，各 view controller 会耦合得很紧。跳转时，一个 view controller 需要知道下一个 view controller 是如何创建的各种细节。这造成了 view controller 之间的依赖。使用 FRDIntent/Intent 传递跳转信息，可以解除 view controller 之间的耦合。</p>
+
+<p>如果需要对项目进行模块化，重要的一步就是解除各 view controller 之间的耦合。在这方面，FRDIntent 是一个可以考虑的方案。</p>
 
 <p>FRDIntent/Intent 有如下优势：</p>
 
 <ul>
-<li>充分解耦。调用者和被调用者完全隔离，调用者只需要依赖协议：<code>IntentReceivable</code>。一个 ViewControlller 符合该协议即可被启动。</li>
+<li>充分解耦。调用者和被调用者完全隔离，被调用者只需要依赖协议：<code>FRDIntentReceivable</code>。一个 UIViewControlller 符合该协议即可被启动。</li>
 <li>对于“启动一个页面，并从该页面获取结果”这种较普遍的需求提供了一个通用的解决方案。具体查看方法：startControllerForResult。这是对 Android 中 startActivityForResult 的模仿和简化。</li>
 <li>支持自定义转场动画。</li>
-<li>可以传递复杂数据对象。</li>
+<li>支持传递复杂数据对象。</li>
 </ul>
 <a href='#' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id=''>使用</h3>
 
-<p>主要通过类 <code>ControllerManager</code> 使用 FRDIntent/Intent。它提供了三个方法：<code>register</code> 用于注册，<code>startController</code> 和 <code>startControllerForResult</code> 用于启动页面。</p>
+<p>主要通过类 <code>FRDControllerManager</code> 使用 FRDIntent/Intent。它提供了三个方法：<code>register</code> 用于注册，<code>startController</code> 和 <code>startControllerForResult</code> 用于启动页面。</p>
 <a href='#' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id=''>注册</h4>
-<pre class="highlight plaintext"><code>  let controllerManager = ControllerManager.sharedInstance
-  controllerManager.register(NSURL(string: "/frodo/firstViewController")!, clazz: FirstViewController.self)
+
+<p>通过代码注册：</p>
+<pre class="highlight plaintext"><code>  let controllerManager = FRDControllerManager.sharedInstance
+  controllerManager.register(URL(string: "/frodo/firstview")!, clazz: FirstViewController.self)
 </code></pre>
-<a href='#viewcontroller' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='viewcontroller'>通过指定类名启动 ViewController</h4>
-<pre class="highlight plaintext"><code>  let intent = Intent(clazz: SecondViewController.self)
-  let manager = ControllerManager.sharedInstance
+
+<p>通过 plist 文件批量注册：</p>
+<pre class="highlight plaintext"><code>  let plistPath = Bundle.main.path(forResource: "FRDIntentRegisters", ofType: "plist")
+  let controllerManager = FRDControllerManager.sharedInstance
+  controllerManager.register(plistFile: plistPath)
+</code></pre>
+<a href='#view-controller' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='view-controller'>启动 view controller</h4>
+
+<p>通过指定类名启动 view controller:</p>
+<pre class="highlight plaintext"><code>  let intent = FRDIntent(clazz: SecondViewController.self)
+  let manager = FRDControllerManager.sharedInstance
   manager.startController(source: self, intent: intent)
 </code></pre>
-<a href='#url-viewcontroller' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='url-viewcontroller'>通过 URL 启动 ViewController</h4>
-<pre class="highlight plaintext"><code>  let intent = Intent(uri: NSURL(string: "/frodo/firstViewController")!)
-  let manager = ControllerManager.sharedInstance
+
+<p>通过 URL 启动 view controller:</p>
+<pre class="highlight plaintext"><code>  let intent = FRDIntent(uri: URL(string: "/frodo/firstview")!)
+  let manager = FRDControllerManager.sharedInstance
   manager.startController(source: self, intent: intent)
 </code></pre>
-<a href='#viewcontroller' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='viewcontroller'>启动一个会返回结果的 ViewController</h4>
+<a href='#view-controller' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='view-controller'>启动一个会返回结果的 view controller</h4>
 
-<p>调用页面，也是接受返回结果的页面需要符合协议 <code>IntentForResultSendable</code>：</p>
-<pre class="highlight plaintext"><code>  extension ViewController: IntentForResultSendable {
+<p>调用页面，该页面同时也是接受返回结果的页面。该 view controller 需要符合协议 <code>FRDIntentForResultSendable</code>：</p>
+<pre class="highlight plaintext"><code>  extension ViewController: FRDIntentForResultSendable {
 
-    func onControllerResult(requestCode requestCode: Int, resultCode: ResultCode, data: Intent) {
+    func onControllerResult(requestCode: Int, resultCode: FRDResultCode, data: Intent) {
       if (requestCode == RequestText) {
-        if (resultCode == .Ok) {
+        if (resultCode == .ok) {
           let text = data.extra["text"]
           print("Successful confirm get from destination : \(text)")
-        } else if (resultCode == .Canceled) {
+        } else if (resultCode == .canceled) {
           let text = data.extra["text"]
           print("Canceled get from destination : \(text)")
         }
@@ -160,31 +207,29 @@
   }
 </code></pre>
 
-<p>被调用页面需要符合协议 <code>IntentForResultReceivable</code>, 该协议是 <code>IntentReceivable</code> 的子协议。在 <code>IntentReceivable</code> 基础上，多了两个实例变量定义：</p>
-<pre class="highlight plaintext"><code>  var data: [String: Any]?
+<p>被调用的 view controller 需要符合协议 <code>FRDIntentForResultReceivable</code>。该协议是 <code>FRDIntentReceivable</code> 的子协议。在 <code>FRDIntentReceivable</code> 基础上，多了两个实例变量定义：</p>
+<pre class="highlight plaintext"><code>  var delegate: FRDIntentForResultSendable?
   var requestCode: Int?
 </code></pre>
 
 <p>通过 <code>startControllerForResult</code> 启动页面：</p>
-<pre class="highlight plaintext"><code>  let intent = Intent(clazz: ThirdViewController.self)
+<pre class="highlight plaintext"><code>  let intent = FRDIntent(clazz: ThirdViewController.self)
   intent.putExtra(name: "text", data: "Text From Source")
-  let manager = ControllerManager.sharedInstance
+  let manager = FRDControllerManager.sharedInstance
   manager.startControllerForResult(source: self, intent: intent, requestCode: RequestText)
 </code></pre>
 <a href='#' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id=''>自定义转场动画</h4>
 
-<p>在 FRDIntent 中，转场动画被抽象为协议：<code>ControllerDisplay</code>，并且已提供了两个转场动画的实现：<code>PushDisplay</code> 和 <code>PresentationDisplay</code>。自定义转场动画的实现需要符合该协议。</p>
+<p>在 FRDIntent 中，转场动画被抽象为协议：<code>FRDControllerDisplay</code>。自定义转场动画的实现需要符合该协议，并在启动页面时，将自定义的转场动画对象赋给 <code>FRDIntent</code> 的实例变量 <code>controllerDisplay</code> 即可完成转场动画的设置。</p>
 
-<p>在启动其他页面时，将自定义的转场动画对象赋给 <code>Intent</code> 的实例变量 <code>controllerDisplay</code> 即可。</p>
+<p>FRDIntent/Intent 已提供了两个转场动画的实现：<code>FRDPushDisplay</code> 和 <code>FRDPresentationDisplay</code>。如果不指定转场动画，通过 <code>startController</code> 启动页面使用的是 <code>FRDPushDisplay</code>；通过 <code>startControllerForResult</code> 启动页面使用的是 <code>FRDPresentationDisplay</code>。</p>
+<a href='#urlroutes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='urlroutes'>URLRoutes</h2>
 
-<p>如果不指定转场动画，通过 <code>startController</code> 启动页面使用的是 <code>PushDisplay</code>；通过 <code>startControllerForResult</code> 启动页面使用的是 <code>PresentationDisplay</code>。</p>
-<a href='#urlrouter' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='urlrouter'>URLRouter</h2>
+<p><code>FRDIntent/URLRoutes</code> 是一个 URL Router。通过 FRDIntent/URLRoutes 可以用 URL 调起一个注册过的 block。</p>
 
-<p>FRDIntent/URLRouter 是一个 URL Router。通过 FRDIntent/URLRouter 可以用 URL 调起一个注册过的 block。</p>
+<p>iOS 系统为各个应用间的相互调用提供了一种基于 URL 的处理方案。即应用可以声明自己可以处理某些有特定 scheme 和 host 的 URL。其他应用就可以通过调用这些 URL 而跳转到该应用的某些页面。</p>
 
-<p>iOS 系统为各个应用间的 ViewController 相互跳转提供了一种基于 URL 的处理方案。即应用可以声明自己可以处理某些有特定 scheme 和 host 的 URL。其他应用就可以通过调用这些 URL 而跳转到该应用的某些页面。</p>
-
-<p>FRDIntent/URLRouter 是为了使得 iOS 系统中这种基于 URL 的应用间调用的处理更为简单。所以 FRDIntent/URLRouter 和社区已经存在的诸多 URL Routers 的功能和目的差别不大。FRDIntent 实现 URLRouter 是为了使 FRDIntent/URLRouter 可以和 FRDIntent/Intent 配合解决应用内和应用外 ViewController 的调用。</p>
+<p>FRDIntent/URLRoutes 是为了使得 iOS 系统中这种基于 URL 的应用间调用的处理更为简单。所以 FRDIntent/URLRoutes 和社区已经存在的诸多 URL Routers 的功能和目的差别不大。FRDIntent 实现 URLRoutes 是为了使 FRDIntent/URLRoutes 可以和 FRDIntent/Intent 配合解决应用内和应用外 view controller 的调用。</p>
 <a href='#' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id=''>使用</h3>
 <a href='#url' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='url'>向系统暴露应用可以接收的 URL</h4>
 
@@ -198,40 +243,47 @@
 <li>Icon:</li>
 </ul>
 <a href='#url' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='url'>接管应用的 URL 处理</h4>
-<pre class="highlight plaintext"><code>  func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -&gt; Bool {
-    return URLRouter.sharedInstance.route(url: url)
+<pre class="highlight plaintext"><code>  func application(app: UIApplication, openURL url: URL, options: [String : AnyObject]) -&gt; Bool {
+    return FRDURLRoutes.sharedInstance.route(url: url)
   }
 </code></pre>
 <a href='#' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id=''>注册</h4>
 
-<p>注册一个 ViewControler。在第三方应用调起该 URL 时，会该启动该 ViewController。该 ViewController 的进入动画为 Push 横滑进入方式。</p>
-<pre class="highlight plaintext"><code>  let router = URLRouter.sharedInstance
-  router.register(url: NSURL(string: "/story/:storyId")!, clazz: SecondViewController.self)
+<p>通过代码注册一个 view controler。在第三方应用调起该 URL 时，会启动该 view controller。该 view controller 的进入动画为 Push 横滑进入方式。</p>
+<pre class="highlight plaintext"><code>  let routes = FRDURLRoutes.sharedInstance
+  routes.register(url: URL(string: "/story/:storyId")!, clazz: SecondViewController.self)
 </code></pre>
 
-<p>注册一个 block handler。下面例子中的 block handler 中，用注册时的 URL 构造了一个 Intent，并将该 Intent 送出。ControllerManager 会处理这个 Intent。看是否有合适的 ViewController 可以被启动。</p>
+<p>通过 plist 文件批量注册，效果和上面通过代码注册一样。注册的 view controller 进入动画都为 Push 横滑进入方式。</p>
+<pre class="highlight plaintext"><code>  let plistPath = Bundle.main.path(forResource: "FRDURLRoutesRegisters", ofType: "plist")
+  let routes = FRDURLRoutes.sharedInstance
+  routes.register(plistFile: plistPath)
+</code></pre>
 
-<p>如果，需要定制 ViewController 的转场动画，可以使用该方法注册 URL。</p>
-<pre class="highlight plaintext"><code>  let router = URLRouter.sharedInstance
-  router.register(url: NSURL(string: "/user/:userId")!) { (params: [String: Any]) in
-    let intent = Intent(url: params[URLRouter.URLRouterURL] as! NSURL)
+<p>注册一个 block handler。下面例子中的 block handler 中，用注册时的 URL 构造了一个 Intent，并将该 Intent 送出。FRDControllerManager 会处理这个 Intent。看是否有合适的 view controller 可以被启动。</p>
+
+<p>如果，需要定制 view controller 的转场动画，可以使用该方法注册 URL。</p>
+<pre class="highlight plaintext"><code>  let router = FRDURLRoutes.sharedInstance
+  router.register(url: URL(string: "/user/:userId")!) { (params: [String: Any]) in
+    let intent = Intent(url: params[URLRoutes.URLRoutesURL] as! URL)
     if let topViewController = UIApplication.topViewController() {
-      ControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
+      FRDControllerManager.sharedInstance.startController(source: topViewController, intent: intent)
     }
   }
 </code></pre>
-<a href='#urlrouter-intent' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='urlrouter-intent'>URLRouter 和 Intent</h2>
+<a href='#url' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='url'>获取 URL 参数</h3>
 
-<p>FRDIntent/URLRouter 和 FRDIntent/Intent 可以配合使用的。Intent 处理内部 ViewController 跳转；URLRouter 负责外部调用。在 FRDIntent/URLRouter 的实现中，FRDIntent/URLRouter 只是起了暴露外部调用入口，接收外部调用的作用。在应用内，仍然是通过 FRDIntent/Intent 启动 ViewController。</p>
+<p>FRDIntent/URLRoutes 支持简单的 URL 参数模式适配。上例中，我们以模式匹配的形式注册了 URL <code>&quot;/story/:storyId&quot;</code>。如有诸如 <code>frdintent://frdintent.com/story/123</code> 这样的外部调用，FRDIntent/URLRoutes 会将键 <code>storyId</code> 和值 <code>123</code> 存入 block handler 的参数 params 中。这样在 block handler 中就能通过键 <code>storyId</code> 获取值 <code>123</code>。</p>
+<a href='#' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id=''>注意点</h2>
+<a href='#prefix' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='prefix'>Prefix</h4>
 
-<p>这么做其实是为了隔离了外部调用和内部调用，做这个区分会带来一些好处：</p>
+<p>Swift 由于有可见性声明，并无需前缀来避免命名冲突。所以，前缀在 Swift 项目中并不需要。但我们仍然为公开类都添加了<code>FRD</code>前缀。这是由于该库仍然主要供 Objective-C 项目使用，为了避免 Objective-C 代码的命名冲突，还是加上了前缀。</p>
+<a href='#source' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='source'>参数 source 的类型</h4>
 
-<p>iOS 提供的通过 URL 调用另外一个 ViewController 的方案更适合用在应用间的外部调用。iOS 系统中应用之间的隔离是清晰而明确的，通过 URL 传递信息是合适的。但如果内部调用也使用 URL 传递信息，就会会带来诸多限制。Intent 更适合内部调用的场景。通过 Intent，可以传递复杂数据对象，可以较容易地定义转场动画。</p>
-
-<p>区分了外部调用和内部调用。我们就可以选择是否要将一个内部调用给暴露外部使用。这就避免了使用 URL 的方案中，本质上是内部额调用也暴露给应用外部了。</p>
+<p>FRDControllerManager 的方法 <code>startControllerForResult(source: UIViewController, intent: FRDIntent, requestCode: Int)</code> 没有严格限制 <code>source</code> 参数类型。<code>source</code> 精确的类型应该分别是形如 <code>UIViewController&lt;FRDIntentForResultSendable&gt;</code> 所表达的：“这是一个类，并且符合一个协议”。这在 Swift 3 中，仍然需要别扭地使用泛型声明来实现。但这里使用泛型声明并不精确，同时更麻烦的是泛型方法无法暴露给 Objective-C 使用。因此，FRDIntent 做了折衷，<code>source</code> 类型只是 UIViewController。使用者需要自己保证它也是符合 <code>FRDIntentForResultSendable</code> 协议的。</p>
 <a href='#frdintentdemo' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='frdintentdemo'>FRDIntentDemo</h2>
 
-<p>FRDIntentDemo 对 FRDIntent 各种使用方法都做了演示。</p>
+<p>FRDIntentDemo 对 FRDIntent 各种使用方法都做了演示。FRDIntentDemo 使用 Objective-C 实现，这是为了演示 FRDIntent 虽然使用 Swift 完成，但是对 Objective-C 有良好的兼容。</p>
 
 <p>对于外部调用的演示，可以在模拟器的 Safari 的地址栏中输入 <code>frdintent://frdintent.com/user/123</code>。正常情况下，访问该 URL 将会启动 FRDIntentDemo，并进入 FirstViewController。</p>
 <a href='#' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id=''>单元测试</h2>
@@ -239,13 +291,13 @@
 <p>FRDIntentTests 文件夹包含了 FRDIntent 单元测试代码。单元测试不仅是对代码正确性的验证，也是查看如何使用 FRDIntent 的良好示例。</p>
 <a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
 
-<p>FRDIntent is released under the MIT license. See LICENSE for details.</p>
+<p>The MIT license.</p>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://github.intra.douban.com/guolin/FRDIntent" target="_blank" rel="external">lincode</a>. All rights reserved. (Last updated: 2016-09-01)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://github.com/douban/FRDIntent" target="_blank" rel="external">lincode</a>. All rights reserved. (Last updated: 2017-01-04)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
