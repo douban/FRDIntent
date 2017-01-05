@@ -25,13 +25,13 @@
   self = [super init];
   if (self) {
     _data = extras;
+    [self setupWithExtras:extras];
   }
   return self;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.title = @"Third View Controller";
   self.view.backgroundColor = [UIColor whiteColor];
 
   UIBarButtonItem *dismiss = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel

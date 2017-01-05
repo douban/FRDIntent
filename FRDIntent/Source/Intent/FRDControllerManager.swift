@@ -86,7 +86,11 @@ public class FRDControllerManager: NSObject {
         intent.putExtra(name: key, data: value)
       }
 
-      if let destination = InitializerHelper.viewControllerFromwClazz(controllerClazz, extras: intent.extras) {
+      if let destination = InitializerHelper.viewController(fromClazz: controllerClazz, extras: intent.extras) as? FRDIntentReceivable {
+
+        if let validateResult = destination.validate?(intent: intent), validateResult == false {
+          return
+        }
 
         let display: FRDControllerDisplay
         if let controllerDisplay = intent.controllerDisplay {
@@ -95,7 +99,9 @@ public class FRDControllerManager: NSObject {
           display = FRDPushDisplay()
         }
 
-        display.displayViewController(source: source, destination: destination)
+        if let destination = destination as? UIViewController {
+          display.displayViewController(source: source, destination: destination)
+        }
       }
 
     }
@@ -133,7 +139,11 @@ public class FRDControllerManager: NSObject {
         intent.putExtra(name: key, data: value)
       }
 
-      if let destination = InitializerHelper.viewControllerFromwClazz(controllerClazz, extras: intent.extras) as? FRDIntentForResultReceivable {
+      if let destination = InitializerHelper.viewController(fromClazz: controllerClazz, extras: intent.extras) as? FRDIntentForResultReceivable {
+
+        if let validateResult = destination.validate?(intent: intent), validateResult == false {
+          return
+        }
 
         destination.setRequestCode(requestCode)
         if let source = source as? FRDIntentForResultSendable {
@@ -161,13 +171,26 @@ public class FRDControllerManager: NSObject {
 public extension UIViewController {
 
   /**
-   Launch a view controller from source view controller with a intent.
+   Launch a view controller from source view controller with an intent.
    @see FRDControllerManager#startController(intent: FRDIntent)
 
    - parameter intent: The intent for launch a new view controller.
    */
   func startController(intent: FRDIntent) {
     FRDControllerManager.sharedInstance.startController(source: self, intent: intent)
+  }
+
+  /**
+   Launch a view controller from source view controller without creating an intent.
+   @see FRDControllerManager#startController(intent: FRDIntent)
+
+   - parameter pathIdentifier: The pathIdentifier for initializing the intent.
+   - parameter extras: The datas for initializing the intent.
+   */
+  func startController(pathIdentifier: String, extras: [String: AnyObject]) {
+    let intent = FRDIntent(pathIdentifier: pathIdentifier)
+    intent.putExtras(datas: extras)
+    self.startController(intent: intent)
   }
 
   /**
@@ -180,6 +203,36 @@ public extension UIViewController {
    */
   func startControllerForResult(intent: FRDIntent, requestCode: Int) {
     FRDControllerManager.sharedInstance.startControllerForResult(source: self, intent: intent, requestCode: requestCode)
+  }
+
+  /**
+   Launch a view controller for which you would like a result when it finished without creating an intent.
+   When this view controller exits, your onControllerResult() method will be called with the given requestCode.
+   @see FRDControllerManager#startControllerForResult(source: UIViewController, intent: FRDIntent, requestCode: Int)
+   
+   - parameter pathIdentifier: The pathIdentifier for initializing the intent.
+   - parameter extras: The datas for initializing the intent.
+   - parameter requestCode : this code will be returned in onControllerResult() when the view controller exits.
+   */
+  func startControllerForResult(pathIdentifier: String, extras: [String: AnyObject], requestCode: Int) {
+    let intent = FRDIntent(pathIdentifier: pathIdentifier)
+    intent.putExtras(datas: extras)
+    self.startControllerForResult(intent: intent, requestCode: requestCode)
+  }
+
+  /**
+   The FRDReceivable Controller can use this method to setup default information from intent's extras.
+
+   - parameter extras: The datas of intent received.
+   */
+  func setup(extras: [String: AnyObject]) {
+    if let title = extras[FRDIntentParameters.title] as? String {
+      self.title = title
+    }
+
+    if let hidesBottomBarWhenPushed = extras[FRDIntentParameters.hidesBottomBarWhenPushed] as? Bool {
+      self.hidesBottomBarWhenPushed = hidesBottomBarWhenPushed
+    }
   }
 
 }

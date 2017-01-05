@@ -13,7 +13,7 @@
     <a title="Protocols  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">FRDIntent Docs</a> (100% documented)</p>
+        <p><a href="index.html">FRDIntent Docs</a> (98% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -30,19 +30,25 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/ControllerManager.html">ControllerManager</a>
+                <a href="Classes/FRDControllerManager.html">FRDControllerManager</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/Intent.html">Intent</a>
+                <a href="Classes/FRDIntent.html">FRDIntent</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/PresentationDisplay.html">PresentationDisplay</a>
+                <a href="Classes/FRDIntentParameters.html">FRDIntentParameters</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/PushDisplay.html">PushDisplay</a>
+                <a href="Classes/FRDPresentationDisplay.html">FRDPresentationDisplay</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/URLRouter.html">URLRouter</a>
+                <a href="Classes/FRDPushDisplay.html">FRDPushDisplay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/FRDRouteParameters.html">FRDRouteParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/FRDURLRoutes.html">FRDURLRoutes</a>
               </li>
             </ul>
           </li>
@@ -50,7 +56,15 @@
             <a href="Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Enums/ResultCode.html">ResultCode</a>
+                <a href="Enums/FRDResultCode.html">FRDResultCode</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/UIViewController.html">UIViewController</a>
               </li>
             </ul>
           </li>
@@ -58,16 +72,16 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols/ControllerDisplay.html">ControllerDisplay</a>
+                <a href="Protocols/FRDControllerDisplay.html">FRDControllerDisplay</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/IntentForResultReceivable.html">IntentForResultReceivable</a>
+                <a href="Protocols/FRDIntentForResultReceivable.html">FRDIntentForResultReceivable</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/IntentForResultSendable.html">IntentForResultSendable</a>
+                <a href="Protocols/FRDIntentForResultSendable.html">FRDIntentForResultSendable</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/IntentReceivable.html">IntentReceivable</a>
+                <a href="Protocols/FRDIntentReceivable.html">FRDIntentReceivable</a>
               </li>
             </ul>
           </li>
@@ -86,9 +100,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P9FRDIntent23IntentForResultSendable"></a>
-                    <a name="//apple_ref/swift/Protocol/IntentForResultSendable" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P9FRDIntent23IntentForResultSendable">IntentForResultSendable</a>
+                    <a name="/s:P9FRDIntent26FRDIntentForResultSendable"></a>
+                    <a name="//apple_ref/swift/Protocol/FRDIntentForResultSendable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P9FRDIntent26FRDIntentForResultSendable">FRDIntentForResultSendable</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -98,13 +112,13 @@
                       <div class="abstract">
                         <p>The protocol to abstract the view controller tha can send the Intent for request a result from the destination.</p>
 
-                        <a href="Protocols/IntentForResultSendable.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/FRDIntentForResultSendable.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">IntentForResultSendable</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FRDIntentForResultSendable</span></code></pre>
 
                         </div>
                       </div>
@@ -114,9 +128,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P9FRDIntent25IntentForResultReceivable"></a>
-                    <a name="//apple_ref/swift/Protocol/IntentForResultReceivable" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P9FRDIntent25IntentForResultReceivable">IntentForResultReceivable</a>
+                    <a name="/s:P9FRDIntent28FRDIntentForResultReceivable"></a>
+                    <a name="//apple_ref/swift/Protocol/FRDIntentForResultReceivable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P9FRDIntent28FRDIntentForResultReceivable">FRDIntentForResultReceivable</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -126,13 +140,13 @@
                       <div class="abstract">
                         <p>The protocol to abstract the view controller tha can receive the Intent for request a result from the destination.</p>
 
-                        <a href="Protocols/IntentForResultReceivable.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/FRDIntentForResultReceivable.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">IntentForResultReceivable</span><span class="p">:</span> <span class="kt"><a href="Protocols/IntentReceivable.html">IntentReceivable</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FRDIntentForResultReceivable</span><span class="p">:</span> <span class="kt"><a href="Protocols/FRDIntentReceivable.html">FRDIntentReceivable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -146,9 +160,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P9FRDIntent17ControllerDisplay"></a>
-                    <a name="//apple_ref/swift/Protocol/ControllerDisplay" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P9FRDIntent17ControllerDisplay">ControllerDisplay</a>
+                    <a name="/s:P9FRDIntent20FRDControllerDisplay"></a>
+                    <a name="//apple_ref/swift/Protocol/FRDControllerDisplay" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P9FRDIntent20FRDControllerDisplay">FRDControllerDisplay</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -158,13 +172,13 @@
                       <div class="abstract">
                         <p>The protocol for abstract the way of how display the destination view controller.</p>
 
-                        <a href="Protocols/ControllerDisplay.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/FRDControllerDisplay.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ControllerDisplay</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FRDControllerDisplay</span></code></pre>
 
                         </div>
                       </div>
@@ -178,9 +192,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P9FRDIntent16IntentReceivable"></a>
-                    <a name="//apple_ref/swift/Protocol/IntentReceivable" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P9FRDIntent16IntentReceivable">IntentReceivable</a>
+                    <a name="/s:P9FRDIntent19FRDIntentReceivable"></a>
+                    <a name="//apple_ref/swift/Protocol/FRDIntentReceivable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P9FRDIntent19FRDIntentReceivable">FRDIntentReceivable</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -190,13 +204,13 @@
                       <div class="abstract">
                         <p>The protocol to abstract the view controller tha can receive the Intent.</p>
 
-                        <a href="Protocols/IntentReceivable.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/FRDIntentReceivable.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">IntentReceivable</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FRDIntentReceivable</span></code></pre>
 
                         </div>
                       </div>
@@ -208,8 +222,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://github.intra.douban.com/guolin/FRDIntent" target="_blank" rel="external">lincode</a>. All rights reserved. (Last updated: 2016-09-01)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://github.com/douban/FRDIntent" target="_blank" rel="external">lincode</a>. All rights reserved. (Last updated: 2017-01-04)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

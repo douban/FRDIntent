@@ -8,9 +8,9 @@
 #import <FRDIntent/FRDIntent-Swift.h>
 
 #import "MainViewController.h"
-#import "FirstViewController.h"
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
+#import "FourthViewController.h"
 
 @interface MainViewController () <FRDIntentForResultSendable>
 @end
@@ -49,14 +49,21 @@
         forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:thirdbutton];
 
+  UIButton *fourthbutton = [UIButton buttonWithType:UIButtonTypeCustom];
+  fourthbutton.frame = CGRectMake(20, 400, self.view.bounds.size.width - 40, 44);
+  [fourthbutton setTitle:@"Check intent and dispatch" forState:UIControlStateNormal];
+  fourthbutton.backgroundColor = [UIColor greenColor];
+  [fourthbutton addTarget:self
+                  action:@selector(gotoCheckAndDispatchViewController)
+        forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:fourthbutton];
+
 }
 
 - (void)gotoFirstViewController
 {
-  //FRDIntent *intent = [[FRDIntent alloc] initWithUrl:[NSURL URLWithString:@"/user/3001?loc=beijing&uuid=10001#ref"]];
-  FRDIntent *intent = [[FRDIntent alloc] initWithPathIdentifier:@"/user/3001?loc=beijing&uuid=10001#ref"];
-  [intent putExtraWithName:@"number" data: [NSNumber numberWithInteger:1]];
-  [self startControllerWithIntent: intent];
+  NSDictionary *datas = @{@"number": @1, FRDIntentParameters.title: @"First" };
+  [self startControllerWithPathIdentifier:@"/user/3001?loc=beijing&uuid=10001#ref" extras:datas];
 }
 
 - (void)gotoSecondViewController
@@ -68,9 +75,16 @@
 
 - (void)gotoThirdViewController
 {
-  FRDIntent *intent = [[FRDIntent alloc] initWithClazz:[ThirdViewController  class]];
-  [intent putExtraWithName:@"number" data: [NSNumber numberWithInteger:3]];
-  [self startControllerForResultWithIntent:intent requestCode:1];
+  NSDictionary *datas = @{@"number": @3, FRDIntentParameters.title: @"Third" };
+  [self startControllerForResultWithPathIdentifier:@"/user/2001/story/1001?loc=beijing&uuid=10001#ref"
+                                            extras:datas
+                                       requestCode:1];
+}
+
+- (void)gotoCheckAndDispatchViewController
+{
+  NSDictionary *datas = @{@"number": @4, FRDIntentParameters.title: @"First" };
+  [self startControllerWithPathIdentifier:@"/subject/3001?loc=beijing&uuid=10001#ref" extras:datas];
 }
 
 #pragma mark - FRDIntentForResultSendable

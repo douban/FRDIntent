@@ -37,7 +37,10 @@
 		A36FCC2A1D87F96700059523 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A36FCC281D87F96700059523 /* LaunchScreen.storyboard */; };
 		A382FE421D951C96007099DE /* FRDRouteParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A382FE411D951C96007099DE /* FRDRouteParameters.swift */; };
 		A384541D1DA807B100835B70 /* FRDIntentRegisters.plist in Resources */ = {isa = PBXBuildFile; fileRef = A384541C1DA807B100835B70 /* FRDIntentRegisters.plist */; };
+		A3D28F7E1E1B5D00008E2E09 /* UIViewController+TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D28F7D1E1B5D00008E2E09 /* UIViewController+TopViewController.m */; };
+		A3D28F811E1B5DD8008E2E09 /* FourthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D28F801E1B5DD8008E2E09 /* FourthViewController.m */; };
 		A3EBF8B31DB35D0100C7ED83 /* FRDURLRoutesRegisters.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3EBF8B21DB35D0100C7ED83 /* FRDURLRoutesRegisters.plist */; };
+		A3F7DF311E1CE28400B558FC /* FRDIntentParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F7DF301E1CE28400B558FC /* FRDIntentParameters.swift */; };
 		A3FE9EE31DF656B6006038DB /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FE9EE21DF656B6006038DB /* Trie.swift */; };
 /* End PBXBuildFile section */
 
@@ -111,7 +114,12 @@
 		A36FCC2B1D87F96700059523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A382FE411D951C96007099DE /* FRDRouteParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDRouteParameters.swift; sourceTree = "<group>"; };
 		A384541C1DA807B100835B70 /* FRDIntentRegisters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FRDIntentRegisters.plist; sourceTree = "<group>"; };
+		A3D28F7C1E1B5D00008E2E09 /* UIViewController+TopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TopViewController.h"; sourceTree = "<group>"; };
+		A3D28F7D1E1B5D00008E2E09 /* UIViewController+TopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TopViewController.m"; sourceTree = "<group>"; };
+		A3D28F7F1E1B5DD8008E2E09 /* FourthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthViewController.h; sourceTree = "<group>"; };
+		A3D28F801E1B5DD8008E2E09 /* FourthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthViewController.m; sourceTree = "<group>"; };
 		A3EBF8B21DB35D0100C7ED83 /* FRDURLRoutesRegisters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FRDURLRoutesRegisters.plist; sourceTree = "<group>"; };
+		A3F7DF301E1CE28400B558FC /* FRDIntentParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDIntentParameters.swift; sourceTree = "<group>"; };
 		A3FE9EE21DF656B6006038DB /* Trie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -225,6 +233,7 @@
 				A354CC761D75B8C200830990 /* FRDControllerDisplay.swift */,
 				A354CC7B1D75B8C200830990 /* FRDPresentationDisplay.swift */,
 				A354CC7C1D75B8C200830990 /* FRDPushDisplay.swift */,
+				A3F7DF301E1CE28400B558FC /* FRDIntentParameters.swift */,
 			);
 			path = Intent;
 			sourceTree = "<group>";
@@ -242,6 +251,10 @@
 				A35919511D87FFB100EBFD1E /* SecondViewController.m */,
 				A35919521D87FFB100EBFD1E /* ThirdViewController.h */,
 				A35919531D87FFB100EBFD1E /* ThirdViewController.m */,
+				A3D28F7F1E1B5DD8008E2E09 /* FourthViewController.h */,
+				A3D28F801E1B5DD8008E2E09 /* FourthViewController.m */,
+				A3D28F7C1E1B5D00008E2E09 /* UIViewController+TopViewController.h */,
+				A3D28F7D1E1B5D00008E2E09 /* UIViewController+TopViewController.m */,
 				A384541C1DA807B100835B70 /* FRDIntentRegisters.plist */,
 				A3EBF8B21DB35D0100C7ED83 /* FRDURLRoutesRegisters.plist */,
 				A36FCC261D87F96700059523 /* Assets.xcassets */,
@@ -413,6 +426,7 @@
 				A354CC7E1D75B8C200830990 /* FRDControllerManager.swift in Sources */,
 				7111E68E1DFE8032007F9EC8 /* FRDIntentTypealias.swift in Sources */,
 				A354CC831D75B8C200830990 /* FRDPushDisplay.swift in Sources */,
+				A3F7DF311E1CE28400B558FC /* FRDIntentParameters.swift in Sources */,
 				A354CC7F1D75B8C200830990 /* FRDIntent.swift in Sources */,
 				A354CC7D1D75B8C200830990 /* FRDControllerDisplay.swift in Sources */,
 				A382FE421D951C96007099DE /* FRDRouteParameters.swift in Sources */,
@@ -438,10 +452,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3D28F811E1B5DD8008E2E09 /* FourthViewController.m in Sources */,
 				A35919571D87FFB100EBFD1E /* SecondViewController.m in Sources */,
 				A36FCC1C1D87F96700059523 /* AppDelegate.m in Sources */,
 				A35919591D87FFB100EBFD1E /* FirstViewController.m in Sources */,
 				A359195A1D87FFB100EBFD1E /* MainViewController.m in Sources */,
+				A3D28F7E1E1B5D00008E2E09 /* UIViewController+TopViewController.m in Sources */,
 				A35919581D87FFB100EBFD1E /* ThirdViewController.m in Sources */,
 				A36FCC191D87F96700059523 /* main.m in Sources */,
 			);

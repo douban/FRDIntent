@@ -13,7 +13,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">FRDIntent Docs</a> (100% documented)</p>
+        <p><a href="index.html">FRDIntent Docs</a> (98% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -30,19 +30,25 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/ControllerManager.html">ControllerManager</a>
+                <a href="Classes/FRDControllerManager.html">FRDControllerManager</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/Intent.html">Intent</a>
+                <a href="Classes/FRDIntent.html">FRDIntent</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/PresentationDisplay.html">PresentationDisplay</a>
+                <a href="Classes/FRDIntentParameters.html">FRDIntentParameters</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/PushDisplay.html">PushDisplay</a>
+                <a href="Classes/FRDPresentationDisplay.html">FRDPresentationDisplay</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/URLRouter.html">URLRouter</a>
+                <a href="Classes/FRDPushDisplay.html">FRDPushDisplay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/FRDRouteParameters.html">FRDRouteParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/FRDURLRoutes.html">FRDURLRoutes</a>
               </li>
             </ul>
           </li>
@@ -50,7 +56,15 @@
             <a href="Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Enums/ResultCode.html">ResultCode</a>
+                <a href="Enums/FRDResultCode.html">FRDResultCode</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/UIViewController.html">UIViewController</a>
               </li>
             </ul>
           </li>
@@ -58,16 +72,16 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols/ControllerDisplay.html">ControllerDisplay</a>
+                <a href="Protocols/FRDControllerDisplay.html">FRDControllerDisplay</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/IntentForResultReceivable.html">IntentForResultReceivable</a>
+                <a href="Protocols/FRDIntentForResultReceivable.html">FRDIntentForResultReceivable</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/IntentForResultSendable.html">IntentForResultSendable</a>
+                <a href="Protocols/FRDIntentForResultSendable.html">FRDIntentForResultSendable</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/IntentReceivable.html">IntentReceivable</a>
+                <a href="Protocols/FRDIntentReceivable.html">FRDIntentReceivable</a>
               </li>
             </ul>
           </li>
@@ -86,9 +100,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C9FRDIntent17ControllerManager"></a>
-                    <a name="//apple_ref/swift/Class/ControllerManager" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C9FRDIntent17ControllerManager">ControllerManager</a>
+                    <a name="/s:C9FRDIntent20FRDControllerManager"></a>
+                    <a name="//apple_ref/swift/Class/FRDControllerManager" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C9FRDIntent20FRDControllerManager">FRDControllerManager</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -96,15 +110,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>ControllerManager is a way to manage view controllers and invoke view controllers from a URL or class name.</p>
+                        <p>FRDControllerManager is a way to manage view controllers and invoke view controllers from a URL or class name.</p>
 
-                        <a href="Classes/ControllerManager.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/FRDControllerManager.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ControllerManager</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FRDControllerManager</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                         </div>
                       </div>
@@ -118,9 +132,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C9FRDIntent11PushDisplay"></a>
-                    <a name="//apple_ref/swift/Class/PushDisplay" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C9FRDIntent11PushDisplay">PushDisplay</a>
+                    <a name="/s:C9FRDIntent14FRDPushDisplay"></a>
+                    <a name="//apple_ref/swift/Class/FRDPushDisplay" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C9FRDIntent14FRDPushDisplay">FRDPushDisplay</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -130,13 +144,13 @@
                       <div class="abstract">
                         <p>The way of display view controllers with push. It calls pushViewController(viewController: UIViewController, animated: Bool)</p>
 
-                        <a href="Classes/PushDisplay.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/FRDPushDisplay.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PushDisplay</span><span class="p">:</span> <span class="kt"><a href="Protocols/ControllerDisplay.html">ControllerDisplay</a></span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">FRDPushDisplay</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt"><a href="Protocols/FRDControllerDisplay.html">FRDControllerDisplay</a></span></code></pre>
 
                         </div>
                       </div>
@@ -150,9 +164,42 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C9FRDIntent6Intent"></a>
-                    <a name="//apple_ref/swift/Class/Intent" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C9FRDIntent6Intent">Intent</a>
+                    <a name="/s:C9FRDIntent19FRDIntentParameters"></a>
+                    <a name="//apple_ref/swift/Class/FRDIntentParameters" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C9FRDIntent19FRDIntentParameters">FRDIntentParameters</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Open the parameters to public.
+Defined as a class because of the usage of Objective-C.</p>
+
+                        <a href="Classes/FRDIntentParameters.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FRDIntentParameters</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C9FRDIntent9FRDIntent"></a>
+                    <a name="//apple_ref/swift/Class/FRDIntent" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C9FRDIntent9FRDIntent">FRDIntent</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -162,13 +209,13 @@
                       <div class="abstract">
                         <p>An intent is an abstract description of an operation to be performed. It can be used with startController to launch a view controller.</p>
 
-                        <a href="Classes/Intent.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/FRDIntent.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Intent</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FRDIntent</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                         </div>
                       </div>
@@ -182,9 +229,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C9FRDIntent9URLRouter"></a>
-                    <a name="//apple_ref/swift/Class/URLRouter" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C9FRDIntent9URLRouter">URLRouter</a>
+                    <a name="/s:C9FRDIntent18FRDRouteParameters"></a>
+                    <a name="//apple_ref/swift/Class/FRDRouteParameters" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C9FRDIntent18FRDRouteParameters">FRDRouteParameters</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -192,15 +239,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>URLRouter is a way to manage URL routes and invoke them from a URL.</p>
+                        <p>Open the parameters to public. 
+Defined as a class because of the usage of Objective-C.</p>
 
-                        <a href="Classes/URLRouter.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/FRDRouteParameters.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">URLRouter</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FRDRouteParameters</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                         </div>
                       </div>
@@ -214,9 +262,41 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C9FRDIntent19PresentationDisplay"></a>
-                    <a name="//apple_ref/swift/Class/PresentationDisplay" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C9FRDIntent19PresentationDisplay">PresentationDisplay</a>
+                    <a name="/s:C9FRDIntent12FRDURLRoutes"></a>
+                    <a name="//apple_ref/swift/Class/FRDURLRoutes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C9FRDIntent12FRDURLRoutes">FRDURLRoutes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>FRDURLRoutes is a way to manage URL routes and invoke them from a URL.</p>
+
+                        <a href="Classes/FRDURLRoutes.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FRDURLRoutes</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C9FRDIntent22FRDPresentationDisplay"></a>
+                    <a name="//apple_ref/swift/Class/FRDPresentationDisplay" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C9FRDIntent22FRDPresentationDisplay">FRDPresentationDisplay</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -226,13 +306,13 @@
                       <div class="abstract">
                         <p>The way of display view controllers with present. It calls presentViewController(viewController: UIViewController, animated: Bool)</p>
 
-                        <a href="Classes/PresentationDisplay.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/FRDPresentationDisplay.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PresentationDisplay</span><span class="p">:</span> <span class="kt"><a href="Protocols/ControllerDisplay.html">ControllerDisplay</a></span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">FRDPresentationDisplay</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt"><a href="Protocols/FRDControllerDisplay.html">FRDControllerDisplay</a></span></code></pre>
 
                         </div>
                       </div>
@@ -244,8 +324,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://github.intra.douban.com/guolin/FRDIntent" target="_blank" rel="external">lincode</a>. All rights reserved. (Last updated: 2016-09-01)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://github.com/douban/FRDIntent" target="_blank" rel="external">lincode</a>. All rights reserved. (Last updated: 2017-01-04)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
