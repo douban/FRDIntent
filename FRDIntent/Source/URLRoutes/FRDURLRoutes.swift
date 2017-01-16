@@ -27,7 +27,7 @@ public class FRDURLRoutes: NSObject {
    - returns: True if it registers successfully.
    */
   @discardableResult public func register(url: URL, handler: @escaping URLRoutesHandler) -> Bool {
-    return routeManager.register(url: url, handler: handler)
+    return routeManager.register(url, handler: handler)
   }
 
   /**
@@ -38,7 +38,7 @@ public class FRDURLRoutes: NSObject {
    - returns: True if handler block is found and called, false if handler block is not found.
    */
   public func route(url: URL) -> Bool {
-    let (params ,handler) = routeManager.searchHandler(url: url)
+    let (params ,handler) = routeManager.searchHandler(for: url)
     if let handler = handler {
       handler(params)
       return true

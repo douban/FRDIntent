@@ -27,7 +27,7 @@ public class FRDControllerManager: NSObject {
    - returns: True if it registers successfully.
    */
   @discardableResult public func register(url: URL, clazz: AnyClass) -> Bool {
-    return routeManager.register(url: url, clazz: clazz as! FRDIntentReceivable.Type)
+    return routeManager.register(url, clazz: clazz as! FRDIntentReceivable.Type)
   }
 
   /**
@@ -72,7 +72,7 @@ public class FRDControllerManager: NSObject {
     var controllerClazz: FRDIntentReceivable.Type?
 
     if let url = intent.url {
-      let (params, clazz) = routeManager.searchController(url: url)
+      let (params, clazz) = routeManager.searchController(for: url)
       parameters = params
       controllerClazz = clazz
     }
@@ -124,7 +124,7 @@ public class FRDControllerManager: NSObject {
     var controllerClazz: ControllerType?
 
     if let url = intent.url {
-      let (params, clazz) = routeManager.searchController(url: url)
+      let (params, clazz) = routeManager.searchController(for: url)
       parameters = params
       controllerClazz = clazz as? ControllerType
     }
