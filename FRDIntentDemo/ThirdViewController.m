@@ -25,7 +25,7 @@
   self = [super init];
   if (self) {
     _data = extras;
-    [self setupWithExtras:extras];
+    [self setupExtras:extras];
   }
   return self;
 }

@@ -82,7 +82,7 @@
 
   // Internal call register by plist
   NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"FRDIntentRegisters" ofType:@"plist"];
-  [[FRDControllerManager sharedInstance] registersWithPlistFile:plistPath];
+  [[FRDControllerManager sharedInstance] registerWithPlistFile:plistPath];
 
 
 
@@ -95,7 +95,7 @@
     intent.controllerDisplay = [[FRDPresentationDisplay alloc] init];
     UIViewController *topViewController = [UIViewController topViewController];
     if (topViewController) {
-      [[FRDControllerManager sharedInstance] startControllerWithSource:topViewController intent:intent];
+      [[FRDControllerManager sharedInstance] startControllerFrom:topViewController withIntent:intent];
     }
   }];
 
