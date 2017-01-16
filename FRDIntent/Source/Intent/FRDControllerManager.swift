@@ -83,7 +83,7 @@ public class FRDControllerManager: NSObject {
 
     if let controllerClazz = controllerClazz {
       for (key, value) in parameters {
-        intent.putExtra(name: key, data: value)
+        intent.putExtraName(key, withValue: value)
       }
 
       if let destination = InitializerHelper.viewController(fromClazz: controllerClazz, extras: intent.extras) as? FRDIntentReceivable {
@@ -136,7 +136,7 @@ public class FRDControllerManager: NSObject {
     if let controllerClazz = controllerClazz {
 
       for (key, value) in parameters {
-        intent.putExtra(name: key, data: value)
+        intent.putExtraName(key, withValue: value)
       }
 
       if let destination = InitializerHelper.viewController(fromClazz: controllerClazz, extras: intent.extras) as? FRDIntentForResultReceivable {
@@ -189,7 +189,7 @@ public extension UIViewController {
    */
   func startController(pathIdentifier: String, extras: [String: AnyObject]) {
     let intent = FRDIntent(pathIdentifier: pathIdentifier)
-    intent.putExtras(datas: extras)
+    intent.putExtraDatas(extras)
     self.startController(intent: intent)
   }
 
@@ -216,7 +216,7 @@ public extension UIViewController {
    */
   func startControllerForResult(pathIdentifier: String, extras: [String: AnyObject], requestCode: Int) {
     let intent = FRDIntent(pathIdentifier: pathIdentifier)
-    intent.putExtras(datas: extras)
+    intent.putExtraDatas(extras)
     self.startControllerForResult(intent: intent, requestCode: requestCode)
   }
 

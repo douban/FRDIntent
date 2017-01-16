@@ -66,8 +66,8 @@ public class FRDIntent: NSObject {
    - parameter name: key
    - parameter data: value
   */
-  public func putExtra(name: String, data: AnyObject) {
-    self.extras[name] = data
+  public func putExtraName(_ name: String, withValue value: AnyObject) {
+    self.extras[name] = value
   }
 
   /**
@@ -75,7 +75,7 @@ public class FRDIntent: NSObject {
    
    - parameter data: the data dictionary.
    */
-  public func putExtras(datas: [String: AnyObject]) {
+  public func putExtraDatas(_ datas: [String: AnyObject]) {
     for (key, value) in datas {
       self.extras[key] = value
     }

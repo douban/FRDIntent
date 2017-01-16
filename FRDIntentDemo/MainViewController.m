@@ -69,7 +69,7 @@
 - (void)gotoSecondViewController
 {
   FRDIntent *intent = [[FRDIntent alloc] initWithClazz:[SecondViewController  class]];
-  [intent putExtraWithName:@"number" data: [NSNumber numberWithInteger:2]];
+  [intent putExtraName:@"number" withValue:[NSNumber numberWithInteger:2]];
   [self startControllerWithIntent:intent];
 }
 
