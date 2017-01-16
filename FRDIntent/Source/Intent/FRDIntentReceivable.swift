@@ -27,5 +27,5 @@ import Foundation
 
    - returns true open this view controller, flase will not this view controller.
    */
-  @objc optional func validate(intent: FRDIntent) -> Bool
+  @objc optional func validate(_ intent: FRDIntent) -> Bool
 }

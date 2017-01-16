@@ -88,7 +88,7 @@ public class FRDControllerManager: NSObject {
 
       if let destination = InitializerHelper.viewController(fromClazz: controllerClazz, extras: intent.extras) as? FRDIntentReceivable {
 
-        if let validateResult = destination.validate?(intent: intent), validateResult == false {
+        if let validateResult = destination.validate?(intent), validateResult == false {
           return
         }
 
@@ -141,7 +141,7 @@ public class FRDControllerManager: NSObject {
 
       if let destination = InitializerHelper.viewController(fromClazz: controllerClazz, extras: intent.extras) as? FRDIntentForResultReceivable {
 
-        if let validateResult = destination.validate?(intent: intent), validateResult == false {
+        if let validateResult = destination.validate?(intent), validateResult == false {
           return
         }
 
