@@ -34,7 +34,7 @@ import Foundation
    - parameter resultCode: The result code returned by the child conroller.
    - parameter intent: An Intent, which can return result data to the caller (various data can be attached to Intent "extras").
   */
-  func onControllerResult(requestCode: Int, resultCode: FRDResultCode, data: FRDIntent)
+  func controllerDidReture(withReqeustCode requestCode: Int, resultCode: FRDResultCode, data: FRDIntent)
 
 }
 
