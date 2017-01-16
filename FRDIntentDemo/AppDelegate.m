@@ -65,12 +65,12 @@
 
 //iOS 9+
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *, id> *)options {
-  return [[FRDURLRoutes sharedInstance] routeWithUrl:url];
+  return [[FRDURLRoutes sharedInstance] route:url];
 }
 
 //iOS 8
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    return [[FRDURLRoutes sharedInstance] routeWithUrl:url];
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+  return [[FRDURLRoutes sharedInstance] route:url];
 }
 
 - (void)configurationRoutes {
@@ -87,8 +87,8 @@
 
 
   // External call register
-  [[FRDURLRoutes sharedInstance] registerWithUrl:[NSURL URLWithString:@"/user/:userId/story/:storyId"]
-                                         handler:^(NSDictionary<NSString*, id> *params)
+  [[FRDURLRoutes sharedInstance] register:[NSURL URLWithString:@"/user/:userId/story/:storyId"]
+                                  handler:^(NSDictionary<NSString*, id> *params)
   {
     NSURL *url = [params objectForKey:FRDRouteParameters.URLRouteURL];
     FRDIntent *intent = [[FRDIntent alloc] initWithUrl:url];
@@ -106,7 +106,7 @@
 
   // External call register by plist
   NSString* routesPlistPath = [[NSBundle mainBundle] pathForResource:@"FRDURLRoutesRegisters" ofType:@"plist"];
-  [[FRDURLRoutes sharedInstance] registersWithPlistFile:routesPlistPath];
+  [[FRDURLRoutes sharedInstance] registerPlistFile:routesPlistPath];
 }
 
 @end

@@ -26,7 +26,7 @@ public class FRDURLRoutes: NSObject {
    
    - returns: True if it registers successfully.
    */
-  @discardableResult public func register(url: URL, handler: @escaping URLRoutesHandler) -> Bool {
+  @discardableResult public func register(_ url: URL, handler: @escaping URLRoutesHandler) -> Bool {
     return routeManager.register(url, handler: handler)
   }
 
@@ -37,7 +37,7 @@ public class FRDURLRoutes: NSObject {
 
    - returns: True if handler block is found and called, false if handler block is not found.
    */
-  public func route(url: URL) -> Bool {
+  public func route(_ url: URL) -> Bool {
     let (params ,handler) = routeManager.searchHandler(for: url)
     if let handler = handler {
       handler(params)
@@ -58,10 +58,10 @@ public extension FRDURLRoutes {
    
    - returns: True if it registers successfully.
    */
-  @discardableResult public func register(url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
+  @discardableResult public func register(_ url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
 
     let resultForIntent = FRDControllerManager.sharedInstance.register(url, clazz: clazz)
-    let resultForRoute = register(url: url) { (params: [String: AnyObject]) in
+    let resultForRoute = register(url) { (params: [String: AnyObject]) in
       let intent = FRDIntent(url: params[FRDRouteParameters.URLRouteURL] as! URL)
       if let topViewController = UIApplication.topViewController() {
         FRDControllerManager.sharedInstance.startController(from: topViewController, withIntent: intent)
@@ -78,7 +78,7 @@ public extension FRDURLRoutes {
 
    - returns: True if it registers successfully.
    */
-  public func registers(plistFile: String) -> Bool {
+  public func registerPlistFile(_ plistFile: String) -> Bool {
 
     guard let registers: NSDictionary = NSDictionary(contentsOfFile: plistFile) else {
       return false
@@ -91,7 +91,7 @@ public extension FRDURLRoutes {
       }
 
       if let clazz = NSClassFromString(className) as? FRDIntentReceivable.Type {
-        let result = register(url: URL(string: url)!, clazz: clazz)
+        let result = register(URL(string: url)!, clazz: clazz)
         if !result {
           return false
         }
@@ -105,18 +105,18 @@ public extension FRDURLRoutes {
 
 fileprivate extension UIApplication {
 
-  class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+  class func topViewController(from base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
 
     if let nav = base as? UINavigationController {
-      return topViewController(base: nav.visibleViewController)
+      return topViewController(from: nav.visibleViewController)
     }
     if let tab = base as? UITabBarController {
       if let selected = tab.selectedViewController {
-        return topViewController(base: selected)
+        return topViewController(from: selected)
       }
     }
     if let presented = base?.presentedViewController {
-      return topViewController(base: presented)
+      return topViewController(from: presented)
     }
     return base
 
