@@ -100,7 +100,7 @@ public class FRDControllerManager: NSObject {
         }
 
         if let destination = destination as? UIViewController {
-          display.displayViewController(source: source, destination: destination)
+          display.displayViewController(from: source, to: destination)
         }
       }
 
@@ -158,7 +158,7 @@ public class FRDControllerManager: NSObject {
         }
 
         if let destination = destination as? UIViewController {
-          display.displayViewController(source: source, destination: destination)
+          display.displayViewController(from: source, to: destination)
         }
       }
     }

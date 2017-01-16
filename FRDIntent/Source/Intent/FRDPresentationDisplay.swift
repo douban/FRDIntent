@@ -19,7 +19,7 @@ open class FRDPresentationDisplay: NSObject, FRDControllerDisplay {
    - parameter source: The source view controller.
    - parameter destination: The destination view controller.
    */
-  open func displayViewController(source: UIViewController, destination: UIViewController) {
+  open func displayViewController(from source: UIViewController, to destination: UIViewController) {
     let nav = UINavigationController(rootViewController: destination)
     source.present(nav, animated: true, completion: nil)
   }

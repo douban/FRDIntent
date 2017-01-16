@@ -19,6 +19,6 @@ import UIKit
    - parameter source: The source view controller.
    - parameter destination: The destination view controller.
    */
-  func displayViewController(source: UIViewController, destination: UIViewController)
+  func displayViewController(from source: UIViewController, to destination: UIViewController)
 
 }
