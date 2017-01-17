@@ -12,7 +12,7 @@
 #import "ThirdViewController.h"
 #import "FourthViewController.h"
 
-@interface MainViewController () <FRDIntentForResultSendable>
+@interface MainViewController ()
 @end
 
 @implementation MainViewController

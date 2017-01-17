@@ -70,7 +70,7 @@
   if (self.delegate) {
     FRDIntent *intent = [[FRDIntent alloc] initWithUrl:[NSURL URLWithString:@"douban://"]];
     [intent putExtraName:@"text" withValue:self.textField.text];
-    [self.delegate controllerDidRetureWithReqeustCode:self.requestCode resultCode:FRDResultCodeCanceled data:intent];
+    [self.delegate controllerDidReturnWithReqeustCode:self.requestCode resultCode:FRDResultCodeCanceled data:intent];
   }
 }
 
@@ -79,7 +79,7 @@
   if (self.delegate) {
     FRDIntent *intent = [[FRDIntent alloc] initWithUrl:[NSURL URLWithString:@"douban://"]];
     [intent putExtraName:@"text" withValue:self.textField.text];
-    [self.delegate controllerDidRetureWithReqeustCode:self.requestCode resultCode:FRDResultCodeOk data:intent];
+    [self.delegate controllerDidReturnWithReqeustCode:self.requestCode resultCode:FRDResultCodeOk data:intent];
   }
 }
 
