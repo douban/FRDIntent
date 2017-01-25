@@ -19,7 +19,7 @@ open class FRDPushDisplay: NSObject, FRDControllerDisplay {
    - parameter source: The source view controller.
    - parameter destination: The destination view controller.
    */
-  open func displayViewController(source: UIViewController, destination: UIViewController) {
+  open func displayViewController(from source: UIViewController, to destination: UIViewController) {
     if let navigationController = source.navigationController {
       navigationController.pushViewController(destination, animated: true)
     }

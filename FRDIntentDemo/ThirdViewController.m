@@ -25,7 +25,7 @@
   self = [super init];
   if (self) {
     _data = extras;
-    [self setupWithExtras:extras];
+    [self setupExtras:extras];
   }
   return self;
 }
@@ -69,8 +69,8 @@
 
   if (self.delegate) {
     FRDIntent *intent = [[FRDIntent alloc] initWithUrl:[NSURL URLWithString:@"douban://"]];
-    [intent putExtraWithName:@"text" data:self.textField.text];
-    [self.delegate onControllerResultWithRequestCode:self.requestCode resultCode:FRDResultCodeCanceled data:intent];
+    [intent putExtraName:@"text" withValue:self.textField.text];
+    [self.delegate controllerDidReturnWithReqeustCode:self.requestCode resultCode:FRDResultCodeCanceled data:intent];
   }
 }
 
@@ -78,8 +78,8 @@
   [self dismissViewControllerAnimated:YES completion:NULL];
   if (self.delegate) {
     FRDIntent *intent = [[FRDIntent alloc] initWithUrl:[NSURL URLWithString:@"douban://"]];
-    [intent putExtraWithName:@"text" data:self.textField.text];
-    [self.delegate onControllerResultWithRequestCode:self.requestCode resultCode:FRDResultCodeOk data:intent];
+    [intent putExtraName:@"text" withValue:self.textField.text];
+    [self.delegate controllerDidReturnWithReqeustCode:self.requestCode resultCode:FRDResultCodeOk data:intent];
   }
 }
 
