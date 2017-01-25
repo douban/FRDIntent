@@ -74,13 +74,13 @@ public extension FRDURLRoutes {
   /**
    Registers with a plist file.
 
-   - parameter plistFile: The plistFile path.
+   - parameter contentsOfFile: The plistFile path.
 
    - returns: True if it registers successfully.
    */
-  public func registerPlistFile(_ plistFile: String) -> Bool {
+  public func register(contentsOfFile path: String) -> Bool {
 
-    guard let registers: NSDictionary = NSDictionary(contentsOfFile: plistFile) else {
+    guard let registers: NSDictionary = NSDictionary(contentsOfFile: path) else {
       return false
     }
 

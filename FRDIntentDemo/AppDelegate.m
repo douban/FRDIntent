@@ -82,7 +82,7 @@
 
   // Internal call register by plist
   NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"FRDIntentRegisters" ofType:@"plist"];
-  [[FRDControllerManager sharedInstance] registerWithPlistFile:plistPath];
+  [[FRDControllerManager sharedInstance] registerWithContentsOfFile:plistPath];
 
 
 
@@ -106,7 +106,7 @@
 
   // External call register by plist
   NSString* routesPlistPath = [[NSBundle mainBundle] pathForResource:@"FRDURLRoutesRegisters" ofType:@"plist"];
-  [[FRDURLRoutes sharedInstance] registerPlistFile:routesPlistPath];
+  [[FRDURLRoutes sharedInstance] registerWithContentsOfFile:routesPlistPath];
 }
 
 @end
