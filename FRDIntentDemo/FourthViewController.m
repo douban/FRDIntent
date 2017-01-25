@@ -25,7 +25,7 @@
   return self;
 }
 
-- (BOOL)validateWithIntent:(FRDIntent *)intent {
+- (BOOL)validate:(FRDIntent *)intent {
   // Check intent
   NSLog(@"url: %@", intent.url);
   NSLog(@"extras: %@", intent.extras);

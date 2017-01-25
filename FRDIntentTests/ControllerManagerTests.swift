@@ -14,9 +14,9 @@ class FRDControllerManagerTests: XCTestCase {
   func testNormalSearch() {
 
     let controllerManager = FRDControllerManager.sharedInstance
-    controllerManager.register(url: URL(string: "/user/:userId")!, clazz: MockUserViewController.self)
-    controllerManager.register(url: URL(string: "/story/:storyId")!, clazz: MockStoryViewController.self)
-    controllerManager.register(url: URL(string: "/user/:userId/profile")!, clazz: MockProfileViewController.self)
+    controllerManager.register(URL(string: "/user/:userId")!, clazz: MockUserViewController.self)
+    controllerManager.register(URL(string: "/story/:storyId")!, clazz: MockStoryViewController.self)
+    controllerManager.register(URL(string: "/user/:userId/profile")!, clazz: MockProfileViewController.self)
   }
 
 }
