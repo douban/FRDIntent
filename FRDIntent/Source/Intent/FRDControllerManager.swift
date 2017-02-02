@@ -26,20 +26,20 @@ public class FRDControllerManager: NSObject {
    
    - returns: True if it registers successfully.
    */
-  @discardableResult public func register(_ url: URL, clazz: AnyClass) -> Bool {
-    return routeManager.register(url, clazz: clazz as! FRDIntentReceivable.Type)
+  @discardableResult public func register(_ url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
+    return routeManager.register(url, clazz: clazz)
   }
 
   /**
    Registers with a plist file. 
    
-   - parameter plistFile: The plistFile path.
+   - parameter contentsOfFile: The plistFile path.
    
    - returns: True if it registers successfully.
    */
-  public func register(withPlistFile plistFile: String) -> Bool {
+  public func register(contentsOfFile path: String) -> Bool {
 
-    guard let registers: NSDictionary = NSDictionary(contentsOfFile: plistFile) else {
+    guard let registers: NSDictionary = NSDictionary(contentsOfFile: path) else {
       return false
     }
 
