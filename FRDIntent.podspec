@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'URLRoutes' do |urlroutes|
     urlroutes.source_files  = 'FRDIntent/Source/URLRoutes/*.swift'
-    urlroutes.dependency 'FRDIntent/FRDIntent'
+    urlroutes.dependency 'FRDIntent/Intent'
   end
 
   s.default_subspec = 'URLRoutes'
