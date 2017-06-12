@@ -67,7 +67,7 @@ final class Trie<T> {
       if let child = currentNode.children[path] {
         currentNode = child
       } else {
-        currentNode.addChild(withKey: path, value: value)
+        currentNode.addChild(withKey: path, value: nil)
         currentNode = currentNode.children[path]!
       }
     }
@@ -210,7 +210,7 @@ final class TrieNode<T> {
     self.value = value
   }
 
-  func addChild(withKey key: String, value: T) {
+  func addChild(withKey key: String, value: T?) {
     guard children[key] == nil else {
       return
     }
