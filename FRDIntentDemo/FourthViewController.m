@@ -27,8 +27,8 @@
 
 - (BOOL)validate:(FRDIntent *)intent {
   // Check intent
-  NSLog(@"url: %@", intent.url);
-  NSLog(@"extras: %@", intent.extras);
+  NSLog(@"validate url: %@", intent.url);
+  NSLog(@"validate extras: %@", intent.extras);
 
   // Dispatch to another view controller
   NSDictionary *datas = @{FRDIntentParameters.title: @"First by dispatch"};
