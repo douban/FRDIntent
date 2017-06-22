@@ -12,7 +12,8 @@
 #import "ThirdViewController.h"
 #import "FourthViewController.h"
 
-@interface MainViewController ()
+@interface MainViewController ()<FRDIntentForResultSendable>
+
 @end
 
 @implementation MainViewController
@@ -76,6 +77,7 @@
 - (void)gotoThirdViewController
 {
   NSDictionary *datas = @{@"number": @3, FRDIntentParameters.title: @"Third" };
+  
   [self startControllerForResultWithPathIdentifier:@"/user/2001/story/1001?loc=beijing&uuid=10001#ref"
                                             extras:datas
                                        requestCode:1];
@@ -89,9 +91,9 @@
 
 #pragma mark - FRDIntentForResultSendable
 
-- (void)onControllerResultWithRequestCode:(NSInteger)requestCode
-                               resultCode:(enum FRDResultCode)code
-                                     data:(FRDIntent *)intent
+- (void)controllerDidReturnWithReqeustCode:(NSInteger)requestCode
+                                resultCode:(enum FRDResultCode)code
+                                      data:(FRDIntent *)intent
 {
   if (requestCode == 1){
     if (code == FRDResultCodeOk) {
