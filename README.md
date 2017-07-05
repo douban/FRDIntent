@@ -184,7 +184,7 @@ FRDIntent/URLRoutes 是为了使得 iOS 系统中这种基于 URL 的应用间�
 
 #### 接管应用的 URL 处理
 
-````Swift
+```Swift
   func application(app: UIApplication, openURL url: URL, options: [String : AnyObject]) -> Bool {
     return FRDURLRoutes.sharedInstance.route(url: url)
   }
