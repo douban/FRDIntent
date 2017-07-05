@@ -31,4 +31,13 @@ class URLRoutesTests: XCTestCase {
 
   }
 
+  func testCanRoute() {
+    let router = FRDURLRoutes.sharedInstance
+    router.register(URL(string: "/aaa/ddd")!) { (params) in
+
+    }
+    XCTAssert(router.canRoute(URL(string: "/aaa/ddd")!))
+    XCTAssertFalse(router.canRoute(URL(string: "/aaa/dddd")!))
+  }
+
 }
