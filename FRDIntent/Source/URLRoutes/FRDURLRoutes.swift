@@ -46,6 +46,17 @@ public class FRDURLRoutes: NSObject {
     return false
   }
 
+  /**
+   Tells if FRDURLRoutes can route a given url.
+
+   - parameter url: The url for search.
+
+   - returns: True if a handler can be found for the given url.
+   */
+  public func canRoute(_ url: URL) -> Bool {
+    let (_, handler) = routeManager.searchHandler(for: url)
+    return handler != nil
+  }
 }
 
 public extension FRDURLRoutes {
