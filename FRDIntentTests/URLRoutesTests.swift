@@ -14,14 +14,14 @@ class URLRoutesTests: XCTestCase {
   func testURLRoutes() {
     let router = FRDURLRoutes.sharedInstance
 
-    router.register(URL(string: "/user/:userId")!) { (params: [String: AnyObject]) in
+    router.register(URL(string: "/user/:userId")!) { (params: [String: Any]) in
       XCTAssert(params["userId"] as! String == "12", "userId is 12")
       XCTAssert(params[FRDRouteParameters.URLRouteURL] as? NSURL == NSURL(string:  "/user/12"), "")
     }
 
     _ = router.route(URL(string: "/user/12")!)
 
-    router.register(URL(string: "/story/:storyId")!) { (params: [String: AnyObject]) in
+    router.register(URL(string: "/story/:storyId")!) { (params: [String: Any]) in
       XCTAssert(params["storyId"] as! String == "21", "userId is 12")
       XCTAssert(params["key1"] as! String == "value1", "key1 is value1")
       XCTAssert(params["key2"] as! String == "value2", "key2 is value2")
@@ -29,6 +29,15 @@ class URLRoutesTests: XCTestCase {
     }
     _ = router.route(URL(string: "/story/21/?key1=value1&key2=value2#ref")!)
 
+  }
+
+  func testCanRoute() {
+    let router = FRDURLRoutes.sharedInstance
+    router.register(URL(string: "/aaa/ddd")!) { (params) in
+
+    }
+    XCTAssert(router.canRoute(URL(string: "/aaa/ddd")!))
+    XCTAssertFalse(router.canRoute(URL(string: "/aaa/dddd")!))
   }
 
 }

@@ -18,7 +18,7 @@ import Foundation
    
    - parameter extras: The extra data.
    */
-  init(extras: [String: AnyObject]?)
+  init(extras: [String: Any]?)
 
   /**
    Check the validation of the received intent.

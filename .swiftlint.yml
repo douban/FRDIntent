@@ -1,0 +1,10 @@
+included:
+    - FRDIntent
+disabled_rules:
+    - cyclomatic_complexity
+    - line_length
+    - file_length
+    - function_body_length
+    - type_body_length
+    - shorthand_operator
+    - empty_enum_arguments

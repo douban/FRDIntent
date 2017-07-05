@@ -15,6 +15,6 @@ import Foundation
 public class FRDIntentParameters: NSObject {
 
   /// The key to get the infomation from extras of intent.
-  public static let title = "FRDIntentTitleKey";
-  public static let hidesBottomBarWhenPushed = "FRDIntentHidesBottomBarWhenPushedKey";
+  public static let title = "FRDIntentTitleKey"
+  public static let hidesBottomBarWhenPushed = "FRDIntentHidesBottomBarWhenPushedKey"
 }

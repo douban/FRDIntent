@@ -68,7 +68,7 @@ class RouteManager {
 
    - returns: A tuple with parameters and clazz.
    */
-  func searchController(for url: URL) -> ([String: AnyObject], FRDIntentReceivable.Type?) {
+  func searchController(for url: URL) -> ([String: Any], FRDIntentReceivable.Type?) {
     let params = extractParameters(from: url)
 
     if let (clazz, _) = routes.searchNearestMatchedValue(with: url) {
@@ -86,7 +86,7 @@ class RouteManager {
 
    - returns: A tuple with parameters and handler.
    */
-  func searchHandler(for url: URL) -> ([String: AnyObject], URLRoutesHandler?) {
+  func searchHandler(for url: URL) -> ([String: Any], URLRoutesHandler?) {
     let params = extractParameters(from: url)
 
     if let (_, handler) = routes.searchNearestMatchedValue(with: url) {
@@ -97,30 +97,29 @@ class RouteManager {
   }
 
   // MARK: - Private Methods
-  private func extractParameters(from url: URL) -> [String: AnyObject] {
+  private func extractParameters(from url: URL) -> [String: Any] {
 
     // Extract placeholder parameters
     var params = routes.matchedPattern(for: url)
 
     // Add url to params
-    params.updateValue(url as AnyObject, forKey: FRDRouteParameters.URLRouteURL)
+    params.updateValue(url, forKey: FRDRouteParameters.URLRouteURL)
 
     // Add queries to params
     if let queryItems = url.queryItems {
       for queryItem in queryItems {
         if let value = queryItem.value {
-          params.updateValue(value as AnyObject, forKey: queryItem.name)
+          params.updateValue(value, forKey: queryItem.name)
         }
       }
     }
 
     // Add fragment to params
     if let fragment = url.fragment {
-      params.updateValue(fragment as AnyObject, forKey: "fragment")
+      params.updateValue(fragment, forKey: "fragment")
     }
 
     return params
   }
 
 }
-

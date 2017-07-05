@@ -14,6 +14,7 @@ import Foundation
 @objc public enum FRDResultCode: Int {
 
   /// Ok: For successful result.
+  // swiftlint:disable:next identifier_name
   case ok
   /// Canceled: For the canceled operation.
   case canceled
@@ -30,9 +31,11 @@ import Foundation
   /**
    When the result returns, this method will be called.
    
-   - parameter requestCode: The integer request code originally supplied to startControllerForResult(), allowing you to identify who this result came from.
+   - parameter requestCode: The integer request code originally supplied to startControllerForResult(), 
+                            allowing you to identify who this result came from.
    - parameter resultCode: The result code returned by the child conroller.
-   - parameter intent: An Intent, which can return result data to the caller (various data can be attached to Intent "extras").
+   - parameter intent: An Intent, which can return result data to the caller 
+                       (various data can be attached to Intent "extras").
   */
   func controllerDidReturn(withReqeustCode requestCode: Int, resultCode: FRDResultCode, data: FRDIntent)
 
@@ -46,7 +49,8 @@ import Foundation
 //  var requestCode: Int? { get set }
 //  var delegate: IntentForResultSendable? { get set }
 
-  /// The integer request code originally supplied to startControllerForResult(), allowing you to identify who this result came from.
+  /// The integer request code originally supplied to startControllerForResult(), 
+  /// allowing you to identify who this result came from.
   func setRequestCode(_ requestCode: Int)
 
   /// The source view controller

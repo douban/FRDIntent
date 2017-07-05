@@ -38,7 +38,7 @@ public class FRDURLRoutes: NSObject {
    - returns: True if handler block is found and called, false if handler block is not found.
    */
   public func route(_ url: URL) -> Bool {
-    let (params ,handler) = routeManager.searchHandler(for: url)
+    let (params, handler) = routeManager.searchHandler(for: url)
     if let handler = handler {
       handler(params)
       return true
@@ -46,6 +46,17 @@ public class FRDURLRoutes: NSObject {
     return false
   }
 
+  /**
+   Tells if FRDURLRoutes can route a given url.
+
+   - parameter url: The url for search.
+
+   - returns: True if a handler can be found for the given url.
+   */
+  public func canRoute(_ url: URL) -> Bool {
+    let (_, handler) = routeManager.searchHandler(for: url)
+    return handler != nil
+  }
 }
 
 public extension FRDURLRoutes {
@@ -54,15 +65,17 @@ public extension FRDURLRoutes {
    Registers a url for calling handler blocks.
 
    - parameter url: The url to be registered.
-   - parameter clazz: The UIViewController's class to be registered, and this view controller will be started while routed.
+   - parameter clazz: The UIViewController's class to be registered, 
+                      and this view controller will be started while routed.
    
    - returns: True if it registers successfully.
    */
   @discardableResult public func register(_ url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
 
     let resultForIntent = FRDControllerManager.sharedInstance.register(url, clazz: clazz)
-    let resultForRoute = register(url) { (params: [String: AnyObject]) in
-      let intent = FRDIntent(url: params[FRDRouteParameters.URLRouteURL] as! URL)
+    let resultForRoute = register(url) { (params: [String: Any]) in
+      guard let url = params[FRDRouteParameters.URLRouteURL] as? URL else { return }
+      let intent = FRDIntent(url: url)
       if let topViewController = UIApplication.topViewController() {
         FRDControllerManager.sharedInstance.startController(from: topViewController, withIntent: intent)
       }
@@ -105,7 +118,8 @@ public extension FRDURLRoutes {
 
 fileprivate extension UIApplication {
 
-  class func topViewController(from base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+  class func topViewController(from base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController)
+    -> UIViewController? {
 
     if let nav = base as? UINavigationController {
       return topViewController(from: nav.visibleViewController)
@@ -121,5 +135,5 @@ fileprivate extension UIApplication {
     return base
 
   }
-  
+
 }

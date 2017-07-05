@@ -51,7 +51,7 @@ class RouteSearch: XCTestCase {
 
   func testNoMatchSearch() {
 
-    let handler1 = {(params: [String: AnyObject]) in
+    let handler1 = {(params: [String: Any]) in
 
     }
 
@@ -66,7 +66,6 @@ class RouteSearch: XCTestCase {
     XCTAssert(params6[FRDRouteParameters.URLRouteURL] as? URL == URL(string:  "/error"), "")
     XCTAssert(value6 == nil, "no match, value is nil")
 
-
     routeManager.register(URL(string: "/intent/paying")!, handler: handler1)
 
     let (params, value) = routeManager.searchHandler(for: URL(string: "/intent/profile")!)
@@ -76,7 +75,7 @@ class RouteSearch: XCTestCase {
   }
 
   func testNearestNoMatchSearch() {
-    let handler1 = {(params: [String: AnyObject]) in
+    let handler1 = {(params: [String: Any]) in
 
     }
 
@@ -88,7 +87,6 @@ class RouteSearch: XCTestCase {
     XCTAssert(url.absoluteString == "/intent/profile", "parent is return")
     XCTAssert(value != nil, "match parent /intent, value is not nil")
   }
-
 
   func testQueryFragmentParameter() {
 
