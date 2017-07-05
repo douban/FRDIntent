@@ -78,7 +78,7 @@ public extension FRDURLRoutes {
 
    - returns: True if it registers successfully.
    */
-  public func register(contentsOfFile path: String) -> Bool {
+  @discardableResult public func register(contentsOfFile path: String) -> Bool {
 
     guard let registers: NSDictionary = NSDictionary(contentsOfFile: path) else {
       return false
