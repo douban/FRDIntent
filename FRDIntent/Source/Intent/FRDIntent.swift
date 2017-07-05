@@ -9,7 +9,8 @@
 import Foundation
 
 /**
- An intent is an abstract description of an operation to be performed. It can be used with startController to launch a view controller.
+ An intent is an abstract description of an operation to be performed. 
+ It can be used with startController to launch a view controller.
  */
 public class FRDIntent: NSObject {
 
@@ -31,7 +32,7 @@ public class FRDIntent: NSObject {
   /**
    The extra data to inform the destination view controller. Read-only.
    */
-  public fileprivate(set) var extras = [String: AnyObject]()
+  public fileprivate(set) var extras = [String: Any]()
 
   /**
    Initializer with the destination view controller's class type.
@@ -39,7 +40,7 @@ public class FRDIntent: NSObject {
    - parameter clazz: The destination view controller's class type.
    */
   public init(clazz: FRDIntentReceivable.Type) {
-    self.receiveClass = clazz 
+    self.receiveClass = clazz
   }
 
   /**
@@ -54,7 +55,8 @@ public class FRDIntent: NSObject {
   /**
    Initializer with the url for identify the destination view controller.
 
-   - parameter pathIdentifier: The path identifier for identify the destination view controller. The format is url path. 
+   - parameter pathIdentifier: The path identifier for identify the destination view controller. 
+   The format is url path.
    */
   public convenience init(pathIdentifier: String) {
     self.init(url: URL(string: pathIdentifier)!)
@@ -66,7 +68,7 @@ public class FRDIntent: NSObject {
    - parameter name: key
    - parameter data: value
   */
-  public func putExtraName(_ name: String, withValue value: AnyObject) {
+  public func putExtraName(_ name: String, withValue value: Any) {
     self.extras[name] = value
   }
 
@@ -75,7 +77,7 @@ public class FRDIntent: NSObject {
    
    - parameter data: the data dictionary.
    */
-  public func putExtraDatas(_ datas: [String: AnyObject]) {
+  public func putExtraDatas(_ datas: [String: Any]) {
     for (key, value) in datas {
       self.extras[key] = value
     }

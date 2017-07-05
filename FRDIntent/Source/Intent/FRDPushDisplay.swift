@@ -9,7 +9,8 @@
 import UIKit
 
 /**
- The way of display view controllers with push. It calls pushViewController(viewController: UIViewController, animated: Bool)
+ The way of display view controllers with push. 
+ It calls pushViewController(viewController: UIViewController, animated: Bool)
  */
 open class FRDPushDisplay: NSObject, FRDControllerDisplay {
 

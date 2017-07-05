@@ -68,7 +68,7 @@ public class FRDControllerManager: NSObject {
    */
   public func startController(from source: UIViewController, withIntent intent: FRDIntent) {
 
-    var parameters = [String: AnyObject]()
+    var parameters = [String: Any]()
     var controllerClazz: FRDIntentReceivable.Type?
 
     if let url = intent.url {
@@ -86,7 +86,8 @@ public class FRDControllerManager: NSObject {
         intent.putExtraName(key, withValue: value)
       }
 
-      if let destination = InitializerHelper.viewController(fromClazz: controllerClazz, extras: intent.extras) as? FRDIntentReceivable {
+      if let destination = InitializerHelper.viewController(fromClazz: controllerClazz,
+                                                            extras: intent.extras) as? FRDIntentReceivable {
 
         if let validateResult = destination.validate?(intent), validateResult == false {
           return
@@ -120,7 +121,7 @@ public class FRDControllerManager: NSObject {
 
     typealias ControllerType = FRDIntentForResultReceivable.Type
 
-    var parameters = [String: AnyObject]()
+    var parameters = [String: Any]()
     var controllerClazz: ControllerType?
 
     if let url = intent.url {
@@ -139,7 +140,8 @@ public class FRDControllerManager: NSObject {
         intent.putExtraName(key, withValue: value)
       }
 
-      if let destination = InitializerHelper.viewController(fromClazz: controllerClazz, extras: intent.extras) as? FRDIntentForResultReceivable {
+      if let destination = InitializerHelper.viewController(fromClazz: controllerClazz,
+                                                            extras: intent.extras) as? FRDIntentForResultReceivable {
 
         if let validateResult = destination.validate?(intent), validateResult == false {
           return
@@ -167,7 +169,6 @@ public class FRDControllerManager: NSObject {
 
 }
 
-
 public extension UIViewController {
 
   /**
@@ -187,7 +188,7 @@ public extension UIViewController {
    - parameter pathIdentifier: The pathIdentifier for initializing the intent.
    - parameter extras: The datas for initializing the intent.
    */
-  func startController(withPathIdentifier pathIdentifier: String, extras: [String: AnyObject]) {
+  func startController(withPathIdentifier pathIdentifier: String, extras: [String: Any]) {
     let intent = FRDIntent(pathIdentifier: pathIdentifier)
     intent.putExtraDatas(extras)
     self.startController(withIntent: intent)
@@ -202,7 +203,9 @@ public extension UIViewController {
    - parameter requestCode : this code will be returned in onControllerResult() when the view controller exits.
    */
   func startControllerForResult(withIntent intent: FRDIntent, requestCode: Int) {
-    FRDControllerManager.sharedInstance.startControllerForResult(from: self, withIntent: intent, requestCode: requestCode)
+    FRDControllerManager.sharedInstance.startControllerForResult(from: self,
+                                                                 withIntent: intent,
+                                                                 requestCode: requestCode)
   }
 
   /**
@@ -214,7 +217,7 @@ public extension UIViewController {
    - parameter extras: The datas for initializing the intent.
    - parameter requestCode : this code will be returned in onControllerResult() when the view controller exits.
    */
-  func startControllerForResult(withPathIdentifier pathIdentifier: String, extras: [String: AnyObject], requestCode: Int) {
+  func startControllerForResult(withPathIdentifier pathIdentifier: String, extras: [String: Any], requestCode: Int) {
     let intent = FRDIntent(pathIdentifier: pathIdentifier)
     intent.putExtraDatas(extras)
     self.startControllerForResult(withIntent: intent, requestCode: requestCode)
@@ -225,7 +228,7 @@ public extension UIViewController {
 
    - parameter extras: The datas of intent received.
    */
-  func setupExtras(_ extras: [String: AnyObject]) {
+  func setupExtras(_ extras: [String: Any]) {
     if let title = extras[FRDIntentParameters.title] as? String {
       self.title = title
     }

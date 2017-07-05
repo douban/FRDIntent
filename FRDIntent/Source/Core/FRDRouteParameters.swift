@@ -18,4 +18,3 @@ public class FRDRouteParameters: NSObject {
   public static let URLRouteURL = "URLRouteURL"
 
 }
-

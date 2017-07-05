@@ -9,7 +9,8 @@
 import UIKit
 
 /**
- The way of display view controllers with present. It calls presentViewController(viewController: UIViewController, animated: Bool)
+ The way of display view controllers with present. 
+ It calls presentViewController(viewController: UIViewController, animated: Bool)
  */
 open class FRDPresentationDisplay: NSObject, FRDControllerDisplay {
 

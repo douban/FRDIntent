@@ -113,7 +113,8 @@ final class Trie<T> {
 
    - parameter url: the url.
 
-   - returns: the node's value. If trie has this paths, return the value in this node. If trie has not this paths, return the nearest registered url parent.
+   - returns: the node's value. If trie has this paths, return the value in this node. 
+              If trie has not this paths, return the nearest registered url parent.
    */
   func searchNearestMatchedValue(with url: URL) -> T? {
     guard let paths = url.pathComponentsWithoutSlash else {
@@ -158,7 +159,7 @@ final class Trie<T> {
 
    - returns: dictionary for the pattern match result.
    */
-  func matchedPattern(for url: URL) -> [String: AnyObject] {
+  func matchedPattern(for url: URL) -> [String: Any] {
     guard let paths = url.pathComponentsWithoutSlash else {
       return [:]
     }
@@ -167,7 +168,7 @@ final class Trie<T> {
       return [:]
     }
 
-    var params: [String: AnyObject] = [:]
+    var params: [String: Any] = [:]
     var currentNode = root
     for path in paths {
       if let child = currentNode.children[path] {
@@ -175,7 +176,7 @@ final class Trie<T> {
       } else {
         if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
           if child.isPlaceholder {
-            params[child.placeholder!] = path as AnyObject
+            params[child.placeholder!] = path
           }
           currentNode = child
         } else {
@@ -187,7 +188,6 @@ final class Trie<T> {
     return params
   }
 }
-
 
 // MARK: - TrieNode
 
@@ -245,7 +245,6 @@ extension TrieNode {
   }
 
 }
-
 
 // MARK: - URL extension
 
