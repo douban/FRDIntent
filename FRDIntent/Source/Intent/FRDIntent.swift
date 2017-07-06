@@ -66,7 +66,7 @@ public class FRDIntent: NSObject {
    Put the extra data into the intent.
    
    - parameter name: key
-   - parameter data: value
+   - parameter value: value
   */
   public func putExtraName(_ name: String, withValue value: Any) {
     self.extras[name] = value
@@ -75,7 +75,7 @@ public class FRDIntent: NSObject {
   /**
    Put the extras datas into the intent.
    
-   - parameter data: the data dictionary.
+   - parameter datas: the data dictionary.
    */
   public func putExtraDatas(_ datas: [String: Any]) {
     for (key, value) in datas {

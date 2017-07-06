@@ -87,7 +87,7 @@ public extension FRDURLRoutes {
   /**
    Registers with a plist file.
 
-   - parameter contentsOfFile: The plistFile path.
+   - parameter path: The plistFile path.
 
    - returns: True if it registers successfully.
    */
