@@ -93,7 +93,7 @@
 
 - (void)controllerDidReturnWithReqeustCode:(NSInteger)requestCode
                                 resultCode:(enum FRDResultCode)code
-                                      data:(FRDIntent *)intent
+                                      data:(NSDictionary<NSString *, id> *)data
 {
   if (requestCode == 1){
     if (code == FRDResultCodeOk) {
