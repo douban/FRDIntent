@@ -68,18 +68,16 @@
   [self dismissViewControllerAnimated:YES completion:NULL];
 
   if (self.delegate) {
-    FRDIntent *intent = [[FRDIntent alloc] initWithUrl:[NSURL URLWithString:@"douban://"]];
-    [intent putExtraName:@"text" withValue:self.textField.text];
-    [self.delegate controllerDidReturnWithReqeustCode:self.requestCode resultCode:FRDResultCodeCanceled data:intent];
+    NSDictionary *data = @{@"text": self.textField.text ?: @""};
+    [self.delegate controllerDidReturnWithReqeustCode:self.requestCode resultCode:FRDResultCodeCanceled data:data];
   }
 }
 
 - (void)confirm:(id)sender {
   [self dismissViewControllerAnimated:YES completion:NULL];
   if (self.delegate) {
-    FRDIntent *intent = [[FRDIntent alloc] initWithUrl:[NSURL URLWithString:@"douban://"]];
-    [intent putExtraName:@"text" withValue:self.textField.text];
-    [self.delegate controllerDidReturnWithReqeustCode:self.requestCode resultCode:FRDResultCodeOk data:intent];
+    NSDictionary *data = @{@"text": self.textField.text ?: @""};
+    [self.delegate controllerDidReturnWithReqeustCode:self.requestCode resultCode:FRDResultCodeOk data:data];
   }
 }
 
