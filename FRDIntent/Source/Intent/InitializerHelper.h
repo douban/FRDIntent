@@ -9,12 +9,17 @@
 @import UIKit;
 
 @protocol FRDIntentReceivable;
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface InitializerHelper : NSObject
 
-+ (nullable UIViewController<FRDIntentReceivable> *)viewControllerFromClazzName:(nonnull NSString *)clazzName
-                                                                         extras:(nullable NSDictionary<NSString *, id> *)extras;
++ (nullable UIViewController<FRDIntentReceivable> *)viewControllerFromClazzName:(NSString *)clazzName
+                                                                         extras:(NSDictionary<NSString *, id> *)extras;
 
-+ (nullable UIViewController<FRDIntentReceivable> *)viewControllerFromClazz:(nonnull Class)clazz
-                                                                     extras:(nullable NSDictionary<NSString *, id> *)extras;
++ (nullable UIViewController<FRDIntentReceivable> *)viewControllerFromClazz:(Class)clazz
+                                                                     extras:(NSDictionary<NSString *, id> *)extras;
 
 @end
+
+NS_ASSUME_NONNULL_END
