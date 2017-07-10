@@ -61,6 +61,15 @@ public class FRDControllerManager: NSObject {
   }
 
   /**
+   Unregister url
+
+   - parameter url: The url to be unregistered
+   */
+  public func unregister(_ url: URL) {
+    routeManager.unregisterIntent(for: url)
+  }
+
+  /**
    Launch a view controller from source view controller with a intent.
    
    - parameter source: The source view controller.

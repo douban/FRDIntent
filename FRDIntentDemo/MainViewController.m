@@ -97,10 +97,10 @@
 {
   if (requestCode == 1){
     if (code == FRDResultCodeOk) {
-      NSString *text = [intent.extras objectForKey:@"text"];
+      NSString *text = [data objectForKey:@"text"];
       NSLog(@"Successful confirm get from destination : %@", text);
     } else if (code == FRDResultCodeCanceled) {
-      NSString *text = intent.extras[@"text"];
+      NSString *text = data[@"text"];
       NSLog(@"Canceled confirm get from destination : %@", text);
     }
   }

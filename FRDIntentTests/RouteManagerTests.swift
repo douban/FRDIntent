@@ -99,4 +99,23 @@ class RouteSearch: XCTestCase {
     XCTAssert(value7 == MockStoryViewController.self, "value is nil")
   }
 
+  func testRemoveURL() {
+    let url = URL(string: "/param/to/:be/remove/:id")!
+    routeManager.register(url, clazz: MockStoryViewController.self)
+    let (_, value) = routeManager.searchController(for: url)
+    XCTAssert(value != nil)
+    routeManager.unregisterIntent(for: url)
+    let (_, value2) = routeManager.searchController(for: url)
+    XCTAssert(value2 == nil)
+  }
+
+  func testRemoveSamilarURL() {
+    let url = URL(string: "/a/b")!
+    routeManager.register(url, clazz: MockStoryViewController.self)
+    let url2 = URL(string: "a/c")!
+    routeManager.register(url2, clazz: MockStoryViewController.self)
+    routeManager.unregisterIntent(for: url)
+    let (_, value2) = routeManager.searchController(for: url2)
+    XCTAssert(value2 != nil)
+  }
 }
