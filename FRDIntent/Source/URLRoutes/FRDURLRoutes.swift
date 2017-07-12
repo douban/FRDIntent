@@ -57,6 +57,15 @@ public class FRDURLRoutes: NSObject {
     let (_, handler) = routeManager.searchHandler(for: url)
     return handler != nil
   }
+
+  /**
+   Unregister url
+
+   - parameter url: The url to be unregistered
+   */
+  public func unregister(_ url: URL) {
+    routeManager.unregisterHandler(for: url)
+  }
 }
 
 public extension FRDURLRoutes {
