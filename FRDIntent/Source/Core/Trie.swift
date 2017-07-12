@@ -50,20 +50,29 @@ final class Trie<T> {
    - parameter url: the url.
    - parameter value: the value for inserting.
    */
-  func insert(_ url: URL, withValue value: T) {
+  func insert(_ url: URL, with value: T) -> Bool {
     guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
-      return
+      return false
     }
+
     var currentNode = root
     for path in paths {
       if let child = currentNode.children[path] {
         currentNode = child
       } else {
+        if path.hasPrefix(":") {
+          // check if any child is placeholder.
+          for child in currentNode.children.values where child.isPlaceholder {
+            NSLog("Already have placeholder \(child.key), can't insert another placeholder \(path).")
+            return false
+          }
+        }
         currentNode.addChild(withKey: path, value: nil)
         currentNode = currentNode.children[path]!
       }
     }
     currentNode.value = value
+    return true
   }
 
   /**
@@ -82,32 +91,6 @@ final class Trie<T> {
   }
 
   /**
-   Search the value with url key.
-   
-   - parameter url: the url.
-
-   - returns: the node's value.
-   */
-  func search(_ url: URL) -> T? {
-    guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
-      return nil
-    }
-    var currentNode = root
-    for path in paths {
-      if let child = currentNode.children[path] {
-        currentNode = child
-      } else {
-        if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
-          currentNode = child
-        } else {
-          return nil
-        }
-      }
-    }
-    return currentNode.value
-  }
-
-  /**
    This search method's behavior is different with classical trie's search.
 
    - parameter url: the url.
@@ -122,22 +105,16 @@ final class Trie<T> {
     var currentNode = root
     var nearestUrlParent = root
     for path in paths {
-      if let child = currentNode.children[path] {
+      if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
         currentNode = child
         if currentNode.isTerminating {
           nearestUrlParent = currentNode
         }
       } else {
-        if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
-          currentNode = child
-          if currentNode.isTerminating {
-            nearestUrlParent = currentNode
-          }
-        } else {
-          // not find
-          return nearestUrlParent.value
-        }
+        // not find
+        return nearestUrlParent.value
       }
+
     }
     return currentNode.value
   }
@@ -182,18 +159,14 @@ final class Trie<T> {
     var params: [String: Any] = [:]
     var currentNode = root
     for path in paths {
-      if let child = currentNode.children[path] {
+      if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
+        if child.isPlaceholder {
+          params[child.placeholder!] = path
+        }
         currentNode = child
       } else {
-        if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
-          if child.isPlaceholder {
-            params[child.placeholder!] = path
-          }
-          currentNode = child
-        } else {
-          // not find
-          return params
-        }
+        // not find
+        return params
       }
     }
     return params
