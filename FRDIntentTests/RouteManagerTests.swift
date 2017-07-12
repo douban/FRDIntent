@@ -59,8 +59,8 @@ class RouteSearch: XCTestCase {
     routeManager.register(URL(string: "/normal/")!, handler: handler1)
 
     let (params5, value5) = routeManager.searchHandler(for: URL(string: "/story/12345/error")!)
-    XCTAssert(params5["storyId"] as! String == "12345", "storyId is 1234")
     XCTAssert(value5 != nil, "value is not nil")
+    XCTAssert(params5["storyId"] as! String == "12345", "storyId is 1234")
 
     let (params6, value6) = routeManager.searchHandler(for: URL(string: "/error")!)
     XCTAssert(params6[FRDRouteParameters.URLRouteURL] as? URL == URL(string:  "/error"), "")
@@ -104,7 +104,7 @@ class RouteSearch: XCTestCase {
     routeManager.register(url, clazz: MockStoryViewController.self)
     let (_, value) = routeManager.searchController(for: url)
     XCTAssert(value != nil)
-    routeManager.unregisterIntent(for: url)
+    routeManager.unregisterController(for: url)
     let (_, value2) = routeManager.searchController(for: url)
     XCTAssert(value2 == nil)
   }
@@ -114,8 +114,36 @@ class RouteSearch: XCTestCase {
     routeManager.register(url, clazz: MockStoryViewController.self)
     let url2 = URL(string: "a/c")!
     routeManager.register(url2, clazz: MockStoryViewController.self)
-    routeManager.unregisterIntent(for: url)
+    routeManager.unregisterController(for: url)
     let (_, value2) = routeManager.searchController(for: url2)
     XCTAssert(value2 != nil)
   }
+
+  func testConflictWithPlaceholder() {
+
+    let handler : URLRoutesHandler = { params in
+      print("url: \(params[FRDRouteParameters.URLRouteURL] as! String)")
+    }
+
+    let url = URL(string: "user/:id/reviews")!
+    routeManager.register(url, clazz: MockUserViewController.self)
+
+    let url2 = URL(string: "user/profile/reviews")!
+    routeManager.register(url2, handler: handler)
+
+    let (_, value2) = routeManager.searchHandler(for: url2)
+    XCTAssert(value2 != nil)
+  }
+
+  func testInsertPlaceholder() {
+
+    let url = URL(string: "user/:id/reviews")!
+    let result1 = routeManager.register(url, clazz: MockUserViewController.self)
+    XCTAssert(result1)
+
+    let url2 = URL(string: "user/:number/reviews")!
+    let result2 = routeManager.register(url2, clazz: MockStoryViewController.self)
+    XCTAssert(result2 != true)
+  }
+
 }

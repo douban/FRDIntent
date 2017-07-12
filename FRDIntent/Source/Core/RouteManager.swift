@@ -30,15 +30,12 @@ class RouteManager {
    - parameter clazz: The clazz to be saved.
    */
   @discardableResult func register(_ url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
-
-    if let (_, handler) = routes.search(url) {
-      routes.insert(url, withValue: (clazz, handler))
-    } else {
-      // not find it, insert
-      routes.insert(url, withValue: (clazz, nil))
+    if let node = routes.searchNodeWithoutMatchPlaceholder(for: url), let (_, handler) = node.value {
+      node.value = (clazz, handler)
+      return true
     }
-
-    return true
+    // not find it, insert
+    return routes.insert(url, with: (clazz, nil))
   }
 
   /**
@@ -48,15 +45,12 @@ class RouteManager {
    - parameter hanlder: The handler to be saved.
   */
   @discardableResult func register(_ url: URL, handler: @escaping URLRoutesHandler) -> Bool {
-
-    if let (clazz, _) = routes.search(url) {
-      routes.insert(url, withValue: (clazz, handler))
-    } else {
-      // not find it, insert
-      routes.insert(url, withValue: (nil, handler))
+    if let node = routes.searchNodeWithoutMatchPlaceholder(for: url), let (clazz, _) = node.value {
+      node.value = (clazz, handler)
+      return true
     }
-
-    return true
+      // not find it, insert
+    return routes.insert(url, with: (nil, handler))
   }
 
   // MARK: - Unregister
@@ -66,6 +60,18 @@ class RouteManager {
 
    - parameter url: The url to be unregistered
    */
+  func unregisterController(for url: URL) {
+    guard let node = routes.searchNodeWithoutMatchPlaceholder(for: url) else { return }
+    if let (_, handler) = node.value {
+      if handler == nil {
+        node.value = nil
+        routes.remove(node)
+      } else {
+        node.value = (nil, handler)
+      }
+    }
+  }
+
   func unregisterHandler(for url: URL) {
     guard let node = routes.searchNodeWithoutMatchPlaceholder(for: url) else { return }
     if let (clazz, _) = node.value {
@@ -74,18 +80,6 @@ class RouteManager {
         routes.remove(node)
       } else {
         node.value = (clazz, nil)
-      }
-    }
-  }
-
-  func unregisterIntent(for url: URL) {
-    guard let node = routes.searchNodeWithoutMatchPlaceholder(for: url) else { return }
-    if let (_, handler) = node.value {
-      if handler == nil {
-        node.value = nil
-        routes.remove(node)
-      } else {
-        node.value = (nil, handler)
       }
     }
   }
