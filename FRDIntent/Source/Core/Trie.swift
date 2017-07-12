@@ -51,17 +51,9 @@ final class Trie<T> {
    - parameter value: the value for inserting.
    */
   func insert(_ url: URL, withValue value: T) {
-    guard let paths = url.pathComponentsWithoutSlash else {
+    guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
       return
     }
-    insertPaths(paths, withValue: value)
-  }
-
-  private func insertPaths(_ paths: [String], withValue value: T) {
-    guard !paths.isEmpty else {
-      return
-    }
-
     var currentNode = root
     for path in paths {
       if let child = currentNode.children[path] {
@@ -72,6 +64,82 @@ final class Trie<T> {
       }
     }
     currentNode.value = value
+  }
+
+  /**
+   Remove node from Trie
+
+   - parameter node: a node in the Trie
+   */
+  func remove(_ node: TrieNode<T>) {
+    var currentNode = node
+    while let parent = currentNode.parent {
+      if currentNode.isLeaf && !currentNode.isTerminating {
+        parent.children[currentNode.key] = nil
+      }
+      currentNode = parent
+    }
+  }
+
+  /**
+   Search the value with url key.
+   
+   - parameter url: the url.
+
+   - returns: the node's value.
+   */
+  func search(_ url: URL) -> T? {
+    guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
+      return nil
+    }
+    var currentNode = root
+    for path in paths {
+      if let child = currentNode.children[path] {
+        currentNode = child
+      } else {
+        if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
+          currentNode = child
+        } else {
+          return nil
+        }
+      }
+    }
+    return currentNode.value
+  }
+
+  /**
+   This search method's behavior is different with classical trie's search.
+
+   - parameter url: the url.
+
+   - returns: the node's value. If trie has this paths, return the value in this node. 
+              If trie has not this paths, return the nearest registered url parent.
+   */
+  func searchNearestMatchedValue(with url: URL) -> T? {
+    guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
+      return nil
+    }
+    var currentNode = root
+    var nearestUrlParent = root
+    for path in paths {
+      if let child = currentNode.children[path] {
+        currentNode = child
+        if currentNode.isTerminating {
+          nearestUrlParent = currentNode
+        }
+      } else {
+        if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
+          currentNode = child
+          if currentNode.isTerminating {
+            nearestUrlParent = currentNode
+          }
+        } else {
+          // not find
+          return nearestUrlParent.value
+        }
+      }
+    }
+    return currentNode.value
   }
 
   /**
@@ -99,98 +167,6 @@ final class Trie<T> {
   }
 
   /**
-   Remove node from Trie
-
-   - parameter node: a node in the Trie
-   */
-  func remove(_ node: TrieNode<T>) {
-    var currentNode = node
-    while let parent = currentNode.parent {
-      if currentNode.isLeaf && !currentNode.isTerminating {
-        parent.children[currentNode.key] = nil
-      }
-      currentNode = parent
-    }
-  }
-
-  /**
-   Search the value with url key.
-   
-   - parameter url: the url.
-
-   - returns: the node's value.
-   */
-  func search(_ url: URL) -> T? {
-    guard let paths = url.pathComponentsWithoutSlash else {
-      return nil
-    }
-    return searchPaths(paths)
-  }
-
-  private func searchPaths(_ paths: [String]) -> T? {
-    guard !paths.isEmpty else {
-      return nil
-    }
-
-    var currentNode = root
-    for path in paths {
-      if let child = currentNode.children[path] {
-        currentNode = child
-      } else {
-        if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
-          currentNode = child
-        } else {
-          return nil
-        }
-      }
-    }
-    return currentNode.value
-  }
-
-  /**
-   This search method's behavior is different with classical trie's search.
-
-   - parameter url: the url.
-
-   - returns: the node's value. If trie has this paths, return the value in this node. 
-              If trie has not this paths, return the nearest registered url parent.
-   */
-  func searchNearestMatchedValue(with url: URL) -> T? {
-    guard let paths = url.pathComponentsWithoutSlash else {
-      return nil
-    }
-    return searchWNearestMatchValue(withPaths: paths)
-  }
-
-  private func searchWNearestMatchValue(withPaths paths: [String]) -> T? {
-    guard !paths.isEmpty else {
-      return nil
-    }
-
-    var currentNode = root
-    var nearestUrlParent = root
-    for path in paths {
-      if let child = currentNode.children[path] {
-        currentNode = child
-        if currentNode.isTerminating {
-          nearestUrlParent = currentNode
-        }
-      } else {
-        if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
-          currentNode = child
-          if currentNode.isTerminating {
-            nearestUrlParent = currentNode
-          }
-        } else {
-          // not find
-          return nearestUrlParent.value
-        }
-      }
-    }
-    return currentNode.value
-  }
-
-  /**
    This trie support url pattern match. The url with prefix ":" is the url pattern, for example ":userId".
    This method extracts all the patterns in the url.
    
@@ -199,11 +175,7 @@ final class Trie<T> {
    - returns: dictionary for the pattern match result.
    */
   func matchedPattern(for url: URL) -> [String: Any] {
-    guard let paths = url.pathComponentsWithoutSlash else {
-      return [:]
-    }
-
-    guard !paths.isEmpty else {
+    guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
       return [:]
     }
 
