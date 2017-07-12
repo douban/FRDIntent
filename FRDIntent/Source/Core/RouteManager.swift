@@ -30,9 +30,9 @@ class RouteManager {
    - parameter clazz: The clazz to be saved.
    */
   @discardableResult func register(_ url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
-
     if let node = routes.searchNodeWithoutMatchPlaceholder(for: url), let (_, handler) = node.value {
-      return routes.insert(url, with: (clazz, handler))
+      node.value = (clazz, handler)
+      return true
     }
     // not find it, insert
     return routes.insert(url, with: (clazz, nil))
@@ -46,7 +46,8 @@ class RouteManager {
   */
   @discardableResult func register(_ url: URL, handler: @escaping URLRoutesHandler) -> Bool {
     if let node = routes.searchNodeWithoutMatchPlaceholder(for: url), let (clazz, _) = node.value {
-      return routes.insert(url, with: (clazz, handler))
+      node.value = (clazz, handler)
+      return true
     }
       // not find it, insert
     return routes.insert(url, with: (nil, handler))
