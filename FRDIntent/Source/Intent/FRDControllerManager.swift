@@ -66,7 +66,7 @@ public class FRDControllerManager: NSObject {
    - parameter url: The url to be unregistered
    */
   public func unregister(_ url: URL) {
-    routeManager.unregisterIntent(for: url)
+    routeManager.unregisterController(for: url)
   }
 
   /**

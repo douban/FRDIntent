@@ -60,6 +60,18 @@ class RouteManager {
 
    - parameter url: The url to be unregistered
    */
+  func unregisterController(for url: URL) {
+    guard let node = routes.searchNodeWithoutMatchPlaceholder(for: url) else { return }
+    if let (_, handler) = node.value {
+      if handler == nil {
+        node.value = nil
+        routes.remove(node)
+      } else {
+        node.value = (nil, handler)
+      }
+    }
+  }
+
   func unregisterHandler(for url: URL) {
     guard let node = routes.searchNodeWithoutMatchPlaceholder(for: url) else { return }
     if let (clazz, _) = node.value {
@@ -68,18 +80,6 @@ class RouteManager {
         routes.remove(node)
       } else {
         node.value = (clazz, nil)
-      }
-    }
-  }
-
-  func unregisterIntent(for url: URL) {
-    guard let node = routes.searchNodeWithoutMatchPlaceholder(for: url) else { return }
-    if let (_, handler) = node.value {
-      if handler == nil {
-        node.value = nil
-        routes.remove(node)
-      } else {
-        node.value = (nil, handler)
       }
     }
   }
