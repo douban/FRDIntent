@@ -62,7 +62,7 @@ final class Trie<T> {
       } else {
         if path.hasPrefix(":") {
           // check if any child is placeholder.
-          for child in currentNode.children.values where child.isPlaceholder {
+          if let child = currentNode.children.values.first(where: { $0.isPlaceholder }) {
             NSLog("Already have placeholder \(child.key), can't insert another placeholder \(path).")
             return false
           }
@@ -227,11 +227,8 @@ extension TrieNode {
     if let child = children[key] {
       return child
     } else {
-      for child in children.values where child.isPlaceholder {
-        return child
-      }
+      return children.values.first(where: {$0.isPlaceholder})
     }
-    return nil
   }
 
 }

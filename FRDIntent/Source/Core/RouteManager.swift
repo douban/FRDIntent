@@ -31,10 +31,8 @@ class RouteManager {
    */
   @discardableResult func register(_ url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
 
-    if let node = routes.searchNodeWithoutMatchPlaceholder(for: url) {
-      if let (_, handler) = node.value {
-        return routes.insert(url, with: (clazz, handler))
-      }
+    if let node = routes.searchNodeWithoutMatchPlaceholder(for: url), let (_, handler) = node.value {
+      return routes.insert(url, with: (clazz, handler))
     }
     // not find it, insert
     return routes.insert(url, with: (clazz, nil))
@@ -47,12 +45,10 @@ class RouteManager {
    - parameter hanlder: The handler to be saved.
   */
   @discardableResult func register(_ url: URL, handler: @escaping URLRoutesHandler) -> Bool {
-    if let node = routes.searchNodeWithoutMatchPlaceholder(for: url) {
-      if let (clazz, _) = node.value {
-        return routes.insert(url, with: (clazz, handler))
-      }
+    if let node = routes.searchNodeWithoutMatchPlaceholder(for: url), let (clazz, _) = node.value {
+      return routes.insert(url, with: (clazz, handler))
     }
-    // not find it, insert
+      // not find it, insert
     return routes.insert(url, with: (nil, handler))
   }
 
@@ -125,7 +121,6 @@ class RouteManager {
   }
 
   // MARK: - Private Methods
-
   private func extractParameters(from url: URL) -> [String: Any] {
 
     // Extract placeholder parameters
