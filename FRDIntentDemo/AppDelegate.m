@@ -90,7 +90,7 @@
   [[FRDURLRoutes sharedInstance] register:[NSURL URLWithString:@"/user/:userId/story/:storyId"]
                                   handler:^(NSDictionary<NSString*, id> *params)
   {
-    NSURL *url = [params objectForKey:FRDRouteParameters.URLRouteURL];
+    NSURL *url = [params objectForKey:FRDIntentParameters.URL];
     FRDIntent *intent = [[FRDIntent alloc] initWithUrl:url];
     intent.controllerDisplay = [[FRDPresentationDisplay alloc] init];
     UIViewController *topViewController = [UIViewController topViewController];

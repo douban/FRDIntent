@@ -63,7 +63,7 @@ class RouteSearch: XCTestCase {
     XCTAssert(params5["storyId"] as! String == "12345", "storyId is 1234")
 
     let (params6, value6) = routeManager.searchHandler(for: URL(string: "/error")!)
-    XCTAssert(params6[FRDRouteParameters.URLRouteURL] as? URL == URL(string:  "/error"), "")
+    XCTAssert(params6[FRDIntentParameters.URL] as? URL == URL(string:  "/error"), "")
     XCTAssert(value6 == nil, "no match, value is nil")
 
     routeManager.register(URL(string: "/intent/paying")!, handler: handler1)
@@ -122,7 +122,7 @@ class RouteSearch: XCTestCase {
   func testConflictWithPlaceholder() {
 
     let handler : URLRoutesHandler = { params in
-      print("url: \(params[FRDRouteParameters.URLRouteURL] as! String)")
+      print("url: \(params[FRDIntentParameters.URL] as! String)")
     }
 
     let url = URL(string: "user/:id/reviews")!
