@@ -18,6 +18,8 @@ import Foundation
  */
 class RouteManager {
 
+  static let URLRouteURL = "URLRouteURL"
+
   static let sharedInstance = RouteManager()
   fileprivate var routes = Trie<RoutePathNodeValueType>()
 
@@ -128,7 +130,7 @@ class RouteManager {
     var params = routes.matchedPattern(for: url)
 
     // Add url to params
-    params.updateValue(url, forKey: FRDRouteParameters.URLRouteURL)
+    params.updateValue(url, forKey: RouteManager.URLRouteURL)
 
     // Add queries to params
     if let queryItems = url.queryItems {

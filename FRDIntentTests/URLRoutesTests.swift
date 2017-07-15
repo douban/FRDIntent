@@ -16,7 +16,7 @@ class URLRoutesTests: XCTestCase {
 
     router.register(URL(string: "/user/:userId")!) { (params: [String: Any]) in
       XCTAssert(params["userId"] as! String == "12", "userId is 12")
-      XCTAssert(params[FRDRouteParameters.URLRouteURL] as? NSURL == NSURL(string:  "/user/12"), "")
+      XCTAssert(params[FRDIntentParameters.URL] as? NSURL == NSURL(string:  "/user/12"), "")
     }
 
     _ = router.route(URL(string: "/user/12")!)
