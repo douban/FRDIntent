@@ -32,12 +32,12 @@ class RouteManager {
    - parameter clazz: The clazz to be saved.
    */
   @discardableResult func register(_ url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
-    if let node = routes.searchNodeWithoutMatchPlaceholder(for: url), let (_, handler) = node.value {
+    if let node = routes.searchNodeWithoutMatchPlaceholder(with: url), let (_, handler) = node.value {
       node.value = (clazz, handler)
       return true
     }
     // not find it, insert
-    return routes.insert(url, with: (clazz, nil))
+    return routes.insert((clazz, nil), with: url)
   }
 
   /**
@@ -47,12 +47,12 @@ class RouteManager {
    - parameter hanlder: The handler to be saved.
   */
   @discardableResult func register(_ url: URL, handler: @escaping URLRoutesHandler) -> Bool {
-    if let node = routes.searchNodeWithoutMatchPlaceholder(for: url), let (clazz, _) = node.value {
+    if let node = routes.searchNodeWithoutMatchPlaceholder(with: url), let (clazz, _) = node.value {
       node.value = (clazz, handler)
       return true
     }
       // not find it, insert
-    return routes.insert(url, with: (nil, handler))
+    return routes.insert((nil, handler), with: url)
   }
 
   // MARK: - Unregister
@@ -62,8 +62,8 @@ class RouteManager {
 
    - parameter url: The url to be unregistered
    */
-  func unregisterController(for url: URL) {
-    guard let node = routes.searchNodeWithoutMatchPlaceholder(for: url) else { return }
+  func unregisterController(with url: URL) {
+    guard let node = routes.searchNodeWithoutMatchPlaceholder(with: url) else { return }
     if let (_, handler) = node.value {
       if handler == nil {
         node.value = nil
@@ -74,8 +74,8 @@ class RouteManager {
     }
   }
 
-  func unregisterHandler(for url: URL) {
-    guard let node = routes.searchNodeWithoutMatchPlaceholder(for: url) else { return }
+  func unregisterHandler(with url: URL) {
+    guard let node = routes.searchNodeWithoutMatchPlaceholder(with: url) else { return }
     if let (clazz, _) = node.value {
       if clazz == nil {
         node.value = nil
@@ -95,7 +95,7 @@ class RouteManager {
 
    - returns: A tuple with parameters and clazz.
    */
-  func searchController(for url: URL) -> ([String: Any], FRDIntentReceivable.Type?) {
+  func searchController(with url: URL) -> ([String: Any], FRDIntentReceivable.Type?) {
     let params = extractParameters(from: url)
 
     if let (clazz, _) = routes.searchNearestMatchedValue(with: url) {
@@ -113,7 +113,7 @@ class RouteManager {
 
    - returns: A tuple with parameters and handler.
    */
-  func searchHandler(for url: URL) -> ([String: Any], URLRoutesHandler?) {
+  func searchHandler(with url: URL) -> ([String: Any], URLRoutesHandler?) {
     let params = extractParameters(from: url)
 
     if let (_, handler) = routes.searchNearestMatchedValue(with: url) {
@@ -127,7 +127,7 @@ class RouteManager {
   private func extractParameters(from url: URL) -> [String: Any] {
 
     // Extract placeholder parameters
-    var params = routes.matchedPattern(for: url)
+    var params = routes.extractMatchedPattern(from: url)
 
     // Add url to params
     params.updateValue(url, forKey: RouteManager.URLRouteURL)

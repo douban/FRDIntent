@@ -47,10 +47,10 @@ final class Trie<T> {
   /**
    Insert the url into the trie.
 
-   - parameter url: the url.
    - parameter value: the value for inserting.
+   - parameter url: the url.
    */
-  func insert(_ url: URL, with value: T) -> Bool {
+  func insert(_ value: T, with url: URL) -> Bool {
     guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
       return false
     }
@@ -67,7 +67,7 @@ final class Trie<T> {
             return false
           }
         }
-        currentNode.addChild(withKey: path, value: nil)
+        currentNode.addChild(nil, withKey: path)
         currentNode = currentNode.children[path]!
       }
     }
@@ -125,7 +125,7 @@ final class Trie<T> {
    - parameter url: the url.
    - return the match node. Otherwise nil.
    */
-  func searchNodeWithoutMatchPlaceholder(for url: URL) -> TrieNode<T>? {
+  func searchNodeWithoutMatchPlaceholder(with url: URL) -> TrieNode<T>? {
     guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
       return nil
     }
@@ -151,7 +151,7 @@ final class Trie<T> {
 
    - returns: dictionary for the pattern match result.
    */
-  func matchedPattern(for url: URL) -> [String: Any] {
+  func extractMatchedPattern(from url: URL) -> [String: Any] {
     guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
       return [:]
     }
@@ -199,7 +199,7 @@ final class TrieNode<T> {
     self.value = value
   }
 
-  func addChild(withKey key: String, value: T?) {
+  func addChild(_ value: T?, withKey key: String) {
     guard children[key] == nil else {
       return
     }
