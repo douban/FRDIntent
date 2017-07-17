@@ -38,7 +38,7 @@ public class FRDURLRoutes: NSObject {
    - returns: True if handler block is found and called, false if handler block is not found.
    */
   public func route(_ url: URL) -> Bool {
-    let (params, handler) = routeManager.searchHandler(for: url)
+    let (params, handler) = routeManager.searchHandler(with: url)
     if let handler = handler {
       handler(params)
       return true
@@ -54,7 +54,7 @@ public class FRDURLRoutes: NSObject {
    - returns: True if a handler can be found for the given url.
    */
   public func canRoute(_ url: URL) -> Bool {
-    let (_, handler) = routeManager.searchHandler(for: url)
+    let (_, handler) = routeManager.searchHandler(with: url)
     return handler != nil
   }
 
@@ -64,7 +64,7 @@ public class FRDURLRoutes: NSObject {
    - parameter url: The url to be unregistered
    */
   public func unregister(_ url: URL) {
-    routeManager.unregisterHandler(for: url)
+    routeManager.unregisterHandler(with: url)
   }
 }
 
@@ -86,7 +86,7 @@ public extension FRDURLRoutes {
       guard let url = params[RouteManager.URLRouteURL] as? URL else { return }
       let intent = FRDIntent(url: url)
       if let topViewController = UIApplication.topViewController() {
-        FRDControllerManager.sharedInstance.startController(from: topViewController, withIntent: intent)
+        FRDControllerManager.sharedInstance.startController(from: topViewController, with: intent)
       }
     }
 

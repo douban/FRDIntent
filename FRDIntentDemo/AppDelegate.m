@@ -95,7 +95,7 @@
     intent.controllerDisplay = [[FRDPresentationDisplay alloc] init];
     UIViewController *topViewController = [UIViewController topViewController];
     if (topViewController) {
-      [[FRDControllerManager sharedInstance] startControllerFrom:topViewController withIntent:intent];
+      [[FRDControllerManager sharedInstance] startControllerFrom:topViewController with:intent];
     }
   }];
 
