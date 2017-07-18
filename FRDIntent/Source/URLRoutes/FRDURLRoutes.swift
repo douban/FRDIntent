@@ -54,8 +54,7 @@ public class FRDURLRoutes: NSObject {
    - returns: True if a handler can be found for the given url.
    */
   public func canRoute(_ url: URL) -> Bool {
-    let (_, handler) = routeManager.searchHandler(with: url)
-    return handler != nil
+    return routeManager.hasRegisteredHandler(with: url)
   }
 
   /**

@@ -86,6 +86,31 @@ class RouteManager {
     }
   }
 
+  /**
+   Check the url is registered or not.
+
+   - parameter url: The url to be checked.
+   */
+  func hasRegisteredController(with url: URL) -> Bool {
+    guard let node = routes.searchNodeWithtMatchPlaceholder(with: url) else { return false }
+    if let (clazz, _) = node.value {
+      if clazz == nil {
+        return false
+      }
+    }
+    return true
+  }
+
+  func hasRegisteredHandler(with url: URL) -> Bool {
+    guard let node = routes.searchNodeWithtMatchPlaceholder(with: url) else { return false }
+    if let (_, handler) = node.value {
+      if handler == nil {
+        return false
+      }
+    }
+    return true
+  }
+
   // MARK: - Search
 
   /**

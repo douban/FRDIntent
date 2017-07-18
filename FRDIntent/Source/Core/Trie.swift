@@ -92,6 +92,7 @@ final class Trie<T> {
 
   /**
    This search method's behavior is different with classical trie's search.
+   When it can not find the node it will try to find the nearest parent node which is isTerminating.
 
    - parameter url: the url.
 
@@ -104,23 +105,51 @@ final class Trie<T> {
     }
     var currentNode = root
     var nearestUrlParent = root
+
     for path in paths {
       if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
         currentNode = child
         if currentNode.isTerminating {
           nearestUrlParent = currentNode
         }
-      } else {
-        // not find
-        return nearestUrlParent.value
       }
-
     }
-    return currentNode.value
+
+    if currentNode.isTerminating {
+      return currentNode.value
+    } else {
+      return nearestUrlParent.value
+    }
+  }
+
+
+  /**
+   Find the node for given url, considering placeholder such as ":id".
+
+   - parameter url: the url.
+   - return the match node. Otherwise nil.
+   */
+  func searchNodeWithtMatchPlaceholder(with url: URL) -> TrieNode<T>? {
+    guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
+      return nil
+    }
+
+    var currentNode = root
+    for path in paths {
+      if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
+        currentNode = child
+      }
+    }
+
+    if currentNode.isTerminating {
+      return currentNode
+    }
+
+    return nil
   }
 
   /**
-   Find the node for given url
+   Find the node for given url without considering placeholder such as ":id".
 
    - parameter url: the url.
    - return the match node. Otherwise nil.
@@ -137,10 +166,11 @@ final class Trie<T> {
         return nil
       }
     }
-    if !currentNode.isTerminating {
-      return nil
+
+    if currentNode.isTerminating {
+      return currentNode
     }
-    return currentNode
+    return nil
   }
 
   /**
