@@ -48,6 +48,24 @@ class URLRoutesTests: XCTestCase {
   }
 
 
+  func testPlaceholder() {
+
+    let router = FRDURLRoutes.sharedInstance
+
+    router.register(URL(string: "/a/x/c/d")!) { (params: [String: Any]) in
+      XCTAssert(params[FRDIntentParameters.URL] as? NSURL == NSURL(string:  "/a/x/c/d"), "")
+    }
+
+    router.register(URL(string: "/a/:b/c")!) { (params: [String: Any]) in
+      XCTAssert(params[FRDIntentParameters.URL] as? NSURL == NSURL(string:  "/a/x/c"), "")
+    }
+
+    let result = router.route(URL(string: "/a/x/c")!)
+    XCTAssert(result, "/a/x/c can route by pattern /a/:b/c")
+  }
+
+
+
   func testCanRoute() {
     let router = FRDURLRoutes.sharedInstance
 

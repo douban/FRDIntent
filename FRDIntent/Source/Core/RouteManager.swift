@@ -123,7 +123,7 @@ class RouteManager {
   func searchController(with url: URL) -> ([String: Any], FRDIntentReceivable.Type?) {
     let params = extractParameters(from: url)
 
-    if let (clazz, _) = routes.searchNearestMatchedValue(with: url) {
+    if let (clazz, _) = routes.search(with: url) {
       return (params, clazz)
     } else {
       return (params, nil)
@@ -141,7 +141,7 @@ class RouteManager {
   func searchHandler(with url: URL) -> ([String: Any], URLRoutesHandler?) {
     let params = extractParameters(from: url)
 
-    if let (_, handler) = routes.searchNearestMatchedValue(with: url) {
+    if let (_, handler) = routes.search(with: url) {
       return (params, handler)
     } else {
       return (params, nil)
