@@ -99,29 +99,42 @@ final class Trie<T> {
    - returns: the node's value. If trie has this paths, return the value in this node. 
               If trie has not this paths, return the nearest registered url parent.
    */
-  func searchNearestMatchedValue(with url: URL) -> T? {
+  func search(with url: URL) -> T? {
     guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
       return nil
     }
-    var currentNode = root
-    var nearestUrlParent = root
 
-    for path in paths {
-      if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
-        currentNode = child
-        if currentNode.isTerminating {
-          nearestUrlParent = currentNode
+    if let (node, _) = search(with: paths, rootNode: root) {
+      return node.value
+    }
+    return nil
+  }
+
+  func search(with paths: [String], rootNode: TrieNode<T>) -> (TrieNode<T>, Int)? {
+    var resultNode: TrieNode<T>? = rootNode.isTerminating ? rootNode : nil
+    var resultNodeDistanceToLastPath: Int = paths.count
+
+    if let path = paths.first {
+      var childrenPaths = paths
+      childrenPaths.removeFirst()
+      let children = rootNode.matchedChildren(forKey: path)
+      for childNode in children {
+        if let (node, stepLeft) = search(with: childrenPaths, rootNode: childNode), stepLeft < resultNodeDistanceToLastPath {
+          resultNode = node
+          resultNodeDistanceToLastPath = stepLeft
+        }
+        if resultNodeDistanceToLastPath == 0 {
+          break
         }
       }
     }
 
-    if currentNode.isTerminating {
-      return currentNode.value
+    if resultNode != nil {
+      return (resultNode!, resultNodeDistanceToLastPath)
     } else {
-      return nearestUrlParent.value
+      return nil
     }
   }
-
 
   /**
    Find the node for given url, considering placeholder such as ":id".
@@ -259,6 +272,18 @@ extension TrieNode {
     } else {
       return children.values.first(where: {$0.isPlaceholder})
     }
+  }
+
+  func matchedChildren(forKey key: String) -> [TrieNode] {
+    var matchedChildren : [TrieNode] = []
+    if let child = children[key] {
+      matchedChildren.append(child)
+    }
+
+    if let placeholderChild = children.values.first(where: {$0.isPlaceholder}) {
+      matchedChildren.append(placeholderChild)
+    }
+    return matchedChildren
   }
 
 }
