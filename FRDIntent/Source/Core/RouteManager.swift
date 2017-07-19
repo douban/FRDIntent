@@ -86,6 +86,31 @@ class RouteManager {
     }
   }
 
+  /**
+   Check the url is registered or not.
+
+   - parameter url: The url to be checked.
+   */
+  func hasRegisteredController(with url: URL) -> Bool {
+    guard let node = routes.searchNodeWithtMatchPlaceholder(with: url) else { return false }
+    if let (clazz, _) = node.value {
+      if clazz == nil {
+        return false
+      }
+    }
+    return true
+  }
+
+  func hasRegisteredHandler(with url: URL) -> Bool {
+    guard let node = routes.searchNodeWithtMatchPlaceholder(with: url) else { return false }
+    if let (_, handler) = node.value {
+      if handler == nil {
+        return false
+      }
+    }
+    return true
+  }
+
   // MARK: - Search
 
   /**
@@ -98,7 +123,7 @@ class RouteManager {
   func searchController(with url: URL) -> ([String: Any], FRDIntentReceivable.Type?) {
     let params = extractParameters(from: url)
 
-    if let (clazz, _) = routes.searchNearestMatchedValue(with: url) {
+    if let (clazz, _) = routes.search(with: url) {
       return (params, clazz)
     } else {
       return (params, nil)
@@ -116,7 +141,7 @@ class RouteManager {
   func searchHandler(with url: URL) -> ([String: Any], URLRoutesHandler?) {
     let params = extractParameters(from: url)
 
-    if let (_, handler) = routes.searchNearestMatchedValue(with: url) {
+    if let (_, handler) = routes.search(with: url) {
       return (params, handler)
     } else {
       return (params, nil)

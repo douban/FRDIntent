@@ -92,35 +92,71 @@ final class Trie<T> {
 
   /**
    This search method's behavior is different with classical trie's search.
+   When it can not find the node it will try to find the nearest parent node which is isTerminating.
 
    - parameter url: the url.
 
    - returns: the node's value. If trie has this paths, return the value in this node. 
               If trie has not this paths, return the nearest registered url parent.
    */
-  func searchNearestMatchedValue(with url: URL) -> T? {
+  func search(with url: URL) -> T? {
     guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
       return nil
     }
-    var currentNode = root
-    var nearestUrlParent = root
-    for path in paths {
-      if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
-        currentNode = child
-        if currentNode.isTerminating {
-          nearestUrlParent = currentNode
-        }
-      } else {
-        // not find
-        return nearestUrlParent.value
-      }
 
+    if let node = search(with: paths, rootNode: root) {
+      return node.value
     }
-    return currentNode.value
+    return nil
+  }
+
+  func search(with paths: [String], rootNode: TrieNode<T>?) -> TrieNode<T>? {
+    guard let rootNode = rootNode else { return nil }
+
+    var currentNode = rootNode
+    var childrenPaths = paths
+    for path in paths {
+      childrenPaths.removeFirst()
+      let children = currentNode.matchedChildren(forKey: path)
+      if let node = children.first(where: {search(with: childrenPaths, rootNode: $0) != nil}) {
+        currentNode = node
+      }
+    }
+
+    if currentNode.isTerminating {
+      return currentNode
+    }
+
+    return nil
   }
 
   /**
-   Find the node for given url
+   Find the node for given url, considering placeholder such as ":id".
+
+   - parameter url: the url.
+   - return the match node. Otherwise nil.
+   */
+  func searchNodeWithtMatchPlaceholder(with url: URL) -> TrieNode<T>? {
+    guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
+      return nil
+    }
+
+    var currentNode = root
+    for path in paths {
+      if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
+        currentNode = child
+      }
+    }
+
+    if currentNode.isTerminating {
+      return currentNode
+    }
+
+    return nil
+  }
+
+  /**
+   Find the node for given url without considering placeholder such as ":id".
 
    - parameter url: the url.
    - return the match node. Otherwise nil.
@@ -137,10 +173,11 @@ final class Trie<T> {
         return nil
       }
     }
-    if !currentNode.isTerminating {
-      return nil
+
+    if currentNode.isTerminating {
+      return currentNode
     }
-    return currentNode
+    return nil
   }
 
   /**
@@ -229,6 +266,18 @@ extension TrieNode {
     } else {
       return children.values.first(where: {$0.isPlaceholder})
     }
+  }
+
+  func matchedChildren(forKey key: String) -> [TrieNode] {
+    var matchedChildren : [TrieNode] = []
+    if let child = children[key] {
+      matchedChildren.append(child)
+    }
+
+    if let placeholderChild = children.values.first(where: {$0.isPlaceholder}) {
+      matchedChildren.append(placeholderChild)
+    }
+    return matchedChildren
   }
 
 }
