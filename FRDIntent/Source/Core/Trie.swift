@@ -96,16 +96,16 @@ final class Trie<T> {
 
    - parameter url: the url.
 
-   - returns: the node's value. If trie has this paths, return the value in this node. 
+   - returns: the matched node. If trie has this paths, return this node.
               If trie has not this paths, return the nearest registered url parent.
    */
-  func search(with url: URL) -> T? {
+  func search(with url: URL) -> TrieNode<T>? {
     guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
       return nil
     }
 
     if let (node, _) = search(with: paths, rootNode: root) {
-      return node.value
+      return node
     }
     return nil
   }
@@ -142,22 +142,14 @@ final class Trie<T> {
    - parameter url: the url.
    - return the match node. Otherwise nil.
    */
-  func searchNodeWithtMatchPlaceholder(with url: URL) -> TrieNode<T>? {
+  func searchNodeWithMatchPlaceholder(with url: URL) -> TrieNode<T>? {
     guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
       return nil
     }
 
-    var currentNode = root
-    for path in paths {
-      if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
-        currentNode = child
-      }
+    if let (node, stepLeft) = search(with: paths, rootNode: root), stepLeft == 0 {
+      return node
     }
-
-    if currentNode.isTerminating {
-      return currentNode
-    }
-
     return nil
   }
 
@@ -191,25 +183,30 @@ final class Trie<T> {
    This method extracts all the patterns in the url.
    
    - parameter url: the url for finding the pattern match.
+   
+   - parameter resultNode: the url search result node.
 
    - returns: dictionary for the pattern match result.
    */
-  func extractMatchedPattern(from url: URL) -> [String: Any] {
+  func extractMatchedPattern(from url: URL, resultNode: TrieNode<T>) -> [String: Any] {
     guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
       return [:]
     }
 
     var params: [String: Any] = [:]
-    var currentNode = root
+    var nodes: [TrieNode<T>] = []
+    var currentNode: TrieNode<T>? = resultNode
+    while let node = currentNode, node.parent != nil {
+      nodes.append(node)
+      currentNode = node.parent
+    }
     for path in paths {
-      if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
-        if child.isPlaceholder {
-          params[child.placeholder!] = path
+      if let matchNode = nodes.popLast() {
+        if matchNode.isPlaceholder && matchNode.key != path {
+          params[matchNode.placeholder!] = path
         }
-        currentNode = child
       } else {
-        // not find
-        return params
+        break
       }
     }
     return params
@@ -266,16 +263,8 @@ extension TrieNode {
     return nil
   }
 
-  func childOrFirstPlaceholder(forKey key: String) -> TrieNode? {
-    if let child = children[key] {
-      return child
-    } else {
-      return children.values.first(where: {$0.isPlaceholder})
-    }
-  }
-
   func matchedChildren(forKey key: String) -> [TrieNode] {
-    var matchedChildren : [TrieNode] = []
+    var matchedChildren: [TrieNode] = []
     if let child = children[key] {
       matchedChildren.append(child)
     }

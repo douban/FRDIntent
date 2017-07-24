@@ -20,5 +20,6 @@ public class FRDIntentParameters: NSObject {
   public static let URL = RouteManager.URLRouteURL
 
   // Extract the ":id" pattern match from intent's extras.
+  // swiftlint:disable:next identifier_name
   public static let id = "id"
 }
