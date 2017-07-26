@@ -26,6 +26,7 @@ public class FRDControllerManager: NSObject {
    
    - returns: True if it registers successfully.
    */
+  @objc(registerURL:clazz:)
   @discardableResult public func register(_ url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
     return routeManager.register(url, clazz: clazz)
   }
@@ -65,6 +66,7 @@ public class FRDControllerManager: NSObject {
 
    - parameter url: The url to be unregistered
    */
+  @objc(unregisterURL:)
   public func unregister(_ url: URL) {
     routeManager.unregisterController(with: url)
   }

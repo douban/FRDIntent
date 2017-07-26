@@ -26,6 +26,7 @@ public class FRDURLRoutes: NSObject {
    
    - returns: True if it registers successfully.
    */
+  @objc(registerURL:handler:)
   @discardableResult public func register(_ url: URL, handler: @escaping URLRoutesHandler) -> Bool {
     return routeManager.register(url, handler: handler)
   }
@@ -63,6 +64,7 @@ public class FRDURLRoutes: NSObject {
 
    - parameter url: The url to be unregistered
    */
+  @objc(unregisterURL:)
   public func unregister(_ url: URL) {
     routeManager.unregisterHandler(with: url)
   }
@@ -79,6 +81,7 @@ public extension FRDURLRoutes {
    
    - returns: True if it registers successfully.
    */
+  @objc(registerURL:clazz:)
   @discardableResult public func register(_ url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
 
     let resultForIntent = FRDControllerManager.sharedInstance.register(url, clazz: clazz)
