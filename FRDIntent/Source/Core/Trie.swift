@@ -104,36 +104,35 @@ final class Trie<T> {
       return nil
     }
 
-    if let (node, _) = search(with: paths, rootNode: root) {
+    if let node = search(with: paths, rootNode: root) {
       return node
     }
     return nil
   }
 
-  func search(with paths: [String], rootNode: TrieNode<T>) -> (TrieNode<T>, Int)? {
-    var resultNode: TrieNode<T>? = rootNode.isTerminating ? rootNode : nil
-    var resultNodeDistanceToLastPath: Int = paths.count
+  func search(with paths: [String], rootNode: TrieNode<T>) -> TrieNode<T>? {
+
+    var resultNode: TrieNode<T> = rootNode
 
     if let path = paths.first {
       var childrenPaths = paths
       childrenPaths.removeFirst()
       let children = rootNode.matchedChildren(forKey: path)
       for childNode in children {
-        if let (node, stepLeft) = search(with: childrenPaths, rootNode: childNode), stepLeft < resultNodeDistanceToLastPath {
+        if let node = search(with: childrenPaths, rootNode: childNode), node.depth > resultNode.depth {
           resultNode = node
-          resultNodeDistanceToLastPath = stepLeft
         }
-        if resultNodeDistanceToLastPath == 0 {
+        if (resultNode.depth - rootNode.depth) == paths.count {
           break
         }
       }
     }
 
-    if resultNode != nil {
-      return (resultNode!, resultNodeDistanceToLastPath)
-    } else {
-      return nil
+    if resultNode.isTerminating {
+      return resultNode
     }
+    
+    return nil
   }
 
   /**
@@ -147,7 +146,7 @@ final class Trie<T> {
       return nil
     }
 
-    if let (node, stepLeft) = search(with: paths, rootNode: root), stepLeft == 0 {
+    if let node = search(with: paths, rootNode: root), node.depth == paths.count {
       return node
     }
     return nil
@@ -219,6 +218,7 @@ final class TrieNode<T> {
 
   var key: String
   var value: T?
+  var depth: Int = 0
   var children: [String: TrieNode<T>] = [:]
   var parent: TrieNode<T>?
 
@@ -231,19 +231,20 @@ final class TrieNode<T> {
   }
 
   convenience init(key: String) {
-    self.init(key: key, value: nil)
+    self.init(key: key, value: nil, depth: 0)
   }
 
-  init(key: String, value: T?) {
+  init(key: String, value: T?, depth: Int) {
     self.key = key
     self.value = value
+    self.depth = depth
   }
 
   func addChild(_ value: T?, withKey key: String) {
     guard children[key] == nil else {
       return
     }
-    let node = TrieNode(key: key, value: value)
+    let node = TrieNode(key: key, value: value, depth: depth + 1)
     node.parent = self
     children[key] = node
   }
