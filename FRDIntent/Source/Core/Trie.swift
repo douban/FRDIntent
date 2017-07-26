@@ -92,35 +92,68 @@ final class Trie<T> {
 
   /**
    This search method's behavior is different with classical trie's search.
+   When it can not find the node it will try to find the nearest parent node which is isTerminating.
 
    - parameter url: the url.
 
-   - returns: the node's value. If trie has this paths, return the value in this node. 
+   - returns: the matched node. If trie has this paths, return this node.
               If trie has not this paths, return the nearest registered url parent.
    */
-  func searchNearestMatchedValue(with url: URL) -> T? {
+  func search(with url: URL) -> TrieNode<T>? {
     guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
       return nil
     }
-    var currentNode = root
-    var nearestUrlParent = root
-    for path in paths {
-      if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
-        currentNode = child
-        if currentNode.isTerminating {
-          nearestUrlParent = currentNode
-        }
-      } else {
-        // not find
-        return nearestUrlParent.value
-      }
 
+    if let node = search(with: paths, rootNode: root) {
+      return node
     }
-    return currentNode.value
+    return nil
+  }
+
+  func search(with paths: [String], rootNode: TrieNode<T>) -> TrieNode<T>? {
+
+    var resultNode: TrieNode<T> = rootNode
+
+    if let path = paths.first {
+      var childrenPaths = paths
+      childrenPaths.removeFirst()
+      let children = rootNode.matchedChildren(forKey: path)
+      for childNode in children {
+        if let node = search(with: childrenPaths, rootNode: childNode), node.depth > resultNode.depth {
+          resultNode = node
+        }
+        if (resultNode.depth - rootNode.depth) == paths.count {
+          break
+        }
+      }
+    }
+
+    if resultNode.isTerminating {
+      return resultNode
+    }
+    
+    return nil
   }
 
   /**
-   Find the node for given url
+   Find the node for given url, considering placeholder such as ":id".
+
+   - parameter url: the url.
+   - return the match node. Otherwise nil.
+   */
+  func searchNodeWithMatchPlaceholder(with url: URL) -> TrieNode<T>? {
+    guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
+      return nil
+    }
+
+    if let node = search(with: paths, rootNode: root), node.depth == paths.count {
+      return node
+    }
+    return nil
+  }
+
+  /**
+   Find the node for given url without considering placeholder such as ":id".
 
    - parameter url: the url.
    - return the match node. Otherwise nil.
@@ -137,10 +170,11 @@ final class Trie<T> {
         return nil
       }
     }
-    if !currentNode.isTerminating {
-      return nil
+
+    if currentNode.isTerminating {
+      return currentNode
     }
-    return currentNode
+    return nil
   }
 
   /**
@@ -148,25 +182,30 @@ final class Trie<T> {
    This method extracts all the patterns in the url.
    
    - parameter url: the url for finding the pattern match.
+   
+   - parameter resultNode: the url search result node.
 
    - returns: dictionary for the pattern match result.
    */
-  func extractMatchedPattern(from url: URL) -> [String: Any] {
+  func extractMatchedPattern(from url: URL, resultNode: TrieNode<T>) -> [String: Any] {
     guard let paths = url.pathComponentsWithoutSlash, !paths.isEmpty else {
       return [:]
     }
 
     var params: [String: Any] = [:]
-    var currentNode = root
+    var nodes: [TrieNode<T>] = []
+    var currentNode: TrieNode<T>? = resultNode
+    while let node = currentNode, node.parent != nil {
+      nodes.append(node)
+      currentNode = node.parent
+    }
     for path in paths {
-      if let child = currentNode.childOrFirstPlaceholder(forKey: path) {
-        if child.isPlaceholder {
-          params[child.placeholder!] = path
+      if let matchNode = nodes.popLast() {
+        if matchNode.isPlaceholder && matchNode.key != path {
+          params[matchNode.placeholder!] = path
         }
-        currentNode = child
       } else {
-        // not find
-        return params
+        break
       }
     }
     return params
@@ -179,6 +218,7 @@ final class TrieNode<T> {
 
   var key: String
   var value: T?
+  var depth: Int = 0
   var children: [String: TrieNode<T>] = [:]
   var parent: TrieNode<T>?
 
@@ -191,19 +231,20 @@ final class TrieNode<T> {
   }
 
   convenience init(key: String) {
-    self.init(key: key, value: nil)
+    self.init(key: key, value: nil, depth: 0)
   }
 
-  init(key: String, value: T?) {
+  init(key: String, value: T?, depth: Int) {
     self.key = key
     self.value = value
+    self.depth = depth
   }
 
   func addChild(_ value: T?, withKey key: String) {
     guard children[key] == nil else {
       return
     }
-    let node = TrieNode(key: key, value: value)
+    let node = TrieNode(key: key, value: value, depth: depth + 1)
     node.parent = self
     children[key] = node
   }
@@ -223,12 +264,16 @@ extension TrieNode {
     return nil
   }
 
-  func childOrFirstPlaceholder(forKey key: String) -> TrieNode? {
+  func matchedChildren(forKey key: String) -> [TrieNode] {
+    var matchedChildren: [TrieNode] = []
     if let child = children[key] {
-      return child
-    } else {
-      return children.values.first(where: {$0.isPlaceholder})
+      matchedChildren.append(child)
     }
+
+    if let placeholderChild = children.values.first(where: {$0.isPlaceholder}) {
+      matchedChildren.append(placeholderChild)
+    }
+    return matchedChildren
   }
 
 }

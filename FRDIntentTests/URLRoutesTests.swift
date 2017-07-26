@@ -31,8 +31,49 @@ class URLRoutesTests: XCTestCase {
 
   }
 
+  func testNearestNoMatch() {
+
+    let router = FRDURLRoutes.sharedInstance
+
+    router.register(URL(string: "/a/b/c/e")!) { (params: [String: Any]) in
+      XCTAssert(params[FRDIntentParameters.URL] as? NSURL == NSURL(string:  "/a/b/c/e"), "")
+    }
+
+    router.register(URL(string: "/a/b")!) { (params: [String: Any]) in
+      XCTAssert(params[FRDIntentParameters.URL] as? NSURL == NSURL(string:  "/a/b/c"), "")
+    }
+
+    let result = router.route(URL(string: "/a/b/c")!)
+    XCTAssert(result, "can rout")
+  }
+
+
+  func testPlaceholder() {
+
+    let router = FRDURLRoutes.sharedInstance
+
+    router.register(URL(string: "/a/x/c/d/e")!) { (params: [String: Any]) in
+      XCTAssert(false)
+    }
+
+    router.register(URL(string: "/a/:b/c/d")!) { (params: [String: Any]) in
+      XCTAssert(true)
+    }
+
+    router.register(URL(string: "/a/x/c")!) { (params: [String: Any]) in
+      XCTAssert(false)
+    }
+
+
+    let result = router.route(URL(string: "/a/x/c/d")!)
+    XCTAssert(result, "/a/x/c can route by pattern /a/:b/c")
+  }
+
+
+
   func testCanRoute() {
     let router = FRDURLRoutes.sharedInstance
+
     router.register(URL(string: "/aaa/ddd")!) { (params) in
 
     }

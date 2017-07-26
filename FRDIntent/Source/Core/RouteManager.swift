@@ -86,6 +86,31 @@ class RouteManager {
     }
   }
 
+  /**
+   Check the url is registered or not.
+
+   - parameter url: The url to be checked.
+   */
+  func hasRegisteredController(with url: URL) -> Bool {
+    guard let node = routes.searchNodeWithMatchPlaceholder(with: url) else { return false }
+    if let (clazz, _) = node.value {
+      if clazz == nil {
+        return false
+      }
+    }
+    return true
+  }
+
+  func hasRegisteredHandler(with url: URL) -> Bool {
+    guard let node = routes.searchNodeWithMatchPlaceholder(with: url) else { return false }
+    if let (_, handler) = node.value {
+      if handler == nil {
+        return false
+      }
+    }
+    return true
+  }
+
   // MARK: - Search
 
   /**
@@ -96,14 +121,12 @@ class RouteManager {
    - returns: A tuple with parameters and clazz.
    */
   func searchController(with url: URL) -> ([String: Any], FRDIntentReceivable.Type?) {
-    let params = extractParameters(from: url)
-
-    if let (clazz, _) = routes.searchNearestMatchedValue(with: url) {
-      return (params, clazz)
+    if let node = routes.search(with: url), let (clazz, _) = node.value {
+      let param = routes.extractMatchedPattern(from: url, resultNode: node)
+      return (extractParameters(from: url, defaultParam: param), clazz)
     } else {
-      return (params, nil)
+      return (extractParameters(from: url), nil)
     }
-
   }
 
   /**
@@ -114,20 +137,19 @@ class RouteManager {
    - returns: A tuple with parameters and handler.
    */
   func searchHandler(with url: URL) -> ([String: Any], URLRoutesHandler?) {
-    let params = extractParameters(from: url)
-
-    if let (_, handler) = routes.searchNearestMatchedValue(with: url) {
-      return (params, handler)
+    if let node = routes.search(with: url), let (_, handler) = node.value {
+      let param = routes.extractMatchedPattern(from: url, resultNode: node)
+      return (extractParameters(from: url, defaultParam: param), handler)
     } else {
-      return (params, nil)
+      return (extractParameters(from: url), nil)
     }
   }
 
   // MARK: - Private Methods
-  private func extractParameters(from url: URL) -> [String: Any] {
+  private func extractParameters(from url: URL, defaultParam: [String: Any] = [:]) -> [String: Any] {
 
     // Extract placeholder parameters
-    var params = routes.extractMatchedPattern(from: url)
+    var params = defaultParam
 
     // Add url to params
     params.updateValue(url, forKey: RouteManager.URLRouteURL)
