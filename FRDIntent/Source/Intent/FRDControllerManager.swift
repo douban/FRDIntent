@@ -99,11 +99,6 @@ public class FRDControllerManager: NSObject {
 
       if let destination = InitializerHelper.viewController(fromClazz: controllerClazz,
                                                             extras: intent.extras) as? FRDIntentReceivable {
-
-        if let validateResult = destination.validate?(intent), validateResult == false {
-          return
-        }
-
         let display: FRDControllerDisplay
         if let controllerDisplay = intent.controllerDisplay {
           display = controllerDisplay
@@ -153,11 +148,6 @@ public class FRDControllerManager: NSObject {
 
       if let destination = InitializerHelper.viewController(fromClazz: controllerClazz,
                                                             extras: intent.extras) as? FRDIntentForResultReceivable {
-
-        if let validateResult = destination.validate?(intent), validateResult == false {
-          return
-        }
-
         destination.setRequestCode(requestCode)
         if let source = source as? FRDIntentForResultSendable {
           destination.setDelegate(source)

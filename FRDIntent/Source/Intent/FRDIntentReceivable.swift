@@ -19,13 +19,4 @@ import Foundation
    - parameter extras: The extra data.
    */
   init?(extras: [String: Any])
-
-  /**
-   Check the validation of the received intent.
-
-   - parameter intent: The received intent.
-
-   - returns true open this view controller, flase will not this view controller.
-   */
-  @objc optional func validate(_ intent: FRDIntent) -> Bool
 }
