@@ -87,8 +87,8 @@
 
 
   // External call register
-  [[FRDURLRoutes sharedInstance] register:[NSURL URLWithString:@"/user/:userId/story/:storyId"]
-                                  handler:^(NSDictionary<NSString*, id> *params)
+  [[FRDURLRoutes sharedInstance] registerURL:[NSURL URLWithString:@"/user/:userId/story/:storyId"]
+                                     handler:^(NSDictionary<NSString*, id> *params)
   {
     NSURL *url = [params objectForKey:FRDIntentParameters.URL];
     FRDIntent *intent = [[FRDIntent alloc] initWithUrl:url];

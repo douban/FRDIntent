@@ -14,7 +14,7 @@ import UIKit
 public class FRDControllerManager: NSObject {
 
   /// Singleton instance of FRDControllerManager
-  public static let sharedInstance = FRDControllerManager()
+  @objc public static let sharedInstance = FRDControllerManager()
 
   private let routeManager = RouteManager.sharedInstance
 
@@ -38,7 +38,7 @@ public class FRDControllerManager: NSObject {
    
    - returns: True if it registers successfully.
    */
-  @discardableResult public func register(contentsOfFile path: String) -> Bool {
+  @objc @discardableResult public func register(contentsOfFile path: String) -> Bool {
 
     guard let registers: NSDictionary = NSDictionary(contentsOfFile: path) else {
       return false
@@ -77,7 +77,7 @@ public class FRDControllerManager: NSObject {
    - parameter source: The source view controller.
    - parameter intent: The intent for launch a new view controller.
    */
-  public func startController(from source: UIViewController, with intent: FRDIntent) {
+  @objc public func startController(from source: UIViewController, with intent: FRDIntent) {
 
     var parameters = [String: Any]()
     var controllerClazz: FRDIntentReceivable.Type?
@@ -123,7 +123,7 @@ public class FRDControllerManager: NSObject {
    - parameter intent: The intent for start new view controller.
    - parameter requestCode : this code will be returned in onControllerResult() when the view controller exits.
    */
-  public func startControllerForResult(from source: UIViewController, with intent: FRDIntent, requestCode: Int) {
+  @objc public func startControllerForResult(from source: UIViewController, with intent: FRDIntent, requestCode: Int) {
 
     typealias ControllerType = FRDIntentForResultReceivable.Type
 
@@ -178,7 +178,7 @@ public extension UIViewController {
 
    - parameter intent: The intent for launch a new view controller.
    */
-  func startController(with intent: FRDIntent) {
+  @objc func startController(with intent: FRDIntent) {
     FRDControllerManager.sharedInstance.startController(from: self, with: intent)
   }
 
@@ -188,7 +188,7 @@ public extension UIViewController {
 
    - parameter pathIdentifier: The pathIdentifier for initializing the intent.
    */
-  func startController(withPathIdentifier pathIdentifier: String) {
+  @objc func startController(withPathIdentifier pathIdentifier: String) {
     let intent = FRDIntent(pathIdentifier: pathIdentifier)
     self.startController(with: intent)
   }
@@ -200,7 +200,7 @@ public extension UIViewController {
    - parameter pathIdentifier: The pathIdentifier for initializing the intent.
    - parameter extras: The datas for initializing the intent.
    */
-  func startController(withPathIdentifier pathIdentifier: String, extras: [String: Any]? = nil) {
+  @objc func startController(withPathIdentifier pathIdentifier: String, extras: [String: Any]? = nil) {
     let intent = FRDIntent(pathIdentifier: pathIdentifier)
     if let extras = extras {
       intent.putExtraDatas(extras)
@@ -216,7 +216,7 @@ public extension UIViewController {
    - parameter intent: The intent for start new view controller.
    - parameter requestCode : this code will be returned in onControllerResult() when the view controller exits.
    */
-  func startControllerForResult(with intent: FRDIntent, requestCode: Int) {
+  @objc func startControllerForResult(with intent: FRDIntent, requestCode: Int) {
     FRDControllerManager.sharedInstance.startControllerForResult(from: self,
                                                                  with: intent,
                                                                  requestCode: requestCode)
@@ -231,7 +231,7 @@ public extension UIViewController {
    - parameter extras: The datas for initializing the intent.
    - parameter requestCode : this code will be returned in onControllerResult() when the view controller exits.
    */
-  func startControllerForResult(withPathIdentifier pathIdentifier: String, extras: [String: Any], requestCode: Int) {
+  @objc func startControllerForResult(withPathIdentifier pathIdentifier: String, extras: [String: Any], requestCode: Int) {
     let intent = FRDIntent(pathIdentifier: pathIdentifier)
     intent.putExtraDatas(extras)
     self.startControllerForResult(with: intent, requestCode: requestCode)
@@ -242,7 +242,7 @@ public extension UIViewController {
 
    - parameter extras: The datas of intent received.
    */
-  func setupExtras(_ extras: [String: Any]) {
+  @objc func setupExtras(_ extras: [String: Any]) {
     if let title = extras[FRDIntentParameters.title] as? String {
       self.title = title
     }

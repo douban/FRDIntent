@@ -131,7 +131,7 @@ final class Trie<T> {
     if resultNode.isTerminating {
       return resultNode
     }
-    
+
     return nil
   }
 
@@ -259,7 +259,7 @@ extension TrieNode {
 
   var placeholder: String? {
     if isPlaceholder {
-      return key.substring(from: key.index(key.startIndex, offsetBy: 1))
+      return String(key[key.index(key.startIndex, offsetBy: 1)...])
     }
     return nil
   }

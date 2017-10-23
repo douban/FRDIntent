@@ -14,7 +14,7 @@ import UIKit
 public class FRDURLRoutes: NSObject {
 
   /// Singleton instance of URLRoutes.
-  public static let sharedInstance = FRDURLRoutes()
+  @objc public static let sharedInstance = FRDURLRoutes()
 
   private let routeManager = RouteManager.sharedInstance
 
@@ -38,7 +38,7 @@ public class FRDURLRoutes: NSObject {
 
    - returns: True if handler block is found and called, false if handler block is not found.
    */
-  public func route(_ url: URL) -> Bool {
+  @objc public func route(_ url: URL) -> Bool {
     let (params, handler) = routeManager.searchHandler(with: url)
     if let handler = handler {
       handler(params)
@@ -54,7 +54,7 @@ public class FRDURLRoutes: NSObject {
 
    - returns: True if a handler can be found for the given url.
    */
-  public func canRoute(_ url: URL) -> Bool {
+  @objc public func canRoute(_ url: URL) -> Bool {
     return routeManager.hasRegisteredHandler(with: url)
   }
 
@@ -102,7 +102,7 @@ public extension FRDURLRoutes {
 
    - returns: True if it registers successfully.
    */
-  @discardableResult public func register(contentsOfFile path: String) -> Bool {
+  @objc @discardableResult public func register(contentsOfFile path: String) -> Bool {
 
     guard let registers: NSDictionary = NSDictionary(contentsOfFile: path) else {
       return false
