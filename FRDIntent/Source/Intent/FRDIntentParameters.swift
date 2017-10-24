@@ -15,11 +15,11 @@ import Foundation
 public class FRDIntentParameters: NSObject {
 
   /// The usual keys to get the infomation from extras of intent.
-  public static let title = "FRDIntentTitleKey"
-  public static let hidesBottomBarWhenPushed = "FRDIntentHidesBottomBarWhenPushedKey"
-  public static let URL = RouteManager.URLRouteURL
+  @objc public static let title = "FRDIntentTitleKey"
+  @objc public static let hidesBottomBarWhenPushed = "FRDIntentHidesBottomBarWhenPushedKey"
+  @objc public static let URL = RouteManager.URLRouteURL
 
   // Extract the ":id" pattern match from intent's extras.
   // swiftlint:disable:next identifier_name
-  public static let id = "id"
+  @objc public static let id = "id"
 }
