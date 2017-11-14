@@ -173,7 +173,7 @@ In Xcode, choose your Project's `Target`, then clcik `Info`, add a `URL Types`. 
 
 #### Take over control of app's url call
 
-````Swift
+```Swift
   func application(app: UIApplication, openURL url: URL, options: [String : AnyObject]) -> Bool {
     return FRDURLRoutes.sharedInstance.route(url: url)
   }
