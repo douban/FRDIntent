@@ -16,4 +16,11 @@ class FRDInitializerHelper {
         let vc = controllerClass.init(extras: extras)
         return vc
     }
+    
+    static func viewControllerFromStoryboard(_ name: String, clazz: FRDIntentReceivable.Type?, extras: [String: Any]) -> FRDIntentReceivable? {
+        
+        let vcIdentifier = String(describing: clazz.self)
+        let vc = UIStoryboard(name: name, bundle: nil).instantiateViewController(withIdentifier: vcIdentifier) as? FRDIntentReceivable
+        return vc
+    }
 }

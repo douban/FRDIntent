@@ -19,4 +19,13 @@ import Foundation
      - parameter extras: The extra data.
      */
     init?(extras: [String: Any])
+    
+    static func makeViewControllerFromStoryboard(storyboardName: String) -> FRDIntentReceivable?
+}
+
+extension FRDIntentReceivable {
+    
+    static func makeViewControllerFromStoryboard(storyboardName: String) -> FRDIntentReceivable? {
+        return nil
+    }
 }

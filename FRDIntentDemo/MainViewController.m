@@ -64,7 +64,7 @@
 - (void)gotoFirstViewController
 {
   NSDictionary *datas = @{@"number": @1, FRDIntentParameters.title: @"First" };
-  [self startControllerWithPathIdentifier:@"/user/3001?loc=beijing&uuid=10001#ref" extras:datas];
+    [self startControllerWithPathIdentifier:@"/user/3001?loc=beijing&uuid=10001#ref" extras:datas useStoryboard:false];
 }
 
 - (void)gotoSecondViewController
@@ -86,7 +86,7 @@
 - (void)gotoCheckAndDispatchViewController
 {
   NSDictionary *datas = @{@"number": @4, FRDIntentParameters.title: @"First" };
-  [self startControllerWithPathIdentifier:@"/subject/3001?loc=beijing&uuid=10001#ref" extras:datas];
+  [self startControllerWithPathIdentifier:@"/subject/3001?loc=beijing&uuid=10001#ref" extras:datas useStoryboard:false];
 }
 
 #pragma mark - FRDIntentForResultSendable

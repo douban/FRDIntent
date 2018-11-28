@@ -10,6 +10,8 @@
 		7111E68E1DFE8032007F9EC8 /* FRDIntentTypealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7111E68D1DFE8032007F9EC8 /* FRDIntentTypealias.swift */; };
 		9CA7DBD221AE87C600F20568 /* FRDInitializerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA7DBD121AE87C600F20568 /* FRDInitializerHelper.swift */; };
 		9CA7DBD621AE994700F20568 /* FRDIntent-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CA7DBD521AE994700F20568 /* FRDIntent-Bridging-Header.h */; };
+		9CA7DBD821AEA7FE00F20568 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CA7DBD721AEA7FE00F20568 /* Home.storyboard */; };
+		9CA7DBDB21AEA86600F20568 /* HController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA7DBDA21AEA86600F20568 /* HController.swift */; };
 		A32C1FC91D76717C00C19142 /* FRDURLRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FC81D76717C00C19142 /* FRDURLRoutes.swift */; };
 		A32C1FCB1D767CE500C19142 /* URLRoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FCA1D767CE500C19142 /* URLRoutesTests.swift */; };
 		A32C1FD11D76F3BD00C19142 /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C1FD01D76F3BD00C19142 /* MockViewController.swift */; };
@@ -77,6 +79,9 @@
 		7111E68D1DFE8032007F9EC8 /* FRDIntentTypealias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDIntentTypealias.swift; sourceTree = "<group>"; };
 		9CA7DBD121AE87C600F20568 /* FRDInitializerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRDInitializerHelper.swift; sourceTree = "<group>"; };
 		9CA7DBD521AE994700F20568 /* FRDIntent-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FRDIntent-Bridging-Header.h"; sourceTree = "<group>"; };
+		9CA7DBD721AEA7FE00F20568 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		9CA7DBD921AEA86500F20568 /* FRDIntentDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FRDIntentDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		9CA7DBDA21AEA86600F20568 /* HController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HController.swift; sourceTree = "<group>"; };
 		A32C1FC81D76717C00C19142 /* FRDURLRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDURLRoutes.swift; sourceTree = "<group>"; };
 		A32C1FCA1D767CE500C19142 /* URLRoutesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRoutesTests.swift; sourceTree = "<group>"; };
 		A32C1FD01D76F3BD00C19142 /* MockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
@@ -254,7 +259,10 @@
 				A36FCC261D87F96700059523 /* Assets.xcassets */,
 				A36FCC281D87F96700059523 /* LaunchScreen.storyboard */,
 				A36FCC2B1D87F96700059523 /* Info.plist */,
+				9CA7DBD721AEA7FE00F20568 /* Home.storyboard */,
+				9CA7DBDA21AEA86600F20568 /* HController.swift */,
 				A36FCC171D87F96700059523 /* Supporting Files */,
+				9CA7DBD921AEA86500F20568 /* FRDIntentDemo-Bridging-Header.h */,
 			);
 			path = FRDIntentDemo;
 			sourceTree = "<group>";
@@ -357,7 +365,7 @@
 					A36FCC141D87F96700059523 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 23CVKL3DB9;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -401,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A384541D1DA807B100835B70 /* FRDIntentRegisters.plist in Resources */,
+				9CA7DBD821AEA7FE00F20568 /* Home.storyboard in Resources */,
 				A36FCC2A1D87F96700059523 /* LaunchScreen.storyboard in Resources */,
 				A3EBF8B31DB35D0100C7ED83 /* FRDURLRoutesRegisters.plist in Resources */,
 				A36FCC271D87F96700059523 /* Assets.xcassets in Resources */,
@@ -448,6 +457,7 @@
 				A3D28F811E1B5DD8008E2E09 /* FourthViewController.m in Sources */,
 				A35919571D87FFB100EBFD1E /* SecondViewController.m in Sources */,
 				A36FCC1C1D87F96700059523 /* AppDelegate.m in Sources */,
+				9CA7DBDB21AEA86600F20568 /* HController.swift in Sources */,
 				A35919591D87FFB100EBFD1E /* FirstViewController.m in Sources */,
 				A359195A1D87FFB100EBFD1E /* MainViewController.m in Sources */,
 				A3D28F7E1E1B5D00008E2E09 /* UIViewController+TopViewController.m in Sources */,
@@ -663,12 +673,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 23CVKL3DB9;
 				INFOPLIST_FILE = FRDIntentDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.douban.FRDIntentDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FRDIntentDemo/FRDIntentDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -678,12 +691,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 23CVKL3DB9;
 				INFOPLIST_FILE = FRDIntentDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.douban.FRDIntentDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FRDIntentDemo/FRDIntentDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

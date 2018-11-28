@@ -27,17 +27,18 @@
 }
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  self.view.backgroundColor = [UIColor whiteColor];
-
-  UILabel *numberLabel = [[UILabel alloc] init];
-  numberLabel.frame = CGRectMake(20, 100, self.view.bounds.size.width - 40, 400);
-  numberLabel.textAlignment = NSTextAlignmentCenter;
-  numberLabel.numberOfLines = 0;
-  if (self.data) {
-    numberLabel.text = [NSString stringWithFormat:@"%@", self.data];
-  }
-  [self.view addSubview:numberLabel];
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    UILabel *numberLabel = [[UILabel alloc] init];
+    numberLabel.frame = CGRectMake(20, 100, self.view.bounds.size.width - 40, 400);
+    numberLabel.textAlignment = NSTextAlignmentCenter;
+    numberLabel.numberOfLines = 0;
+    if (self.data) {
+        numberLabel.text = [NSString stringWithFormat:@"%@", self.data];
+    }
+    [self.view addSubview:numberLabel];
 }
+
 
 @end

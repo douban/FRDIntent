@@ -82,5 +82,7 @@ public class FRDIntent: NSObject {
       self.extras[key] = value
     }
   }
+    
+  @objc public var useStoryboard: Bool = false
 
 }
