@@ -147,14 +147,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A32C1FC71D76716600C19142 /* URLRoutes */ = {
-			isa = PBXGroup;
-			children = (
-				A32C1FC81D76717C00C19142 /* FRDURLRoutes.swift */,
-			);
-			path = URLRoutes;
-			sourceTree = "<group>";
-		};
 		A354CC1B1D6EA93D00830990 = {
 			isa = PBXGroup;
 			children = (
@@ -200,7 +192,6 @@
 			isa = PBXGroup;
 			children = (
 				9CA7DBD521AE994700F20568 /* FRDIntent-Bridging-Header.h */,
-				A32C1FC71D76716600C19142 /* URLRoutes */,
 				A354CC751D75B8C200830990 /* Intent */,
 				A354CC6A1D755B5000830990 /* Core */,
 			);
@@ -220,6 +211,7 @@
 		A354CC751D75B8C200830990 /* Intent */ = {
 			isa = PBXGroup;
 			children = (
+				A32C1FC81D76717C00C19142 /* FRDURLRoutes.swift */,
 				A354CC7A1D75B8C200830990 /* FRDIntentReceivable.swift */,
 				A354CC791D75B8C200830990 /* IntentForResult.swift */,
 				A354CC771D75B8C200830990 /* FRDControllerManager.swift */,
