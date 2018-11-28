@@ -97,23 +97,22 @@ public class FRDControllerManager: NSObject {
                 intent.putExtraName(key, withValue: value)
             }
             
-            if intent.useStoryboard {
-                if let sbName = parameters[FRDIntentParameters.storyboard] as? String {
-                    if let destination = FRDInitializerHelper.viewControllerFromStoryboard(sbName, clazz: controllerClazz, extras: intent.extras){
-                        let display: FRDControllerDisplay
-                        if let controllerDisplay = intent.controllerDisplay {
-                            display = controllerDisplay
-                        } else {
-                            display = FRDPushDisplay()
-                        }
+            if let sbName = parameters[FRDIntentParameters.storyboard] as? String, !sbName.isEmpty {
+                if let destination = FRDInitializerHelper.viewControllerFromStoryboard(sbName, clazz: controllerClazz, extras: intent.extras){
+                    let display: FRDControllerDisplay
+                    if let controllerDisplay = intent.controllerDisplay {
+                        display = controllerDisplay
+                    } else {
+                        display = FRDPushDisplay()
+                    }
+                    
+                    if let destination = destination as? UIViewController {
                         
-                        if let destination = destination as? UIViewController {
-                            
-                            display.displayViewController(from: source, to: destination)
-                        }
+                        display.displayViewController(from: source, to: destination)
                     }
                 }
             } else {
+                
                 if let destination = FRDInitializerHelper.viewControllerFromClazz(controllerClazz, extras: intent.extras) {
                     let display: FRDControllerDisplay
                     if let controllerDisplay = intent.controllerDisplay {
@@ -129,6 +128,7 @@ public class FRDControllerManager: NSObject {
                 }
             }
         }
+        
         
     }
     
@@ -162,25 +162,21 @@ public class FRDControllerManager: NSObject {
             for (key, value) in parameters {
                 intent.putExtraName(key, withValue: value)
             }
-            
-            if intent.useStoryboard {
-                if let sbName = parameters[FRDIntentParameters.storyboard] as? String {
-                    if let destination = FRDInitializerHelper.viewControllerFromStoryboard(sbName, clazz: controllerClazz, extras: intent.extras){
-                        let display: FRDControllerDisplay
-                        if let controllerDisplay = intent.controllerDisplay {
-                            display = controllerDisplay
-                        } else {
-                            display = FRDPushDisplay()
-                        }
+            if let sbName = parameters[FRDIntentParameters.storyboard] as? String, !sbName.isEmpty {
+                if let destination = FRDInitializerHelper.viewControllerFromStoryboard(sbName, clazz: controllerClazz, extras: intent.extras){
+                    let display: FRDControllerDisplay
+                    if let controllerDisplay = intent.controllerDisplay {
+                        display = controllerDisplay
+                    } else {
+                        display = FRDPushDisplay()
+                    }
+                    
+                    if let destination = destination as? UIViewController {
                         
-                        if let destination = destination as? UIViewController {
-                            
-                            display.displayViewController(from: source, to: destination)
-                        }
+                        display.displayViewController(from: source, to: destination)
                     }
                 }
             } else {
-                
                 if let destination = FRDInitializerHelper.viewControllerFromClazz(controllerClazz, extras: intent.extras) as? FRDIntentForResultReceivable {
                     destination.setRequestCode(requestCode)
                     if let source = source as? FRDIntentForResultSendable {
@@ -225,7 +221,6 @@ public extension UIViewController {
      */
     @objc func startController(withPathIdentifier pathIdentifier: String, useStoryboard: Bool = false) {
         let intent = FRDIntent(pathIdentifier: pathIdentifier)
-        intent.useStoryboard = useStoryboard 
         self.startController(with: intent)
     }
     
@@ -238,7 +233,6 @@ public extension UIViewController {
      */
     @objc func startController(withPathIdentifier pathIdentifier: String, extras: [String: Any]? = nil, useStoryboard: Bool = false) {
         let intent = FRDIntent(pathIdentifier: pathIdentifier)
-        intent.useStoryboard = useStoryboard
         if let extras = extras {
             intent.putExtraDatas(extras)
         }
