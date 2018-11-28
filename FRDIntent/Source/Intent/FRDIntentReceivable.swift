@@ -12,11 +12,11 @@ import Foundation
  The protocol to abstract the view controller that can receive the Intent.
  */
 @objc public protocol FRDIntentReceivable {
-
-  /**
-   Initialzier with extra data.
-   
-   - parameter extras: The extra data.
-   */
-  init?(extras: [String: Any])
+    
+    /**
+     Initialzier with extra data.
+     
+     - parameter extras: The extra data.
+     */
+    init?(extras: [String: Any])
 }

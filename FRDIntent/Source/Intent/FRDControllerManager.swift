@@ -97,18 +97,19 @@ public class FRDControllerManager: NSObject {
         intent.putExtraName(key, withValue: value)
       }
 
-      if let destination = InitializerHelper.viewController(fromClazz: controllerClazz,
-                                                            extras: intent.extras) as? FRDIntentReceivable {
+      if let destination = FRDInitializerHelper.viewControllerFromClazz(controllerClazz, extras: intent.extras) {
         let display: FRDControllerDisplay
         if let controllerDisplay = intent.controllerDisplay {
           display = controllerDisplay
         } else {
           display = FRDPushDisplay()
         }
-
+        
         if let destination = destination as? UIViewController {
-          display.displayViewController(from: source, to: destination)
+            
+             display.displayViewController(from: source, to: destination)
         }
+
       }
 
     }
@@ -146,8 +147,7 @@ public class FRDControllerManager: NSObject {
         intent.putExtraName(key, withValue: value)
       }
 
-      if let destination = InitializerHelper.viewController(fromClazz: controllerClazz,
-                                                            extras: intent.extras) as? FRDIntentForResultReceivable {
+      if let destination = FRDInitializerHelper.viewControllerFromClazz(controllerClazz, extras: intent.extras) as? FRDIntentForResultReceivable {
         destination.setRequestCode(requestCode)
         if let source = source as? FRDIntentForResultSendable {
           destination.setDelegate(source)
