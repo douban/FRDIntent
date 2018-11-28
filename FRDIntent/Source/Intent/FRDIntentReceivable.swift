@@ -20,12 +20,6 @@ import Foundation
      */
     init?(extras: [String: Any])
     
-    static func makeViewControllerFromStoryboard(storyboardName: String) -> FRDIntentReceivable?
+    static func makeFrom(storyboard: String, extras: [String: Any]) -> FRDIntentReceivable?
 }
 
-extension FRDIntentReceivable {
-    
-    static func makeViewControllerFromStoryboard(storyboardName: String) -> FRDIntentReceivable? {
-        return nil
-    }
-}
