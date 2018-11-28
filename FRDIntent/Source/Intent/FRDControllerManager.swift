@@ -219,7 +219,7 @@ public extension UIViewController {
      
      - parameter pathIdentifier: The pathIdentifier for initializing the intent.
      */
-    @objc func startController(withPathIdentifier pathIdentifier: String, useStoryboard: Bool = false) {
+    @objc func startController(withPathIdentifier pathIdentifier: String) {
         let intent = FRDIntent(pathIdentifier: pathIdentifier)
         self.startController(with: intent)
     }
@@ -231,7 +231,7 @@ public extension UIViewController {
      - parameter pathIdentifier: The pathIdentifier for initializing the intent.
      - parameter extras: The datas for initializing the intent.
      */
-    @objc func startController(withPathIdentifier pathIdentifier: String, extras: [String: Any]? = nil, useStoryboard: Bool = false) {
+    @objc func startController(withPathIdentifier pathIdentifier: String, extras: [String: Any]? = nil) {
         let intent = FRDIntent(pathIdentifier: pathIdentifier)
         if let extras = extras {
             intent.putExtraDatas(extras)
