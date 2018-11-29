@@ -9,11 +9,10 @@
 import UIKit
 
 class FRDInitializerHelper {
-
-    static func viewControllerFromClazz(_ clazz: FRDIntentReceivable.Type?, extras: [String: Any]) -> FRDIntentReceivable? {
+    
+    static func viewController(fromClazz clazz: FRDIntentReceivable.Type?, extras: [String: Any]) -> FRDIntentReceivable? {
         
         guard let controllerClass = clazz else { return nil }
-        let vc = controllerClass.init(extras: extras)
-        return vc
+        return controllerClass.init(extras: extras)
     }
 }
