@@ -106,14 +106,11 @@ public class FRDControllerManager: NSObject {
         }
         
         if let destination = destination as? UIViewController {
-            
              display.displayViewController(from: source, to: destination)
         }
-
       }
-
     }
-
+    
   }
 
   /**
