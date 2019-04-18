@@ -28,8 +28,6 @@
 		A359195A1D87FFB100EBFD1E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35919551D87FFB100EBFD1E /* MainViewController.m */; };
 		A359195B1D8801D100EBFD1E /* FRDIntent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A354CC251D6EA93D00830990 /* FRDIntent.framework */; };
 		A359195C1D8801D100EBFD1E /* FRDIntent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A354CC251D6EA93D00830990 /* FRDIntent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A36817301DF7C3F000A6923C /* InitializerHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = A368172E1DF7C3F000A6923C /* InitializerHelper.h */; };
-		A36817311DF7C3F000A6923C /* InitializerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A368172F1DF7C3F000A6923C /* InitializerHelper.m */; };
 		A36817341DF7C62D00A6923C /* FRDIntent-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = A36817331DF7C62D00A6923C /* FRDIntent-Bridging-Header.h */; };
 		A36FCC191D87F96700059523 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FCC181D87F96700059523 /* main.m */; };
 		A36FCC1C1D87F96700059523 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FCC1B1D87F96700059523 /* AppDelegate.m */; };
@@ -101,8 +99,6 @@
 		A35919541D87FFB100EBFD1E /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		A35919551D87FFB100EBFD1E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		A35919561D87FFB100EBFD1E /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		A368172E1DF7C3F000A6923C /* InitializerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitializerHelper.h; sourceTree = "<group>"; };
-		A368172F1DF7C3F000A6923C /* InitializerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitializerHelper.m; sourceTree = "<group>"; };
 		A36817331DF7C62D00A6923C /* FRDIntent-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FRDIntent-Bridging-Header.h"; sourceTree = "<group>"; };
 		A36FCC151D87F96700059523 /* FRDIntentDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FRDIntentDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A36FCC181D87F96700059523 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -221,8 +217,6 @@
 		A354CC751D75B8C200830990 /* Intent */ = {
 			isa = PBXGroup;
 			children = (
-				A368172E1DF7C3F000A6923C /* InitializerHelper.h */,
-				A368172F1DF7C3F000A6923C /* InitializerHelper.m */,
 				A354CC7A1D75B8C200830990 /* FRDIntentReceivable.swift */,
 				A354CC791D75B8C200830990 /* IntentForResult.swift */,
 				A354CC771D75B8C200830990 /* FRDControllerManager.swift */,
@@ -278,7 +272,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A36817341DF7C62D00A6923C /* FRDIntent-Bridging-Header.h in Headers */,
-				A36817301DF7C3F000A6923C /* InitializerHelper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +340,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Douban Inc";
 				TargetAttributes = {
 					A354CC241D6EA93D00830990 = {
@@ -356,7 +349,7 @@
 					};
 					A354CC2E1D6EA93D00830990 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 					};
 					A36FCC141D87F96700059523 = {
 						CreatedOnToolsVersion = 7.3;
@@ -366,7 +359,7 @@
 			};
 			buildConfigurationList = A354CC1F1D6EA93D00830990 /* Build configuration list for PBXProject "FRDIntent" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -419,7 +412,6 @@
 			files = (
 				A3FE9EE31DF656B6006038DB /* Trie.swift in Sources */,
 				A354CC801D75B8C200830990 /* IntentForResult.swift in Sources */,
-				A36817311DF7C3F000A6923C /* InitializerHelper.m in Sources */,
 				A354CC7E1D75B8C200830990 /* FRDControllerManager.swift in Sources */,
 				7111E68E1DFE8032007F9EC8 /* FRDIntentTypealias.swift in Sources */,
 				A354CC831D75B8C200830990 /* FRDPushDisplay.swift in Sources */,
@@ -499,12 +491,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -557,12 +551,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -614,7 +610,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "FRDIntent/Source/FRDIntent-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -635,7 +631,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "FRDIntent/Source/FRDIntent-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -646,7 +642,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.douban.FRDIntentTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -657,7 +653,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.douban.FRDIntentTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

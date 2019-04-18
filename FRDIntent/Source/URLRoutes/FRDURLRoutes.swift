@@ -81,7 +81,7 @@ public extension FRDURLRoutes {
    - returns: True if it registers successfully.
    */
   @objc(registerURL:clazz:)
-  @discardableResult public func register(_ url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
+  @discardableResult func register(_ url: URL, clazz: FRDIntentReceivable.Type) -> Bool {
 
     let resultForIntent = FRDControllerManager.sharedInstance.register(url, clazz: clazz)
     let resultForRoute = register(url) { (params: [String: Any]) in
@@ -102,7 +102,7 @@ public extension FRDURLRoutes {
 
    - returns: True if it registers successfully.
    */
-  @objc @discardableResult public func register(contentsOfFile path: String) -> Bool {
+  @objc @discardableResult func register(contentsOfFile path: String) -> Bool {
 
     guard let registers: NSDictionary = NSDictionary(contentsOfFile: path) else {
       return false
