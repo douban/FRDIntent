@@ -107,6 +107,7 @@ public class FRDControllerManager: NSObject {
         }
 
         if let destination = destination as? UIViewController {
+          destination.setupExtras(intent.extras)
           display.displayViewController(from: source, to: destination)
         }
       }
@@ -161,6 +162,7 @@ public class FRDControllerManager: NSObject {
         }
 
         if let destination = destination as? UIViewController {
+          destination.setupExtras(intent.extras)
           display.displayViewController(from: source, to: destination)
         }
       }
