@@ -36,7 +36,7 @@ Only FRDIntent/Intent
 
 ```ruby
 target 'TargetName' do
-  pod 'FRDIntent/Intent', :git => 'https://github.com/douban/FRDIntent.git', :commit => '0.8.0'
+  pod 'FRDIntent/Intent', :git => 'https://github.com/douban/FRDIntent.git'
 end
 ```
 
@@ -44,7 +44,7 @@ Both FRDIntent/Intent and FRDIntent/URLRoutes:
 
 ```ruby
 target 'TargetName' do
-  pod 'FRDIntent', :git => 'https://github.com/douban/FRDIntent.git', :commit => '0.8.0'
+  pod 'FRDIntent', :git => 'https://github.com/douban/FRDIntent.git'
 end
 ```
 
